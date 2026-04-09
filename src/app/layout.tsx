@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Автошкола «Сирена»',
   description: "Официальный сайт Автошколы «Сирена»: обучение на категории A и B в Озерске.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

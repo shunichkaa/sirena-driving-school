@@ -33,7 +33,7 @@ export function Hero({ onConsult }: HeroProps) {
               </li>
             ))}
           </ul>
-          <div className="mt-7 flex flex-wrap gap-2.5">
+          <div className="mt-7 hidden flex-wrap gap-2.5 md:flex">
             <button
               type="button"
               onClick={onConsult}
