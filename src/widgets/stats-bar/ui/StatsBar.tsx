@@ -13,7 +13,7 @@ export function StatsBar() {
         viewport={{ once: true }}
         className="mb-8 text-left text-[1.6rem] font-black uppercase tracking-tight text-ink md:mb-10 md:text-[2rem]"
       >
-        Ключевые направления
+        Почему выбирают нас
       </motion.h2>
       <div className="grid gap-6 sm:grid-cols-3">
         {items.map((it, i) => (
