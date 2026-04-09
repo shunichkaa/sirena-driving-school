@@ -111,10 +111,8 @@ export const siteData = {
     "коллективный_дог.docx",
   ],
   images: {
-    heroCar:
-      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=900&h=600&fit=crop",
-    sideCar:
-      "https://images.unsplash.com/photo-1494976388531-d0858495964e?w=900&h=600&fit=crop",
-    moto: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&h=600&fit=crop",
+    heroCar: "/assets/hero-car-top.svg",
+    sideCar: "/assets/sedan-side.svg",
+    moto: "/assets/moto-side.svg",
   },
 } as const;

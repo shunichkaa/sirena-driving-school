@@ -1,21 +1,43 @@
 "use client";
 
 import { ConsultationDialog } from "@/features/book-consultation";
-import { CategoryASection } from "@/widgets/category-a-section";
-import { CategoryBSection } from "@/widgets/category-b-section";
-import { ContactsSection } from "@/widgets/contacts-section";
-import { DocumentsSection } from "@/widgets/documents-section";
-import { FaqSection } from "@/widgets/faq-section";
-import { FinalCta } from "@/widgets/final-cta";
 import { Header } from "@/widgets/header";
 import { Hero } from "@/widgets/hero";
-import { LearningSteps } from "@/widgets/learning-steps";
-import { PricingSection } from "@/widgets/pricing-section";
-import { ReviewsSection } from "@/widgets/reviews-section";
-import { ScheduleStrip } from "@/widgets/schedule-strip";
 import { StatsBar } from "@/widgets/stats-bar";
 import { siteData } from "@/shared/config/site-data";
+import dynamic from "next/dynamic";
 import { useState } from "react";
+
+const CategoryBSection = dynamic(() =>
+  import("@/widgets/category-b-section").then((module) => module.CategoryBSection),
+);
+const CategoryASection = dynamic(() =>
+  import("@/widgets/category-a-section").then((module) => module.CategoryASection),
+);
+const PricingSection = dynamic(() =>
+  import("@/widgets/pricing-section").then((module) => module.PricingSection),
+);
+const LearningSteps = dynamic(() =>
+  import("@/widgets/learning-steps").then((module) => module.LearningSteps),
+);
+const ReviewsSection = dynamic(() =>
+  import("@/widgets/reviews-section").then((module) => module.ReviewsSection),
+);
+const FaqSection = dynamic(() =>
+  import("@/widgets/faq-section").then((module) => module.FaqSection),
+);
+const DocumentsSection = dynamic(() =>
+  import("@/widgets/documents-section").then((module) => module.DocumentsSection),
+);
+const ScheduleStrip = dynamic(() =>
+  import("@/widgets/schedule-strip").then((module) => module.ScheduleStrip),
+);
+const FinalCta = dynamic(() =>
+  import("@/widgets/final-cta").then((module) => module.FinalCta),
+);
+const ContactsSection = dynamic(() =>
+  import("@/widgets/contacts-section").then((module) => module.ContactsSection),
+);
 
 export function LandingPage() {
   const [consultOpen, setConsultOpen] = useState(false);
@@ -61,18 +83,7 @@ export function LandingPage() {
         </div>
       </div>
       <footer className="border-t border-wash py-8 text-center text-sm text-muted">
-        <p>
-          Данные о ценах и контактах взяты с{" "}
-          <a
-            href={siteData.officialUrl}
-            className="text-ink underline decoration-accent underline-offset-2"
-            target="_blank"
-            rel="noreferrer"
-          >
-            официального сайта
-          </a>{" "}
-          Автошколы «Сирена».
-        </p>
+        <p>Официальный сайт Автошколы «Сирена».</p>
       </footer>
       <ConsultationDialog open={consultOpen} onOpenChange={setConsultOpen} />
     </div>

@@ -11,23 +11,23 @@ type HeroProps = {
 export function Hero({ onConsult }: HeroProps) {
   return (
     <section className="mx-auto max-w-6xl px-4 pb-12 pt-2 md:px-6 md:pb-16 lg:px-8">
-      <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-10">
+      <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="order-2 lg:order-1 lg:col-span-6">
           <motion.h1
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-[clamp(2.1rem,5vw,3.8rem)] font-black leading-[1.02] tracking-tight text-ink"
+            className="text-[clamp(2.1rem,5vw,3.9rem)] font-black uppercase leading-[0.98] tracking-tight text-ink"
           >
             {siteData.hero.title}
           </motion.h1>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted md:text-lg">
+          <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-muted md:text-base">
             {siteData.hero.subtitle}
           </p>
-          <ul className="mt-6 space-y-2.5">
+          <ul className="mt-6 space-y-2">
             {siteData.hero.points.map((point) => (
-              <li key={point} className="flex items-start gap-2 text-sm font-semibold text-ink md:text-base">
+              <li key={point} className="flex items-start gap-2 text-sm font-semibold text-ink md:text-[15px]">
                 <span className="mt-[0.4rem] h-1.5 w-1.5 rounded-full bg-accent" />
                 <span>{point}</span>
               </li>
@@ -56,16 +56,16 @@ export function Hero({ onConsult }: HeroProps) {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="relative flex h-[min(58vw,380px)] w-[min(96vw,560px)] items-center justify-center md:h-[390px] md:w-[580px]"
+            className="relative flex h-[min(58vw,380px)] w-[min(96vw,560px)] items-center justify-center rounded-[2rem] border border-wash bg-[#fbfbfb] p-3 md:h-[390px] md:w-[580px] md:p-5"
           >
-            <div className="absolute inset-0 rounded-[2rem] bg-wash/60" />
-            <div className="absolute inset-[7%] rounded-[1.7rem] border-2 border-accent/70" />
-            <div className="relative z-10 w-[112%] max-w-none md:w-[120%]">
+            <div className="absolute right-8 top-8 h-5 w-5 rounded-full border-4 border-[#f05a28] bg-accent" />
+            <div className="absolute inset-[10%] rounded-[1.8rem] border border-wash" />
+            <div className="relative z-10 w-[112%] max-w-none md:w-[118%]">
               <Image
                 src={siteData.images.heroCar}
                 alt="Автомобиль автошколы"
                 width={900}
-                height={600}
+                height={520}
                 className="h-auto w-full object-contain drop-shadow-xl"
                 priority
               />

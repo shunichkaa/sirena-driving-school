@@ -21,17 +21,8 @@ export function ScheduleStrip() {
               Расписание
             </h2>
             <p className="mt-2 max-w-xl text-sm text-muted">
-              График занятий и набор групп уточняйте в офисе или по телефону. Актуальные
-              документы и программы — на{" "}
-              <a
-                href={siteData.officialUrl}
-                className="font-semibold text-ink underline decoration-accent underline-offset-4 hover:text-accent"
-                target="_blank"
-                rel="noreferrer"
-              >
-                официальном сайте
-              </a>
-              .
+              График занятий и набор групп уточняйте в офисе или по телефону. Актуальные документы
+              и программы доступны в соответствующих разделах сайта.
             </p>
           </div>
           <a

@@ -1,14 +1,11 @@
 "use client";
-
-import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 
 export function StatsBar() {
   const items = [
-    { value: "18+", label: "лет опыта" },
-    { value: siteData.stats.duration, label: "до экзамена" },
-    { value: "80%", label: "сдача с первого раза" },
-    { value: "4.9", label: "оценка выпускников" },
+    { value: "18", label: "лет опыта" },
+    { value: "1-3", label: "месяца" },
+    { value: "80%", label: "сдача" },
   ];
 
   return (
@@ -17,11 +14,11 @@ export function StatsBar() {
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mb-8 text-center text-2xl font-black tracking-tight text-ink md:mb-10 md:text-3xl"
+        className="mb-8 text-left text-[1.6rem] font-black uppercase tracking-tight text-ink md:mb-10 md:text-[2rem]"
       >
-        Почему выбирают нас
+        Обучаем
       </motion.h2>
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-3">
         {items.map((it, i) => (
           <motion.div
             key={i}
@@ -29,10 +26,10 @@ export function StatsBar() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            className="rounded-2xl border border-wash bg-white px-4 py-5 text-center md:px-5 md:py-6"
+            className="border-l border-wash pl-4 text-left first:border-l-0 first:pl-0"
           >
-            <p className="text-[1.9rem] font-black leading-none text-ink md:text-4xl">{it.value}</p>
-            <p className="mt-2 text-xs font-medium uppercase tracking-wide text-muted md:text-sm">
+            <p className="text-[2.25rem] font-black leading-none text-ink md:text-[2.75rem]">{it.value}</p>
+            <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted md:text-xs">
               {it.label}
             </p>
           </motion.div>

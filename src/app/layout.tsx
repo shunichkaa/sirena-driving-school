@@ -9,8 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Автошкола «Сирена»',
-  description:
-    "Официальные контакты и стоимость обучения — по данным сайта Автошколы «Сирена».",
+  description: "Официальный сайт Автошколы «Сирена»: обучение на категории A и B в Озерске.",
 };
 
 export default function RootLayout({

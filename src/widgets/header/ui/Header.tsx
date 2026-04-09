@@ -20,15 +20,15 @@ export function Header() {
       initial={{ opacity: 0, y: -12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45 }}
-      className="relative z-50 mx-auto flex max-w-6xl items-center justify-between px-4 pb-6 pt-8 md:px-6 lg:px-8"
+      className="relative z-50 mx-auto flex max-w-6xl items-center justify-between px-4 pb-5 pt-7 md:px-6 lg:px-8"
     >
-      <Link href="/" className="select-none text-lg font-black tracking-tight md:text-xl">
-        <span className="text-accent">{siteData.brandYellow}</span>
-        <span className="text-ink">{siteData.brandBlack}</span>
+      <Link href="/" className="select-none text-base font-black tracking-[0.08em] text-ink md:text-lg">
+        <span className="text-accent">{siteData.brandYellow}</span>{" "}
+        <span>{siteData.brandBlack}</span>
       </Link>
       <nav
         aria-label="Основная навигация"
-        className="hidden items-center gap-8 text-xs font-bold uppercase tracking-wide text-ink md:flex"
+        className="hidden items-center gap-7 text-[11px] font-bold uppercase tracking-[0.12em] text-ink md:flex"
       >
         {links.map((l) => (
           <a key={l.href} href={l.href} className="hover:text-accent">
