@@ -22,7 +22,7 @@ export function FinalCta({ onConsult }: FinalCtaProps) {
             onClick={onConsult}
             className="rounded-full bg-accent px-6 py-3 text-sm font-black uppercase tracking-wide text-ink transition hover:brightness-95"
           >
-            Записаться онлайн
+            Записаться
           </button>
           <a
             href={`tel:${siteData.phoneTel}`}
