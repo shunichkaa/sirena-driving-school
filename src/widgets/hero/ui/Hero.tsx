@@ -68,6 +68,7 @@ export function Hero({ onConsult }: HeroProps) {
                 height={520}
                 className="h-auto w-full object-contain drop-shadow-xl"
                 priority
+                unoptimized
               />
             </div>
           </motion.div>

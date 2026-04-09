@@ -10,9 +10,11 @@ export const siteData = {
     "https://yandex.ru/map-widget/v1/?text=%D0%B3.%20%D0%9E%D0%B7%D0%B5%D1%80%D1%81%D0%BA%2C%20%D1%83%D0%BB.%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%2C%207&z=16",
   vkUrl: "https://vk.com/club25096898",
   stats: {
-    price: "от 21 000 руб.",
-    duration: "1–3 месяца",
-    detail: "190 ч. программа",
+    items: [
+      { value: "Обновление дизайна", label: "сайт адаптирован для мобильных устройств" },
+      { value: "Развитие", label: "подготовка к реальным дорожным условиям" },
+      { value: "Инновации", label: "внедрение технологий в обучение" },
+    ],
   },
   categoryB: {
     mkpp: {
@@ -36,13 +38,25 @@ export const siteData = {
     price: "23 000 ₽",
   },
   hero: {
-    title: "Обучение вождению в Озерске",
+    title: "Автошкола «Сирена»",
     subtitle:
-      "Лицензированная автошкола с подготовкой на категории A и B, удобным графиком и поддержкой до экзамена.",
-    points: ["Лицензия и опытные инструкторы", "Рассрочка без переплат", "Группы утром и вечером"],
+      "Рады приветствовать вас на официальном сайте. Ознакомьтесь с программами обучения, документацией и условиями записи.",
+    points: [
+      "Стремимся к высоким стандартам в области образования",
+      "Подготовка водителей к реальным дорожным условиям",
+      "Запись на обучение доступна с мобильных устройств",
+    ],
     primaryCta: "Записаться на консультацию",
-    secondaryCta: "Смотреть цены",
+    secondaryCta: "Смотреть разделы",
   },
+  trainingLinks: [
+    { label: "Программы полезные при обучении", href: "http://xn----7sbabhuunjyeb4ami1h.xn--p1ai/pppo.html" },
+    { label: "Документы", href: "http://xn----7sbabhuunjyeb4ami1h.xn--p1ai/uch-doc.html" },
+    { label: "Устройство автомобиля", href: "http://xn----7sbabhuunjyeb4ami1h.xn--p1ai/ustr-avto.html" },
+    { label: "Всё о экзамене", href: "http://xn----7sbabhuunjyeb4ami1h.xn--p1ai/vse_exam.html" },
+    { label: "Описание выполнения упражнений", href: "http://xn----7sbabhuunjyeb4ami1h.xn--p1ai/a-drom.html" },
+    { label: "Фото автодрома", href: "http://xn----7sbabhuunjyeb4ami1h.xn--p1ai/f-a-drom.html" },
+  ],
   learningSteps: [
     { title: "Оставляете заявку", text: "Уточняем цели, подбираем формат и время обучения." },
     { title: "Заключаем договор", text: "Фиксируем стоимость, график и старт группы." },

@@ -14,9 +14,6 @@ const CategoryBSection = dynamic(() =>
 const CategoryASection = dynamic(() =>
   import("@/widgets/category-a-section").then((module) => module.CategoryASection),
 );
-const PricingSection = dynamic(() =>
-  import("@/widgets/pricing-section").then((module) => module.PricingSection),
-);
 const LearningSteps = dynamic(() =>
   import("@/widgets/learning-steps").then((module) => module.LearningSteps),
 );
@@ -56,7 +53,6 @@ export function LandingPage() {
         <StatsBar />
         <CategoryBSection onConsult={() => setConsultOpen(true)} />
         <CategoryASection onConsult={() => setConsultOpen(true)} />
-        <PricingSection onConsult={() => setConsultOpen(true)} />
         <LearningSteps />
         <ReviewsSection />
         <FaqSection />

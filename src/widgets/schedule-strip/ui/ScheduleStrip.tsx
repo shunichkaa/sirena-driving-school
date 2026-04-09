@@ -24,6 +24,19 @@ export function ScheduleStrip() {
               График занятий и набор групп уточняйте в офисе или по телефону. Актуальные документы
               и программы доступны в соответствующих разделах сайта.
             </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {siteData.trainingLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-wash px-3 py-1.5 text-xs font-semibold text-ink hover:border-accent hover:text-accent"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
           <a
             href={`tel:${siteData.phoneTel}`}

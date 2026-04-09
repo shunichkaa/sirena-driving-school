@@ -107,13 +107,6 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                 >
                   Открыть письмо
                 </button>
-                <button
-                  type="button"
-                  onClick={onOpenConsult}
-                  className="rounded-full border-2 border-ink px-5 py-3 text-xs font-black uppercase tracking-wide text-ink hover:border-accent"
-                >
-                  Форма в окне
-                </button>
               </div>
             </div>
           </div>

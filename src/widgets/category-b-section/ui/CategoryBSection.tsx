@@ -64,6 +64,7 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
               width={1200}
               height={460}
               className="h-auto w-full object-contain"
+              unoptimized
             />
           </div>
         </motion.div>

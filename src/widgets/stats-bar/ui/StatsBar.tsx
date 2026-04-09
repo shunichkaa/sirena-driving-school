@@ -1,12 +1,9 @@
 "use client";
+import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 
 export function StatsBar() {
-  const items = [
-    { value: "18", label: "лет опыта" },
-    { value: "1-3", label: "месяца" },
-    { value: "80%", label: "сдача" },
-  ];
+  const items = siteData.stats.items;
 
   return (
     <section id="stoimost" className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
@@ -16,7 +13,7 @@ export function StatsBar() {
         viewport={{ once: true }}
         className="mb-8 text-left text-[1.6rem] font-black uppercase tracking-tight text-ink md:mb-10 md:text-[2rem]"
       >
-        Обучаем
+        Ключевые направления
       </motion.h2>
       <div className="grid gap-6 sm:grid-cols-3">
         {items.map((it, i) => (
