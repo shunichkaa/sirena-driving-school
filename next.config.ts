@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/sirena-driving-school',
+  basePath: process.env.NODE_ENV === 'production' ? '/sirena-driving-school' : '',
   images: {
     unoptimized: true,
     remotePatterns: [

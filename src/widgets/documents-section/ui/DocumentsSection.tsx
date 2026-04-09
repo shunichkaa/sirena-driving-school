@@ -85,7 +85,7 @@ export function DocumentsSection() {
                 {group.files.map((fileName) => (
                   <li key={fileName}>
                     <a
-                      href={`/docs/${encodeURIComponent(fileName)}`}
+                      href={`docs/${encodeURIComponent(fileName)}`}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex min-h-11 items-center text-sm font-semibold text-ink underline decoration-accent underline-offset-4 hover:text-accent"
