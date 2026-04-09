@@ -1,3 +1,7 @@
+const isProduction = process.env.NODE_ENV === "production";
+const repoBasePath = "/sirena-driving-school";
+const withBasePath = (path: string) => (isProduction ? `${repoBasePath}${path}` : path);
+
 export const siteData = {
   brandYellow: "АВТО",
   brandBlack: "ШКОЛА «СИРЕНА»",
@@ -125,8 +129,8 @@ export const siteData = {
     "коллективный_дог.docx",
   ],
   images: {
-    heroCar: "/assets/hero-car-top.svg",
-    sideCar: "/assets/sedan-side.svg",
-    moto: "/assets/moto-side.svg",
+    heroCar: withBasePath("/assets/hero-car-top.svg"),
+    sideCar: withBasePath("/assets/sedan-side.svg"),
+    moto: withBasePath("/assets/moto-side.svg"),
   },
 } as const;
