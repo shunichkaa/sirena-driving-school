@@ -9,9 +9,9 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { href: "#stoimost", label: "Стоимость обучения" },
-    { href: "#raspisanie", label: "Расписание" },
-    { href: "#faq", label: "FAQ" },
+    { href: "#programma", label: "Программа" },
+    { href: "#ceny", label: "Цены" },
+    { href: "#otzyvy", label: "Отзывы" },
     { href: "#kontakty", label: "Контакты" },
   ];
 
@@ -35,6 +35,12 @@ export function Header() {
             {l.label}
           </a>
         ))}
+        <a
+          href="#kontakty"
+          className="rounded-full bg-accent px-4 py-2 text-[11px] font-black uppercase tracking-[0.1em] text-ink transition hover:brightness-95"
+        >
+          Записаться
+        </a>
       </nav>
       <button
         type="button"
@@ -63,6 +69,13 @@ export function Header() {
               {l.label}
             </a>
           ))}
+          <a
+            href="#kontakty"
+            className="mt-1 inline-flex items-center justify-center rounded-full bg-accent px-4 py-2.5 text-sm font-black uppercase tracking-wide text-ink transition hover:brightness-95"
+            onClick={() => setMenuOpen(false)}
+          >
+            Записаться
+          </a>
         </div>
       ) : null}
     </motion.header>

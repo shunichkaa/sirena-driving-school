@@ -4,6 +4,7 @@ import { ConsultationDialog } from "@/features/book-consultation";
 import { siteData } from "@/shared/config/site-data";
 import { Header } from "@/widgets/header";
 import { Hero } from "@/widgets/hero";
+import { PricingSection } from "@/widgets/pricing-section";
 import { StatsBar } from "@/widgets/stats-bar";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -11,25 +12,11 @@ import { useState } from "react";
 const ContactsSectionDynamic = dynamic(() =>
   import("@/widgets/contacts-section").then((module) => module.ContactsSection),
 );
-const DocumentsSectionDynamic = dynamic(() =>
-  import("@/widgets/documents-section").then((module) => module.DocumentsSection),
-);
-const FaqSectionDynamic = dynamic(() => import("@/widgets/faq-section").then((module) => module.FaqSection));
 const LearningStepsDynamic = dynamic(() =>
   import("@/widgets/learning-steps").then((module) => module.LearningSteps),
 );
 const ReviewsSectionDynamic = dynamic(() =>
   import("@/widgets/reviews-section").then((module) => module.ReviewsSection),
-);
-const ScheduleStripDynamic = dynamic(() =>
-  import("@/widgets/schedule-strip").then((module) => module.ScheduleStrip),
-);
-const FinalCtaDynamic = dynamic(() => import("@/widgets/final-cta").then((module) => module.FinalCta));
-const CategoryASectionDynamic = dynamic(() =>
-  import("@/widgets/category-a-section").then((module) => module.CategoryASection),
-);
-const CategoryBSectionDynamic = dynamic(() =>
-  import("@/widgets/category-b-section").then((module) => module.CategoryBSection),
 );
 
 export default function Home() {
@@ -47,14 +34,9 @@ export default function Home() {
       <main id="main-content" className="pb-20 md:pb-0">
         <Hero onConsult={() => setConsultOpen(true)} />
         <StatsBar />
-        <CategoryBSectionDynamic onConsult={() => setConsultOpen(true)} />
-        <CategoryASectionDynamic onConsult={() => setConsultOpen(true)} />
         <LearningStepsDynamic />
         <ReviewsSectionDynamic />
-        <FaqSectionDynamic />
-        <DocumentsSectionDynamic />
-        <ScheduleStripDynamic />
-        <FinalCtaDynamic onConsult={() => setConsultOpen(true)} />
+        <PricingSection />
         <ContactsSectionDynamic onOpenConsult={() => setConsultOpen(true)} />
       </main>
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-wash bg-white/95 p-2.5 backdrop-blur md:hidden">

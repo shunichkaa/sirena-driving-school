@@ -73,7 +73,7 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
               </p>
             </div>
             <div className="rounded-2xl border border-wash bg-white p-6 shadow-sm">
-              <h3 className="text-base font-bold text-ink">Запись на консультацию</h3>
+              <h3 className="text-base font-bold text-ink">Запишитесь на обучение</h3>
               <div className="mt-4 space-y-3">
                 <label htmlFor="consult-name" className="sr-only">
                   Имя
@@ -105,7 +105,7 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                   onClick={sendMail}
                   className="rounded-full bg-accent px-5 py-3 text-xs font-black uppercase tracking-wide text-ink"
                 >
-                  Открыть письмо
+                  Отправить заявку
                 </button>
               </div>
             </div>

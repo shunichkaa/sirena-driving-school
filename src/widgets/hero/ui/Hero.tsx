@@ -33,6 +33,20 @@ export function Hero({ onConsult }: HeroProps) {
               </li>
             ))}
           </ul>
+          <div className="mt-7 flex flex-wrap gap-2.5 md:hidden">
+            <a
+              href="#kontakty"
+              className="rounded-full bg-accent px-6 py-3 text-xs font-black uppercase tracking-wide text-ink transition hover:brightness-95"
+            >
+              Записаться
+            </a>
+            <a
+              href="#programma"
+              className="rounded-full border border-ink px-6 py-3 text-xs font-black uppercase tracking-wide text-ink transition hover:border-accent hover:text-accent"
+            >
+              Узнать подробнее
+            </a>
+          </div>
           <div className="mt-7 hidden flex-wrap gap-2.5 md:flex">
             <button
               type="button"
@@ -42,7 +56,7 @@ export function Hero({ onConsult }: HeroProps) {
               {siteData.hero.primaryCta}
             </button>
             <a
-              href="#stoimost"
+              href="#programma"
               className="rounded-full border border-ink px-6 py-3 text-xs font-black uppercase tracking-wide text-ink transition hover:border-accent hover:text-accent md:text-sm"
             >
               {siteData.hero.secondaryCta}
