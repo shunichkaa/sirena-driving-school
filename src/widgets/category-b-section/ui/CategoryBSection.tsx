@@ -1,7 +1,10 @@
 "use client";
 
+import { assetUrl } from "@/shared/config/app-base-path";
+import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type CategoryBSectionProps = {
   onConsult: () => void;
@@ -20,7 +23,27 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Категория B
         </h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
+        <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-10">
+          <figure className="flex flex-col lg:col-span-5">
+            <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-wash bg-wash shadow-card lg:mx-0 lg:max-w-none">
+              <div
+                className="relative w-full"
+                style={{ aspectRatio: `${siteMedia.categoryBFleet.width} / ${siteMedia.categoryBFleet.height}` }}
+              >
+                <Image
+                  fill
+                  src={assetUrl(siteMedia.categoryBFleet.src)}
+                  alt={siteMedia.categoryBFleet.alt}
+                  className="object-cover object-center"
+                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 384px, 100vw"
+                />
+              </div>
+            </div>
+            <figcaption className="mt-3 text-center text-[13px] text-muted lg:text-left">
+              Учебный автомобиль на площадке
+            </figcaption>
+          </figure>
+          <div className="grid gap-4 md:grid-cols-2 lg:col-span-7 lg:content-start">
           {cards.map(({ key, data }, index) => (
             <motion.article
               key={key}
@@ -73,6 +96,7 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
               </button>
             </motion.article>
           ))}
+          </div>
         </div>
         <p className="mx-auto mt-8 max-w-measure rounded-2xl border border-wash bg-surface px-5 py-4 text-center text-sm leading-relaxed text-muted">
           {installmentNote}

@@ -1,7 +1,10 @@
 "use client";
 
+import { assetUrl } from "@/shared/config/app-base-path";
+import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 function initials(name: string) {
   const parts = name.split(" ").filter(Boolean);
@@ -16,7 +19,23 @@ export function ReviewsSection() {
   return (
     <section id="otzyvy" className="border-t border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-        <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:mb-2">
+          {siteMedia.reviewsMosaic.map((item) => (
+            <div
+              key={item.src}
+              className="relative aspect-[5/4] overflow-hidden rounded-xl border border-wash bg-wash shadow-sm"
+            >
+              <Image
+                fill
+                src={assetUrl(item.src)}
+                alt={item.alt}
+                className="object-cover"
+                sizes="(min-width: 1024px) 240px, 33vw"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="mt-10 flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
           <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">Отзывы</h2>
           <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
             <span className="text-3xl font-bold text-accent">{reviewsSummary.score}</span>

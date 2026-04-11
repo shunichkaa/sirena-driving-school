@@ -1,6 +1,7 @@
 "use client";
 
 import { assetUrl } from "@/shared/config/app-base-path";
+import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -13,48 +14,58 @@ export function Hero({ onConsult }: HeroProps) {
   const { yandexRating } = siteData;
 
   return (
-    <section className="bg-surface">
-      <div className="mx-auto grid max-w-6xl min-h-0 grid-cols-1 items-center gap-10 px-4 py-10 md:px-6 md:py-16 lg:grid-cols-12 lg:gap-12 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#f6f7f2] to-surface">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(75,94,46,0.12),transparent)]" />
+      <div className="relative mx-auto grid max-w-6xl min-h-0 grid-cols-1 items-center gap-12 px-4 py-12 md:gap-14 md:px-6 md:py-20 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="min-w-0 max-w-measure lg:col-span-7">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-accent md:text-xs">
+            {siteData.hero.eyebrow}
+          </p>
           <motion.h1
             initial={false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="whitespace-pre-line text-[clamp(2rem,5vw,3.75rem)] font-bold uppercase leading-[1.1] tracking-tight text-ink"
+            className="mt-3 whitespace-pre-line text-[clamp(2.125rem,5.2vw,3.5rem)] font-black leading-[1.08] tracking-tight text-ink"
           >
             {siteData.hero.title}
           </motion.h1>
-          <p className="mt-4 max-w-measure text-[15px] font-normal leading-[1.6] text-muted md:text-[17px] md:leading-[1.65]">
+          <p className="mt-5 max-w-[36rem] text-base font-medium leading-relaxed text-ink/85 md:text-lg md:leading-relaxed">
             {siteData.hero.subtitle}
           </p>
-          <ul className="mt-6 max-w-measure space-y-3">
+          <ul className="mt-7 max-w-measure space-y-3.5 border-l-2 border-accent/35 pl-5">
             {siteData.hero.points.map((point) => (
-              <li key={point} className="flex gap-3 text-[15px] font-medium leading-[1.6] text-ink md:text-base">
-                <span className="mt-0.5 shrink-0 text-success" aria-hidden>
-                  ✓
-                </span>
-                <span>{point}</span>
+              <li key={point} className="text-[15px] font-medium leading-snug text-muted md:text-base md:leading-snug">
+                {point}
               </li>
             ))}
           </ul>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <button
               type="button"
               onClick={onConsult}
-              className="rounded-lg bg-accent px-8 py-3.5 text-base font-bold text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100"
+              className="min-h-12 rounded-xl bg-accent px-8 py-3.5 text-center text-base font-bold text-white shadow-[0_8px_24px_rgba(75,94,46,0.28)] transition hover:bg-accentStrong hover:shadow-[0_10px_28px_rgba(61,79,38,0.32)] active:translate-y-px"
             >
               {siteData.hero.primaryCta}
             </button>
-            <a
-              href="#programma"
-              className="inline-flex items-center gap-2 rounded-lg border-2 border-accent bg-white px-8 py-3.5 text-base font-bold text-accent transition hover:bg-surface"
+            <button
+              type="button"
+              onClick={onConsult}
+              className="min-h-12 rounded-xl border-2 border-accent bg-white px-8 py-3.5 text-center text-base font-bold text-accent transition hover:bg-surface"
             >
               {siteData.hero.secondaryCta}
-              <span aria-hidden>→</span>
-            </a>
+            </button>
           </div>
-          <p className="mt-3 max-w-measure text-[13px] text-subtle">{siteData.hero.trustLine}</p>
-          <p className="mt-4 flex flex-wrap items-center gap-2 text-[13px] text-muted">
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6">
+            <a
+              href="#programma"
+              className="text-sm font-semibold text-accent underline decoration-accent/30 underline-offset-4 transition hover:decoration-accent"
+            >
+              {siteData.hero.programAnchorLabel}
+              <span aria-hidden> →</span>
+            </a>
+            <p className="text-[13px] text-subtle">{siteData.hero.trustLine}</p>
+          </div>
+          <p className="mt-5 flex flex-wrap items-center gap-2 text-[13px] text-muted">
             <span className="text-amber-500" aria-hidden>
               ★★★★★
             </span>
@@ -62,16 +73,17 @@ export function Hero({ onConsult }: HeroProps) {
             <span>{yandexRating.label}</span>
           </p>
         </div>
-        <div className="relative min-h-0 w-full min-w-0 overflow-hidden rounded-2xl border border-wash bg-wash shadow-card lg:col-span-5">
-          <div className="relative aspect-[512/341] w-full">
+        <div className="relative min-h-0 w-full min-w-0 lg:col-span-5">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-wash/80 bg-wash shadow-card ring-1 ring-black/[0.04] md:aspect-[5/4] lg:aspect-[4/5]">
             <Image
               fill
-              src={assetUrl("/hero-driving.jpg")}
-              alt="Инструктор объясняет курсантке за рулём белого учебного автомобиля на площадке с разметкой и конусами"
-              className="object-cover"
-              sizes="(min-width: 1024px) 40vw, 100vw"
+              src={assetUrl(siteMedia.heroMain)}
+              alt={siteMedia.heroMainAlt}
+              className="object-cover object-center"
+              sizes="(min-width: 1024px) 38vw, 100vw"
               priority
             />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
           </div>
         </div>
       </div>
