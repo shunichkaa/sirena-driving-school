@@ -14,12 +14,13 @@ function initials(name: string) {
 }
 
 export function ReviewsSection() {
-  const { reviews, reviewsSummary } = siteData;
+  const { reviews, reviewsSummary, yandexRating } = siteData;
+  const ratingCaption = `на основе ${yandexRating.reviewCount} оценок в Яндекс.Картах`;
 
   return (
     <section id="otzyvy" className="border-t border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:mb-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:mb-2">
           {siteMedia.reviewsMosaic.map((item) => (
             <div
               key={item.src}
@@ -39,7 +40,7 @@ export function ReviewsSection() {
           <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">Отзывы</h2>
           <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
             <span className="text-3xl font-bold text-accent">{reviewsSummary.score}</span>
-            <span>{reviewsSummary.countLabel}</span>
+            <span>{ratingCaption}</span>
             <span className="text-amber-500" aria-hidden>
               ★★★★★
             </span>

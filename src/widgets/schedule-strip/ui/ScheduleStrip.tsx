@@ -15,18 +15,15 @@ export function ScheduleStrip() {
         >
           <div className="min-w-0 flex-1">
             <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">Справка</p>
-            <h2 className="mt-1 text-2xl font-bold tracking-tight text-ink md:text-3xl">Расписание</h2>
-            <p className="mt-2 max-w-xl text-sm text-muted">
-              График занятий и набор групп уточняйте в офисе или по телефону. Актуальные документы
-              и программы доступны в соответствующих разделах сайта.
-            </p>
+            <h2 className="mt-1 text-2xl font-bold tracking-tight text-ink md:text-3xl">{siteData.scheduleStrip.title}</h2>
+            <p className="mt-2 max-w-xl text-sm text-muted">{siteData.scheduleStrip.description}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {siteData.trainingLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="rounded-full border border-wash px-3 py-1.5 text-xs font-semibold text-ink hover:border-accent hover:text-accent"
                 >
                   {link.label}
@@ -38,7 +35,7 @@ export function ScheduleStrip() {
             href={`tel:${siteData.phoneTel}`}
             className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-lg border-2 border-accent bg-white px-6 py-3 text-sm font-bold text-accent transition hover:bg-surface"
           >
-            Позвонить
+            {siteData.scheduleStrip.phoneCta}
           </a>
         </motion.div>
       </div>

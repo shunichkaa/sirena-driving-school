@@ -1,6 +1,6 @@
 "use client";
 
-import { assetUrl } from "@/shared/config/app-base-path";
+import { assetUrl, homeFragmentHref } from "@/shared/config/app-base-path";
 import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
@@ -25,7 +25,7 @@ export function Hero({ onConsult }: HeroProps) {
             initial={false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="mt-3 whitespace-pre-line text-[clamp(2.125rem,5.2vw,3.5rem)] font-black leading-[1.08] tracking-tight text-ink"
+            className="mt-3 whitespace-pre-line text-[clamp(3rem,5.5vw,3.75rem)] font-black leading-[1.08] tracking-tight text-ink"
           >
             {siteData.hero.title}
           </motion.h1>
@@ -43,21 +43,20 @@ export function Hero({ onConsult }: HeroProps) {
             <button
               type="button"
               onClick={onConsult}
-              className="min-h-12 rounded-xl bg-accent px-8 py-3.5 text-center text-base font-bold text-white shadow-[0_8px_24px_rgba(75,94,46,0.28)] transition hover:bg-accentStrong hover:shadow-[0_10px_28px_rgba(61,79,38,0.32)] active:translate-y-px"
+              className="min-h-12 rounded-xl bg-accent px-8 py-3.5 text-center text-base font-bold text-white shadow-[0_10px_32px_rgba(75,94,46,0.38)] ring-2 ring-accent/25 transition hover:bg-accentStrong hover:shadow-[0_12px_36px_rgba(61,79,38,0.42)] hover:ring-accent/35 active:translate-y-px"
             >
               {siteData.hero.primaryCta}
             </button>
-            <button
-              type="button"
-              onClick={onConsult}
-              className="min-h-12 rounded-xl border-2 border-accent bg-white px-8 py-3.5 text-center text-base font-bold text-accent transition hover:bg-surface"
+            <a
+              href={homeFragmentHref(siteData.hero.secondaryCtaHref)}
+              className="inline-flex min-h-12 items-center justify-center rounded-xl border-2 border-accent bg-white px-8 py-3.5 text-center text-base font-bold text-accent transition hover:bg-surface hover:shadow-md"
             >
               {siteData.hero.secondaryCta}
-            </button>
+            </a>
           </div>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6">
             <a
-              href="#programma"
+              href={homeFragmentHref("programma")}
               className="text-sm font-semibold text-accent underline decoration-accent/30 underline-offset-4 transition hover:decoration-accent"
             >
               {siteData.hero.programAnchorLabel}

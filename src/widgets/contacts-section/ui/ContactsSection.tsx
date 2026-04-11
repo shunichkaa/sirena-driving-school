@@ -2,6 +2,7 @@
 
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type ContactsSectionProps = {
@@ -19,7 +20,10 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [category, setCategory] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [hp, setHp] = useState("");
   const [sent, setSent] = useState(false);
+  const [mailHref, setMailHref] = useState("");
   const [mapReady, setMapReady] = useState(false);
   const mapSentinelRef = useRef<HTMLDivElement>(null);
 
@@ -40,6 +44,8 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
   }, []);
 
   const sendMail = useCallback(() => {
+    if (hp.trim()) return;
+    if (!name.trim() || !phone.trim() || !consent) return;
     const catLine =
       category === ""
         ? "не указана"
@@ -48,13 +54,12 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
           : category;
     const subject = encodeURIComponent("Запись на консультацию");
     const body = encodeURIComponent(
-      `Имя: ${name}\nТелефон: ${phone}\nКатегория: ${catLine}\n\nСообщение отправлено с лендинга.`,
+      `Имя: ${name.trim()}\nТелефон: ${phone.trim()}\nКатегория: ${catLine}\n\nСообщение отправлено с лендинга.`,
     );
+    const href = `mailto:${siteData.email}?subject=${subject}&body=${body}`;
+    setMailHref(href);
     setSent(true);
-    window.setTimeout(() => {
-      window.location.href = `mailto:${siteData.email}?subject=${subject}&body=${body}`;
-    }, 600);
-  }, [name, phone, category]);
+  }, [name, phone, category, consent, hp]);
 
   return (
     <section id="kontakty" className="border-t border-wash bg-white py-16 md:py-24">
@@ -92,11 +97,21 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
               <p className="font-semibold">{siteData.addressLine}</p>
               <p className="text-muted">{siteData.workHoursLine}</p>
               <p>
-                <span className="text-muted">Телефон: </span>
+                <span className="text-muted">Телефон администратора: </span>
                 <a href={`tel:${siteData.phoneTel}`} className="text-lg font-bold text-accent hover:text-accentStrong">
                   {siteData.phoneDisplay}
                 </a>
-                <span className="mt-1 block text-[13px] text-subtle">Звоните в указанные часы — ответим или перезвоним.</span>
+                <span className="mt-1 block text-[13px] text-subtle">По вопросам записи и обучения.</span>
+              </p>
+              <p>
+                <span className="text-muted">Телефон учреждения: </span>
+                <a
+                  href={`tel:${siteData.phoneOfficeTel}`}
+                  className="font-semibold text-accent hover:text-accentStrong"
+                >
+                  {siteData.phoneOfficeDisplay}
+                </a>
+                <span className="mt-1 block text-[13px] text-subtle">Директор (сведения с официального сайта школы).</span>
               </p>
               <p>
                 <span className="text-muted">E-mail: </span>
@@ -107,7 +122,7 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
               <a
                 href={siteData.vkUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex min-h-12 items-center gap-3 rounded-lg border border-wash bg-surface px-4 py-3 font-semibold text-ink transition hover:border-accent"
               >
                 <span
@@ -119,17 +134,33 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                 Группа ВКонтакте
               </a>
             </div>
-            <div className="rounded-2xl border border-wash bg-canvas p-6 shadow-card">
+            <div className="relative rounded-2xl border border-wash bg-canvas p-6 shadow-card">
               <h3 className="text-lg font-medium text-ink">Запишитесь на обучение</h3>
               {sent ? (
-                <p className="mt-4 text-[15px] leading-relaxed text-muted">
-                  Заявка принята. Если почтовый клиент не открылся, позвоните нам — перезвоним в течение 15 минут в
-                  рабочее время.
-                </p>
+                <div className="mt-4 space-y-4">
+                  <p className="text-[15px] leading-relaxed text-muted">
+                    Сформировано письмо на {siteData.email}. Нажмите кнопку ниже, чтобы открыть почтовый клиент. Если
+                    не получилось — позвоните, перезвоним в рабочее время.
+                  </p>
+                  <a
+                    href={mailHref}
+                    className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-accent px-5 py-3 text-base font-bold text-white transition hover:bg-accentStrong"
+                  >
+                    Открыть почту
+                  </a>
+                </div>
               ) : (
                 <>
+                  <input
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden
+                    className="pointer-events-none absolute left-0 top-0 h-px w-px opacity-0"
+                    value={hp}
+                    onChange={(e) => setHp(e.target.value)}
+                  />
                   <div className="mt-4 space-y-3">
-                    <label htmlFor="consult-category" className="sr-only">
+                    <label htmlFor="consult-category" className="block text-sm font-medium text-ink">
                       Категория
                     </label>
                     <select
@@ -144,18 +175,18 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                         </option>
                       ))}
                     </select>
-                    <label htmlFor="consult-name" className="sr-only">
+                    <label htmlFor="consult-name" className="block text-sm font-medium text-ink">
                       Имя
                     </label>
                     <input
                       id="consult-name"
                       className="min-h-12 w-full rounded-lg border border-wash bg-white px-3 py-2 text-base outline-none ring-accent focus:ring-2"
-                      placeholder="Имя"
+                      placeholder="Как к вам обращаться"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       autoComplete="name"
                     />
-                    <label htmlFor="consult-phone" className="sr-only">
+                    <label htmlFor="consult-phone" className="block text-sm font-medium text-ink">
                       Телефон
                     </label>
                     <input
@@ -167,6 +198,23 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                       autoComplete="tel"
                       inputMode="tel"
                     />
+                    <label className="flex cursor-pointer gap-3 text-sm leading-snug text-muted">
+                      <input
+                        type="checkbox"
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                        className="mt-0.5 h-5 w-5 shrink-0 rounded border-wash text-accent focus:ring-accent"
+                      />
+                      <span>
+                        Согласен (-на) на обработку персональных данных в соответствии с{" "}
+                        <Link
+                          href={`${siteData.privacyPath}/`}
+                          className="font-semibold text-accent underline underline-offset-2"
+                        >
+                          политикой конфиденциальности
+                        </Link>
+                      </span>
+                    </label>
                   </div>
                   <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
                     <button
@@ -179,18 +227,12 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                     <button
                       type="button"
                       onClick={sendMail}
-                      className="min-h-12 rounded-lg border-2 border-accent bg-white px-5 py-3 text-base font-bold text-accent transition hover:bg-surface sm:min-w-[12rem]"
+                      disabled={!name.trim() || !phone.trim() || !consent}
+                      className="min-h-12 rounded-lg border-2 border-accent bg-white px-5 py-3 text-base font-bold text-accent transition hover:bg-surface enabled:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 sm:min-w-[12rem]"
                     >
                       Записаться на консультацию
                     </button>
                   </div>
-                  <p className="mt-3 text-[12px] leading-snug text-subtle">
-                    Нажимая кнопку, вы соглашаетесь с обработкой персональных данных в соответствии с{" "}
-                    <a href={siteData.officialUrl} className="text-accent underline underline-offset-2">
-                      политикой на официальном сайте
-                    </a>
-                    .
-                  </p>
                 </>
               )}
             </div>

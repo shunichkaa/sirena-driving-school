@@ -1,7 +1,7 @@
 export const siteMedia = {
   heroMain: "/photos/hero-traffic.png",
   heroMainAlt:
-    "Учебная площадка: оранжевые конусы и разметка на асфальте, рядом учебный автомобиль",
+    "Автошкола Сирена Озёрск: учебная площадка с конусами и разметкой, рядом учебный автомобиль",
   categoryAFleet: {
     src: "/photos/training-moto-category-a.png",
     width: 682,

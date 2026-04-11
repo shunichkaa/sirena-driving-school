@@ -15,21 +15,39 @@ const inter = Inter({
 
 const canonicalBase = siteData.officialUrl.replace(/\/$/, "");
 
+const ogDescription =
+  "Автошкола «Сирена», Озёрск: права A и B от 21 000 ₽. Теория и практика, рассрочка без переплат, лицензия. Запись по телефону и онлайн.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(canonicalBase),
-  title: "Автошкола Сирена Озёрск — обучение на права категории A и B",
+  title: "Автошкола Сирена — Озёрск, права категории A и B | обучение вождению",
   description:
-    "Автошкола в Озёрске. Обучение на права A и B от 21 000 ₽. Гибкий график, рассрочка. 95% сдают с первого раза. Запишитесь онлайн.",
+    "ЧУДПО «Автошкола «Сирена»», Озёрск: категории A и B от 21 000 ₽. Теория, практика, рассрочка без переплат. Офис на Октябрьской: будни 14–21, выходной сб–вс. Запись: +7 (922) 015-37-27.",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: faviconPath,
   },
   openGraph: {
     title: "Автошкола «Сирена» — Озёрск, категории A и B",
-    description:
-      "Обучение на права в Озёрске: гибкий график, рассрочка без переплат, опытные инструкторы. Запись на консультацию онлайн.",
+    description: ogDescription,
     locale: "ru_RU",
     type: "website",
     url: canonicalBase,
+    images: [
+      {
+        url: "/photos/hero-traffic.png",
+        width: 1200,
+        height: 800,
+        alt: "Автошкола Сирена Озёрск: учебная площадка и автомобиль",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Автошкола «Сирена» — Озёрск",
+    description: ogDescription,
   },
 };
 
@@ -41,31 +59,53 @@ export const viewport: Viewport = {
 
 const localBusinessJson = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "EducationalOrganization"],
   name: "Автошкола «Сирена»",
+  legalName: siteData.legal.fullName,
+  description: "Обучение вождению по категориям A и B в Озёрске.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "ул. Октябрьская, д. 7, оф. 315",
+    streetAddress: "ул. Октябрьская, д. 7, оф. 316",
     addressLocality: "Озёрск",
+    addressRegion: "Челябинская область",
     addressCountry: "RU",
   },
-  telephone: siteData.phoneTel,
+  telephone: [siteData.phoneTel, siteData.phoneOfficeTel],
   email: siteData.email,
   url: canonicalBase,
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 55.7632,
+    longitude: 60.7076,
+  },
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "10:00",
-      closes: "15:00",
+      opens: "14:00",
+      closes: "21:00",
     },
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: siteData.yandexRating.score,
+    ratingCount: siteData.yandexRating.reviewCount,
+    bestRating: "5",
+    worstRating: "1",
+  },
+};
+
+const faqJson = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: siteData.faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
 };
 
 export default function RootLayout({
@@ -81,6 +121,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
         />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       </body>
     </html>
   );

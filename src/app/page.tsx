@@ -1,8 +1,9 @@
 "use client";
 
 import { ConsultationDialog } from "@/features/book-consultation";
-import { assetUrl } from "@/shared/config/app-base-path";
+import { assetUrl, homeFragmentHref } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
+import Link from "next/link";
 import { CategoryASection } from "@/widgets/category-a-section";
 import { CategoryBSection } from "@/widgets/category-b-section";
 import { ContactsSection } from "@/widgets/contacts-section";
@@ -26,7 +27,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-canvas">
       <a
-        href="#main-content"
+        href={homeFragmentHref("main-content")}
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[110] focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold"
       >
         Перейти к основному контенту
@@ -72,18 +73,21 @@ export default function Home() {
           aria-label="Дополнительные разделы"
           className="mx-auto mb-5 flex max-w-6xl flex-wrap items-center justify-center gap-x-5 gap-y-2 px-4 text-xs font-semibold text-ink md:text-sm"
         >
-          <a href="#instruktory" className="transition hover:text-accent">
+          <a href={homeFragmentHref("instruktory")} className="transition hover:text-accent">
             Инструкторы
           </a>
-          <a href="#raspisanie" className="transition hover:text-accent">
+          <a href={homeFragmentHref("raspisanie")} className="transition hover:text-accent">
             Расписание
           </a>
-          <a href="#faq" className="transition hover:text-accent">
+          <a href={homeFragmentHref("faq")} className="transition hover:text-accent">
             Вопросы
           </a>
-          <a href="#documents" className="transition hover:text-accent">
+          <a href={homeFragmentHref("documents")} className="transition hover:text-accent">
             Документы
           </a>
+          <Link href="/personal-data/" className="transition hover:text-accent">
+            Конфиденциальность
+          </Link>
         </nav>
         <div className="mx-auto mb-5 flex flex-wrap items-center justify-center gap-2 px-4">
           {siteData.footerDocLinks.map((doc) => (
@@ -91,14 +95,20 @@ export default function Home() {
               key={doc.file}
               href={assetUrl(`/docs/${encodeURIComponent(doc.file)}`)}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="rounded-full border border-accent/40 bg-surface px-3 py-1.5 text-xs font-semibold text-accent transition hover:border-accent hover:bg-white"
             >
               {doc.label}
             </a>
           ))}
         </div>
-        <p>Официальный сайт Автошколы «Сирена».</p>
+        <p className="max-w-2xl px-4 text-center text-[13px] font-medium leading-relaxed text-ink">
+          {siteData.legal.fullName}
+        </p>
+        <p className="mx-auto mt-2 max-w-2xl px-4 text-center text-[13px] leading-relaxed text-subtle">
+          {siteData.legal.requisitesNote}
+        </p>
+        <p className="mt-4">Официальный сайт Автошколы «Сирена». © {new Date().getFullYear()}</p>
       </footer>
       <ConsultationDialog open={consultOpen} onOpenChange={setConsultOpen} />
     </div>

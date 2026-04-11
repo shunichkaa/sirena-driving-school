@@ -1,6 +1,6 @@
 "use client";
 
-import { assetUrl } from "@/shared/config/app-base-path";
+import { assetUrl, fragmentIdFromHref, homeFragmentHref } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -75,12 +75,12 @@ export function Header({ onOpenConsult }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<string>("");
 
   const links = [
-    { href: "#programma", label: "Программа" },
-    { href: "#instruktory", label: "Инструкторы" },
-    { href: "#kategoriya-a", label: "A и B" },
-    { href: "#ceny", label: "Цены" },
-    { href: "#otzyvy", label: "Отзывы" },
-    { href: "#kontakty", label: "Контакты" },
+    { href: homeFragmentHref("programma"), label: "Программа" },
+    { href: homeFragmentHref("instruktory"), label: "Инструкторы" },
+    { href: homeFragmentHref("kategoriya-a"), label: "A и B" },
+    { href: homeFragmentHref("ceny"), label: "Цены" },
+    { href: homeFragmentHref("otzyvy"), label: "Отзывы" },
+    { href: homeFragmentHref("kontakty"), label: "Контакты" },
   ] as const;
 
   useEffect(() => {
@@ -135,7 +135,7 @@ export function Header({ onOpenConsult }: HeaderProps) {
   };
 
   const linkClass = (href: string) => {
-    const id = href.slice(1);
+    const id = fragmentIdFromHref(href);
     const active = activeSection === id;
     return active ? "text-accent" : "text-muted hover:text-accent";
   };
@@ -205,6 +205,14 @@ export function Header({ onOpenConsult }: HeaderProps) {
             >
               {siteData.phoneDisplay}
             </a>
+            <a
+              href={siteData.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-accent/40 bg-white px-3 py-2 text-[11px] font-bold uppercase tracking-wide text-accent transition hover:border-accent hover:bg-surface"
+            >
+              WhatsApp
+            </a>
             <button
               type="button"
               onClick={onOpenConsult}
@@ -250,6 +258,15 @@ export function Header({ onOpenConsult }: HeaderProps) {
         </div>
         <div className="border-b border-wash px-4 py-4">
           <a
+            href={siteData.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-3 flex min-h-12 items-center justify-center rounded-xl bg-[#25D366] px-4 py-3 text-sm font-bold text-white transition hover:brightness-95"
+            onClick={closeMenu}
+          >
+            Написать в WhatsApp
+          </a>
+          <a
             href={`tel:${siteData.phoneTel}`}
             className="flex min-h-12 items-center gap-3 rounded-xl bg-surface px-4 py-3 text-accent transition hover:bg-wash/80"
             onClick={closeMenu}
@@ -266,7 +283,7 @@ export function Header({ onOpenConsult }: HeaderProps) {
               key={l.href}
               href={l.href}
               className={`flex min-h-12 items-center justify-between gap-2 rounded-xl px-3 py-3 text-sm font-semibold uppercase tracking-wide transition ${
-                activeSection === l.href.slice(1)
+                activeSection === fragmentIdFromHref(l.href)
                   ? "bg-surface text-accent"
                   : "text-ink hover:bg-surface/80"
               }`}

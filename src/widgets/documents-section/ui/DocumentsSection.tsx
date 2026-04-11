@@ -38,7 +38,7 @@ export function DocumentsSection() {
         lower.includes("правила") ||
         lower.includes("порядок") ||
         lower.includes("договор") ||
-        lower.includes("коммисия")
+        lower.includes("комисс")
       ) {
         groups[1].files.push(fileName);
         return;

@@ -10,6 +10,10 @@ body {
   @apply bg-canvas text-ink antialiased font-normal text-base leading-[1.65];
 }
 
+main > section[id] {
+  scroll-margin-top: max(5.5rem, calc(env(safe-area-inset-top, 0px) + 4.5rem));
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
