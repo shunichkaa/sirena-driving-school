@@ -2,7 +2,7 @@
 
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type ContactsSectionProps = {
   onOpenConsult: () => void;
@@ -11,6 +11,24 @@ type ContactsSectionProps = {
 export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [mapReady, setMapReady] = useState(false);
+  const mapSentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = mapSentinelRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setMapReady(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "160px", threshold: 0.01 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   const sendMail = useCallback(() => {
     const subject = encodeURIComponent("Запись на консультацию");
@@ -33,18 +51,23 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
         </motion.h2>
         <div className="mt-10 grid gap-10 lg:grid-cols-2">
           <motion.div
+            ref={mapSentinelRef}
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="overflow-hidden rounded-2xl border border-wash bg-white shadow-card"
           >
-            <iframe
-              title="Карта"
-              src={siteData.mapEmbedUrl}
-              className="h-[min(60vh,440px)] w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            {mapReady ? (
+              <iframe
+                title="Карта"
+                src={siteData.mapEmbedUrl}
+                className="h-[min(60vh,440px)] w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <div className="h-[min(60vh,440px)] w-full bg-wash" aria-hidden />
+            )}
           </motion.div>
           <div className="flex flex-col justify-center gap-8">
             <div className="space-y-2 text-sm text-ink">

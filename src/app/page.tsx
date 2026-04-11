@@ -2,40 +2,20 @@
 
 import { ConsultationDialog } from "@/features/book-consultation";
 import { siteData } from "@/shared/config/site-data";
+import { CategoryASection } from "@/widgets/category-a-section";
+import { CategoryBSection } from "@/widgets/category-b-section";
+import { ContactsSection } from "@/widgets/contacts-section";
+import { DocumentsSection } from "@/widgets/documents-section";
+import { FaqSection } from "@/widgets/faq-section";
+import { FinalCta } from "@/widgets/final-cta";
 import { Header } from "@/widgets/header";
 import { Hero } from "@/widgets/hero";
+import { LearningSteps } from "@/widgets/learning-steps";
 import { PricingSection } from "@/widgets/pricing-section";
+import { ReviewsSection } from "@/widgets/reviews-section";
+import { ScheduleStrip } from "@/widgets/schedule-strip";
 import { StatsBar } from "@/widgets/stats-bar";
-import dynamic from "next/dynamic";
 import { useCallback, useState } from "react";
-
-const CategoryASectionDynamic = dynamic(() =>
-  import("@/widgets/category-a-section").then((m) => m.CategoryASection),
-);
-const CategoryBSectionDynamic = dynamic(() =>
-  import("@/widgets/category-b-section").then((m) => m.CategoryBSection),
-);
-const ContactsSectionDynamic = dynamic(() =>
-  import("@/widgets/contacts-section").then((module) => module.ContactsSection),
-);
-const DocumentsSectionDynamic = dynamic(() =>
-  import("@/widgets/documents-section").then((m) => m.DocumentsSection),
-);
-const FaqSectionDynamic = dynamic(() =>
-  import("@/widgets/faq-section").then((m) => m.FaqSection),
-);
-const FinalCtaDynamic = dynamic(() =>
-  import("@/widgets/final-cta").then((m) => m.FinalCta),
-);
-const LearningStepsDynamic = dynamic(() =>
-  import("@/widgets/learning-steps").then((module) => module.LearningSteps),
-);
-const ReviewsSectionDynamic = dynamic(() =>
-  import("@/widgets/reviews-section").then((module) => module.ReviewsSection),
-);
-const ScheduleStripDynamic = dynamic(() =>
-  import("@/widgets/schedule-strip").then((m) => m.ScheduleStrip),
-);
 
 export default function Home() {
   const [consultOpen, setConsultOpen] = useState(false);
@@ -56,16 +36,16 @@ export default function Home() {
       >
         <Hero onConsult={openConsult} />
         <StatsBar />
-        <LearningStepsDynamic />
-        <CategoryASectionDynamic onConsult={openConsult} />
-        <CategoryBSectionDynamic onConsult={openConsult} />
-        <ReviewsSectionDynamic />
+        <LearningSteps />
+        <CategoryASection onConsult={openConsult} />
+        <CategoryBSection onConsult={openConsult} />
+        <ReviewsSection />
         <PricingSection />
-        <ScheduleStripDynamic />
-        <FaqSectionDynamic />
-        <DocumentsSectionDynamic />
-        <FinalCtaDynamic onConsult={openConsult} />
-        <ContactsSectionDynamic onOpenConsult={openConsult} />
+        <ScheduleStrip />
+        <FaqSection />
+        <DocumentsSection />
+        <FinalCta onConsult={openConsult} />
+        <ContactsSection onOpenConsult={openConsult} />
       </main>
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-wash bg-white/95 px-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom,0px))] pt-2.5 backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-6xl gap-2">
