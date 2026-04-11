@@ -16,7 +16,7 @@ export function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.07 }}
-              className="rounded-2xl border border-wash bg-white p-6 transition duration-200 hover:-translate-y-0.5"
+              className="rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-0.5"
             >
               <h3 className="text-lg font-bold text-ink">{item.title}</h3>
               <p className="mt-4 text-3xl font-black tracking-tight text-ink">{item.price}</p>

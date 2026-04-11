@@ -18,7 +18,7 @@ export function LearningSteps() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.07 }}
-              className="rounded-2xl border border-wash bg-white p-5 transition duration-200 hover:-translate-y-0.5"
+              className="rounded-2xl border border-wash bg-white p-5 shadow-card transition duration-200 hover:-translate-y-0.5"
             >
               <h3 className="text-lg font-bold text-ink">{step.title}</h3>
               <p className="mt-2 text-sm text-muted">{step.text}</p>

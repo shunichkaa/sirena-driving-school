@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply bg-white text-ink antialiased;
+  @apply bg-canvas text-ink antialiased;
 }
 
 a:focus-visible,

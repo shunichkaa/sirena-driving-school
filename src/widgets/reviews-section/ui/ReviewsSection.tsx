@@ -16,7 +16,7 @@ export function ReviewsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
-              className="rounded-2xl border border-wash bg-white p-5 transition duration-200 hover:-translate-y-0.5"
+              className="rounded-2xl border border-wash bg-white p-5 shadow-card transition duration-200 hover:-translate-y-0.5"
             >
               <p className="text-sm leading-relaxed text-muted">{review.text}</p>
               <p className="mt-4 text-sm font-bold text-ink">{review.name}</p>

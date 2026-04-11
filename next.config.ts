@@ -9,13 +9,6 @@ const nextConfig: NextConfig = {
   basePath: isProduction ? repoBasePath : "",
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "/**",
-      },
-    ],
   },
 };
 

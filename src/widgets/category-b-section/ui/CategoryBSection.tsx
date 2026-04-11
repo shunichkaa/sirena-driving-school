@@ -12,15 +12,13 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
   const { mkpp, akpp } = siteData.categoryB;
 
   return (
-    <section className="relative overflow-hidden py-12 md:py-16">
-      <div className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[210px] font-black leading-none text-wash md:text-[320px]">
+    <section id="kategoriya-b" className="relative overflow-hidden bg-white py-14 md:py-20">
+      <div className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 select-none text-[min(28vw,9rem)] font-black leading-none text-wash opacity-50 md:right-2 md:text-[min(22vw,11rem)]">
         B
       </div>
-      <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 md:grid-cols-2 md:gap-10 md:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2 md:gap-12 md:px-6 lg:px-8">
         <div className="z-10">
-          <h2 className="text-[1.8rem] font-black uppercase tracking-tight text-ink md:text-[2.3rem]">
-            Категория B
-          </h2>
+          <h2 className="text-3xl font-black tracking-tight text-ink md:text-4xl">Категория B</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <div className="border-l border-wash pl-4 first:border-l-0 first:pl-0">
               <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-muted">
@@ -44,7 +42,7 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
           <button
             type="button"
             onClick={onConsult}
-            className="mt-6 inline-flex items-center justify-center rounded-full border border-transparent px-0 py-0 text-xs font-black uppercase tracking-wide text-ink transition hover:text-[#f05a28] md:text-sm"
+            className="mt-6 inline-flex items-center justify-center rounded-full border border-transparent px-0 py-0 text-xs font-black uppercase tracking-wide text-ink transition hover:text-accent md:text-sm"
           >
             Записаться
             <span className="ml-2 text-lg leading-none">→</span>

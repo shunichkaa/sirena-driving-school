@@ -10,7 +10,7 @@ export function FinalCta({ onConsult }: FinalCtaProps) {
   return (
     <section className="border-y border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-4 text-center md:px-6 lg:px-8">
-        <h2 className="text-3xl font-black tracking-tight text-ink md:text-4xl">
+        <h2 className="mx-auto max-w-3xl text-3xl font-black tracking-tight text-ink md:text-4xl">
           Начните обучение в удобном формате
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-sm text-muted md:text-base">

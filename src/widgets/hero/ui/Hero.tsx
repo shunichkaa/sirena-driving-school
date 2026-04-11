@@ -15,10 +15,9 @@ export function Hero({ onConsult }: HeroProps) {
         <div className="order-2 lg:order-1 lg:col-span-6">
           <motion.h1
             initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-[clamp(2.1rem,5vw,3.9rem)] font-black uppercase leading-[0.98] tracking-tight text-ink"
+            className="whitespace-pre-line text-[clamp(2.1rem,5vw,3.9rem)] font-black uppercase leading-[0.98] tracking-tight text-ink"
           >
             {siteData.hero.title}
           </motion.h1>
@@ -34,12 +33,13 @@ export function Hero({ onConsult }: HeroProps) {
             ))}
           </ul>
           <div className="mt-7 flex flex-wrap gap-2.5 md:hidden">
-            <a
-              href="#kontakty"
+            <button
+              type="button"
+              onClick={onConsult}
               className="rounded-full bg-accent px-6 py-3 text-xs font-black uppercase tracking-wide text-ink transition hover:brightness-95"
             >
-              Записаться
-            </a>
+              {siteData.hero.primaryCta}
+            </button>
             <a
               href="#programma"
               className="rounded-full border border-ink px-6 py-3 text-xs font-black uppercase tracking-wide text-ink transition hover:border-accent hover:text-accent"
@@ -70,11 +70,11 @@ export function Hero({ onConsult }: HeroProps) {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="relative flex h-[min(58vw,380px)] w-[min(96vw,560px)] items-center justify-center rounded-[2rem] border border-wash bg-[#fbfbfb] p-3 md:h-[390px] md:w-[580px] md:p-5"
+            className="relative flex h-[min(58vw,380px)] w-[min(96vw,560px)] items-center justify-center overflow-hidden rounded-[2rem] border border-wash bg-white p-3 shadow-card md:h-[390px] md:w-[580px] md:p-5"
           >
-            <div className="absolute right-8 top-8 h-5 w-5 rounded-full border-4 border-[#f05a28] bg-accent" />
+            <div className="absolute right-8 top-8 h-5 w-5 rounded-full border-4 border-ink bg-accent max-md:right-4 max-md:top-4" />
             <div className="absolute inset-[10%] rounded-[1.8rem] border border-wash" />
-            <div className="relative z-10 w-[112%] max-w-none md:w-[118%]">
+            <div className="relative z-10 w-full max-md:scale-[1.02] md:w-[118%]">
               <Image
                 src={siteData.images.heroCar}
                 alt="Автомобиль автошколы"

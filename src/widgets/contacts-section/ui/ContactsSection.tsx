@@ -27,7 +27,7 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl font-black uppercase tracking-tight text-ink md:text-3xl"
+          className="text-3xl font-black tracking-tight text-ink md:text-4xl"
         >
           Контакты
         </motion.h2>
@@ -36,7 +36,7 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="overflow-hidden rounded-2xl border border-wash bg-white shadow-sm"
+            className="overflow-hidden rounded-2xl border border-wash bg-white shadow-card"
           >
             <iframe
               title="Карта"
@@ -72,7 +72,7 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                 </a>
               </p>
             </div>
-            <div className="rounded-2xl border border-wash bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-wash bg-white p-6 shadow-card">
               <h3 className="text-base font-bold text-ink">Запишитесь на обучение</h3>
               <div className="mt-4 space-y-3">
                 <label htmlFor="consult-name" className="sr-only">
@@ -99,11 +99,18 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                   inputMode="tel"
                 />
               </div>
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+                <button
+                  type="button"
+                  onClick={onOpenConsult}
+                  className="rounded-full bg-accent px-5 py-3 text-xs font-black uppercase tracking-wide text-ink transition hover:brightness-95 sm:min-w-[11rem]"
+                >
+                  Онлайн-запись
+                </button>
                 <button
                   type="button"
                   onClick={sendMail}
-                  className="rounded-full bg-accent px-5 py-3 text-xs font-black uppercase tracking-wide text-ink"
+                  className="rounded-full border border-ink px-5 py-3 text-xs font-black uppercase tracking-wide text-ink transition hover:border-accent hover:text-accent sm:min-w-[11rem]"
                 >
                   Отправить заявку
                 </button>

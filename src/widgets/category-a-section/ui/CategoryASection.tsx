@@ -10,11 +10,11 @@ type CategoryASectionProps = {
 
 export function CategoryASection({ onConsult }: CategoryASectionProps) {
   return (
-    <section className="relative overflow-hidden py-12 md:py-16">
-      <div className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-[210px] font-black leading-none text-wash md:text-[320px]">
+    <section id="kategoriya-a" className="relative overflow-hidden bg-white py-14 md:py-20">
+      <div className="pointer-events-none absolute left-1 top-1/2 -translate-y-1/2 select-none text-[min(28vw,9rem)] font-black leading-none text-wash opacity-50 md:left-2 md:text-[min(22vw,11rem)]">
         A
       </div>
-      <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 md:grid-cols-2 md:gap-10 md:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2 md:gap-12 md:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, x: -32 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -34,9 +34,7 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
           </div>
         </motion.div>
         <div className="order-1 z-10 md:order-2">
-          <h2 className="text-[1.8rem] font-black uppercase tracking-tight text-ink md:text-[2.3rem]">
-            Категория A
-          </h2>
+          <h2 className="text-3xl font-black tracking-tight text-ink md:text-4xl">Категория A</h2>
           <div className="mt-6 max-w-sm border-l border-wash pl-4">
             <p className="text-xs text-muted">{siteData.categoryA.duration}</p>
             <p className="mt-1 text-xs font-semibold text-ink">{siteData.categoryA.lessons}</p>
@@ -48,7 +46,7 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
           <button
             type="button"
             onClick={onConsult}
-            className="mt-6 inline-flex items-center justify-center rounded-full border border-transparent px-0 py-0 text-xs font-black uppercase tracking-wide text-ink transition hover:text-[#f05a28] md:text-sm"
+            className="mt-6 inline-flex items-center justify-center rounded-full border border-transparent px-0 py-0 text-xs font-black uppercase tracking-wide text-ink transition hover:text-accent md:text-sm"
           >
             Записаться
             <span className="ml-2 text-lg leading-none">→</span>

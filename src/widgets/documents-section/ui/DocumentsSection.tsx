@@ -63,7 +63,7 @@ export function DocumentsSection() {
   return (
     <section id="documents" className="py-12 md:py-16">
       <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-        <h2 className="text-[2rem] font-black tracking-tight text-ink md:text-4xl">Документы</h2>
+        <h2 className="text-3xl font-black tracking-tight text-ink md:text-4xl">Документы</h2>
         <div className="mt-5">
           <label htmlFor="documents-search" className="sr-only">
             Поиск документа

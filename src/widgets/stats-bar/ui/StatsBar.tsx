@@ -6,12 +6,12 @@ export function StatsBar() {
   const items = siteData.stats.items;
 
   return (
-    <section id="stoimost" className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
+    <section id="preimushchestva" className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
       <motion.h2
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mb-8 text-left text-[1.6rem] font-black uppercase tracking-tight text-ink md:mb-10 md:text-[2rem]"
+        className="mb-8 text-left text-3xl font-black tracking-tight text-ink md:mb-10 md:text-4xl"
       >
         Почему выбирают нас
       </motion.h2>

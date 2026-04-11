@@ -1,12 +1,15 @@
 "use client";
 
 import { siteData } from "@/shared/config/site-data";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type ConsultationDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 };
+
+const focusableSelector =
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 export function ConsultationDialog({
   open,
@@ -14,6 +17,8 @@ export function ConsultationDialog({
 }: ConsultationDialogProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const panelRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
   const submit = useCallback(() => {
     const subject = encodeURIComponent("Запись на консультацию");
@@ -25,16 +30,47 @@ export function ConsultationDialog({
 
   useEffect(() => {
     if (!open) return;
-    const onEscape = (event: KeyboardEvent) => {
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const focusables = () =>
+      Array.from(panel.querySelectorAll<HTMLElement>(focusableSelector));
+
+    const firstFrame = window.requestAnimationFrame(() => {
+      const nodes = focusables();
+      (nodes[0] ?? panel).focus();
+    });
+
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        event.preventDefault();
         onOpenChange(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const nodes = focusables();
+      if (nodes.length === 0) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (event.shiftKey) {
+        if (document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
-    window.addEventListener("keydown", onEscape);
+
+    window.addEventListener("keydown", onKeyDown);
     return () => {
-      window.removeEventListener("keydown", onEscape);
+      window.cancelAnimationFrame(firstFrame);
+      window.removeEventListener("keydown", onKeyDown);
+      previouslyFocusedRef.current?.focus?.();
     };
-  }, [onOpenChange, open]);
+  }, [open, onOpenChange]);
 
   if (!open) return null;
 
@@ -45,10 +81,12 @@ export function ConsultationDialog({
       onClick={() => onOpenChange(false)}
     >
       <div
-        className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl"
+        ref={panelRef}
+        className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl outline-none"
         role="dialog"
         aria-modal="true"
         aria-labelledby="consult-title"
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
         <button

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -7,7 +7,7 @@ const repoBasePath = "/sirena-driving-school";
 const faviconPath = `${isProduction ? repoBasePath : ""}/favicon.svg`;
 
 const inter = Inter({
-  variable: "--font-geist",
+  variable: "--font-sans",
   subsets: ["latin", "cyrillic"],
 });
 
@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   icons: {
     icon: faviconPath,
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
