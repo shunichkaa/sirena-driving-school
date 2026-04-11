@@ -2,70 +2,87 @@
 
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 type CategoryBSectionProps = {
   onConsult: () => void;
 };
 
 export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
-  const { mkpp, akpp } = siteData.categoryB;
+  const { mkpp, akpp, installmentNote } = siteData.categoryB;
+  const cards = [
+    { key: "mkpp" as const, data: mkpp },
+    { key: "akpp" as const, data: akpp },
+  ];
 
   return (
-    <section id="kategoriya-b" className="relative overflow-hidden bg-white py-14 md:py-20">
-      <div className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 select-none text-[min(28vw,9rem)] font-black leading-none text-wash opacity-50 md:right-2 md:text-[min(22vw,11rem)]">
-        B
-      </div>
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2 md:gap-12 md:px-6 lg:px-8">
-        <div className="z-10">
-          <h2 className="text-3xl font-black tracking-tight text-ink md:text-4xl">Категория B</h2>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="border-l border-wash pl-4 first:border-l-0 first:pl-0">
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-muted">
-                {mkpp.title}
-              </p>
-              <p className="mt-2 text-xs text-muted">{mkpp.duration}</p>
-              <p className="mt-1 text-xs font-semibold text-ink">{mkpp.lessons}</p>
-              <p className="mt-4 text-2xl font-black text-ink">{mkpp.price}</p>
-              <p className="mt-1 text-[11px] text-muted">{mkpp.note}</p>
-            </div>
-            <div className="border-l border-wash pl-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-muted">
-                {akpp.title}
-              </p>
-              <p className="mt-2 text-xs text-muted">{akpp.duration}</p>
-              <p className="mt-1 text-xs font-semibold text-ink">{akpp.lessons}</p>
-              <p className="mt-4 text-2xl font-black text-ink">{akpp.price}</p>
-              <p className="mt-1 text-[11px] text-muted">{akpp.note}</p>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={onConsult}
-            className="mt-6 inline-flex items-center justify-center rounded-full border border-transparent px-0 py-0 text-xs font-black uppercase tracking-wide text-ink transition hover:text-accent md:text-sm"
-          >
-            Записаться
-            <span className="ml-2 text-lg leading-none">→</span>
-          </button>
+    <section id="kategoriya-b" className="bg-white py-14 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+        <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
+          Категория B
+        </h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {cards.map(({ key, data }, index) => (
+            <motion.article
+              key={key}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.06 }}
+              className={`flex flex-col rounded-2xl border bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 md:p-7 ${
+                data.popular ? "border-2 border-accent" : "border border-wash hover:border-accent"
+              }`}
+            >
+              {data.popular ? (
+                <span className="mb-3 inline-flex w-fit rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
+                  Популярный выбор
+                </span>
+              ) : null}
+              <h3 className="text-lg font-medium text-ink md:text-xl">{data.title}</h3>
+              <p className="mt-1 text-[13px] text-muted">{data.duration}</p>
+              <p className="mt-1 text-sm font-medium text-ink">{data.lessons}</p>
+              <p className="mt-4 text-[clamp(1.75rem,4vw,2.25rem)] font-bold leading-none text-accent">{data.price}</p>
+              <p className="mt-2 text-[13px] text-muted">{data.note}</p>
+              {key === "mkpp" ? (
+                <div className="mt-4 grid grid-cols-2 gap-2 rounded-lg border border-wash bg-surface/50 p-3 text-center text-xs font-semibold text-ink">
+                  <div>
+                    <p className="text-subtle">Теория</p>
+                    <p className="mt-1 text-sm">7 000 ₽</p>
+                  </div>
+                  <div>
+                    <p className="text-subtle">Практика</p>
+                    <p className="mt-1 text-sm">14 000 ₽</p>
+                  </div>
+                </div>
+              ) : null}
+              <ul className="mt-4 space-y-2">
+                {data.includes.map((line) => (
+                  <li key={line} className="flex gap-2 text-sm text-ink">
+                    <span className="shrink-0 text-success" aria-hidden>
+                      ✓
+                    </span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+              <button
+                type="button"
+                onClick={onConsult}
+                className="mt-6 w-full rounded-lg bg-accent py-3.5 text-center text-base font-bold text-white transition hover:bg-accentStrong"
+              >
+                Записаться
+              </button>
+            </motion.article>
+          ))}
         </div>
-        <motion.div
-          initial={{ opacity: 0, x: 32 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="relative z-10 flex justify-end"
-        >
-          <div className="w-[min(100%,520px)] rounded-2xl bg-transparent p-0">
-            <Image
-              src={siteData.images.sideCar}
-              alt="Автомобиль категории B"
-              width={1200}
-              height={460}
-              className="h-auto w-full object-contain"
-              unoptimized
-            />
-          </div>
-        </motion.div>
+        <p className="mx-auto mt-8 max-w-measure rounded-2xl border border-wash bg-surface px-5 py-4 text-center text-sm leading-relaxed text-muted">
+          {installmentNote}
+        </p>
+        <p className="mt-8 text-center text-sm text-muted">
+          Остались вопросы по стоимости?{" "}
+          <a href={`tel:${siteData.phoneTel}`} className="font-semibold text-accent hover:text-accentStrong">
+            {siteData.phoneDisplay}
+          </a>
+        </p>
       </div>
     </section>
   );

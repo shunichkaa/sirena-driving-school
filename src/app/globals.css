@@ -7,15 +7,26 @@ html {
 }
 
 body {
-  @apply bg-canvas text-ink antialiased;
+  @apply bg-canvas text-ink antialiased font-normal text-base leading-[1.65];
 }
 
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
 summary:focus-visible {
-  outline: 2px solid #0a0a0a;
+  outline: 2px solid #1a56db;
   outline-offset: 2px;
+}
+
+details.faq-item > .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+details.faq-item[open] > .faq-answer {
+  max-height: 48rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -29,5 +40,10 @@ summary:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  details.faq-item > .faq-answer {
+    max-height: none;
+    overflow: visible;
   }
 }

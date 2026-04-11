@@ -3,23 +3,52 @@
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 
+function initials(name: string) {
+  const parts = name.split(" ").filter(Boolean);
+  const a = parts[0]?.[0] ?? "";
+  const b = parts[1]?.[0] ?? parts[0]?.[1] ?? "";
+  return (a + b).toUpperCase();
+}
+
 export function ReviewsSection() {
+  const { reviews, reviewsSummary } = siteData;
+
   return (
-    <section id="otzyvy" className="bg-wash/30 py-14 md:py-20">
+    <section id="otzyvy" className="border-t border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-        <h2 className="text-3xl font-black tracking-tight text-ink md:text-4xl">Отзывы</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {siteData.reviews.map((review, index) => (
+        <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
+          <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">Отзывы</h2>
+          <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
+            <span className="text-3xl font-bold text-accent">{reviewsSummary.score}</span>
+            <span>{reviewsSummary.countLabel}</span>
+            <span className="text-amber-500" aria-hidden>
+              ★★★★★
+            </span>
+          </div>
+        </div>
+        <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+          {reviews.map((review, index) => (
             <motion.article
               key={review.name}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              className="rounded-2xl border border-wash bg-white p-5 shadow-card transition duration-200 hover:-translate-y-0.5"
+              transition={{ delay: index * 0.06 }}
+              className="w-[min(100%,22rem)] shrink-0 snap-center rounded-2xl border border-wash bg-canvas p-5 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent md:w-auto"
             >
-              <p className="text-sm leading-relaxed text-muted">{review.text}</p>
-              <p className="mt-4 text-sm font-bold text-ink">{review.name}</p>
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/15 text-sm font-bold text-accent">
+                  {initials(review.name)}
+                </div>
+                <div>
+                  <p className="font-semibold text-ink">{review.name}</p>
+                  <p className="text-[13px] text-subtle">{review.date}</p>
+                  <p className="text-amber-500 text-sm" aria-hidden>
+                    ★★★★★
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 text-[15px] font-normal leading-relaxed text-muted">{review.text}</p>
             </motion.article>
           ))}
         </div>

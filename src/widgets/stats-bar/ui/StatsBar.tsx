@@ -1,36 +1,97 @@
 "use client";
+
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+function useCountUp(target: number, enabled: boolean) {
+  const [value, setValue] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!enabled || started.current) return;
+    started.current = true;
+    const duration = 1500;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - (1 - t) * (1 - t);
+      setValue(Math.round(target * eased));
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [enabled, target]);
+
+  return value;
+}
 
 export function StatsBar() {
-  const items = siteData.stats.items;
+  const bar = siteData.stats.bar;
+  const advantages = siteData.stats.advantages;
+  const target = siteData.stats.counterPercent;
+  const ref = useRef<HTMLDivElement>(null);
+  const [run, setRun] = useState(false);
+  const count = useCountUp(target, run);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        if (e?.isIntersecting) {
+          setRun(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="preimushchestva" className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
-      <motion.h2
-        initial={{ opacity: 0, y: 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mb-8 text-left text-3xl font-black tracking-tight text-ink md:mb-10 md:text-4xl"
-      >
-        Почему выбирают нас
-      </motion.h2>
-      <div className="grid gap-6 sm:grid-cols-3">
-        {items.map((it, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08 }}
-            className="border-l border-wash pl-4 text-left first:border-l-0 first:pl-0"
-          >
-            <p className="text-[2.25rem] font-black leading-none text-ink md:text-[2.75rem]">{it.value}</p>
-            <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted md:text-xs">
-              {it.label}
-            </p>
-          </motion.div>
-        ))}
+    <section id="preimushchestva" className="border-y border-wash bg-surfaceBar">
+      <div ref={ref} className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-12 lg:px-8">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-0 md:divide-x md:divide-wash">
+          {bar.map((it, i) => (
+            <div key={it.label} className="text-center md:px-4">
+              <p
+                className={`font-bold leading-none text-accent ${
+                  i === 0 ? "text-[clamp(2.75rem,9vw,4.5rem)]" : "text-[clamp(1.75rem,5vw,3rem)]"
+                }`}
+              >
+                {i === 0 ? `${count}%` : it.value}
+              </p>
+              <p className="mt-2 text-[13px] font-medium leading-snug text-muted md:text-sm">{it.label}</p>
+            </div>
+          ))}
+        </div>
+        <motion.h2
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-8 mt-14 text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink"
+        >
+          Почему выбирают нас
+        </motion.h2>
+        <div className="grid gap-4 md:grid-cols-3">
+          {advantages.map((card, index) => (
+            <motion.article
+              key={card.title}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.06 }}
+              className="rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent"
+            >
+              <span className="text-2xl text-accent" aria-hidden>
+                ✓
+              </span>
+              <h3 className="mt-3 text-lg font-medium leading-snug text-ink md:text-xl">{card.title}</h3>
+              <p className="mt-2 text-[15px] font-normal leading-relaxed text-muted">{card.text}</p>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );
