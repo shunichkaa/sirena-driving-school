@@ -14,9 +14,9 @@ export function FaqSection() {
           {siteData.faq.map((item, index) => (
             <motion.details
               key={item.question}
-              initial={{ opacity: 0, y: 10 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: index * 0.05 }}
               className="faq-item rounded-2xl border border-wash bg-white p-5 shadow-card [&[open]_.faq-chevron]:rotate-180"
             >

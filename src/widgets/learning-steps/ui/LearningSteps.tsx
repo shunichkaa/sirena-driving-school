@@ -15,9 +15,9 @@ export function LearningSteps() {
           {siteData.learningSteps.map((step, index) => (
             <motion.article
               key={step.title}
-              initial={{ opacity: 0, y: 12 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: index * 0.07 }}
               className="rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent"
             >

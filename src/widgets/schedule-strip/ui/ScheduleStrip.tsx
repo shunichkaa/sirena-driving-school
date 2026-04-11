@@ -8,9 +8,9 @@ export function ScheduleStrip() {
     <section id="raspisanie" className="border-y border-wash/80 bg-canvas py-10 md:py-12">
       <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.05 }}
           className="flex flex-col gap-5 rounded-2xl border border-wash/90 bg-white/90 px-5 py-6 text-center shadow-card backdrop-blur-sm md:flex-row md:items-center md:justify-between md:gap-8 md:px-8 md:py-7 md:text-left"
         >
           <div className="min-w-0 flex-1">

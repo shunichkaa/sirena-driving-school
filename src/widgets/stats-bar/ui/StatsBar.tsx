@@ -43,7 +43,7 @@ export function StatsBar() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 },
+      { threshold: 0.08, rootMargin: "0px 0px 120px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -67,9 +67,9 @@ export function StatsBar() {
           ))}
         </div>
         <motion.h2
-          initial={{ opacity: 0, y: 8 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.05 }}
           className="mb-8 mt-14 text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink"
         >
           Почему выбирают нас
@@ -78,9 +78,9 @@ export function StatsBar() {
           {advantages.map((card, index) => (
             <motion.article
               key={card.title}
-              initial={{ opacity: 0, y: 14 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: index * 0.06 }}
               className="rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent"
             >

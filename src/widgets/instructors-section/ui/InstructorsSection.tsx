@@ -19,9 +19,9 @@ export function InstructorsSection() {
           {siteData.instructors.map((person, index) => (
             <motion.article
               key={person.name}
-              initial={{ opacity: 0, y: 12 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: index * 0.06 }}
               className="w-[min(100%,20rem)] shrink-0 snap-center rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent md:w-auto"
             >

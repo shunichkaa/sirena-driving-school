@@ -18,9 +18,9 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
         </h2>
         <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-start">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05 }}
             className="rounded-2xl border border-wash bg-white p-6 shadow-card md:p-7"
           >
             <p className="text-[13px] text-muted">{a.duration}</p>

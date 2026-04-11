@@ -60,9 +60,9 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
     <section id="kontakty" className="border-t border-wash bg-white py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         <motion.h2
-          initial={{ opacity: 0, y: 8 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.05 }}
           className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink"
         >
           Контакты
@@ -70,9 +70,9 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
         <div className="mt-10 grid gap-10 lg:grid-cols-2">
           <motion.div
             ref={mapSentinelRef}
-            initial={{ opacity: 0, y: 12 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05 }}
             className="overflow-hidden rounded-2xl border border-wash bg-white shadow-card"
           >
             {mapReady ? (
@@ -111,7 +111,7 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
                 className="inline-flex min-h-12 items-center gap-3 rounded-lg border border-wash bg-surface px-4 py-3 font-semibold text-ink transition hover:border-accent"
               >
                 <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0077FF] text-sm font-black text-white"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent text-sm font-black text-white"
                   aria-hidden
                 >
                   VK

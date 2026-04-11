@@ -5,16 +5,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        accent: "#1A56DB",
-        accentStrong: "#1E3A8A",
+        accent: "#4B5E2E",
+        accentStrong: "#3D4F26",
         ink: "#111827",
         muted: "#6B7280",
         subtle: "#9CA3AF",
-        surface: "#F0F4FF",
-        surfaceBar: "#F3F4F6",
+        surface: "#F0F2EB",
+        surfaceBar: "#EBEEE5",
         success: "#16A34A",
-        wash: "#E5E7EB",
-        canvas: "#FAFAFA",
+        wash: "#E2E6DC",
+        canvas: "#F9FAF6",
       },
       boxShadow: {
         card: "0 1px 2px rgba(17, 24, 39, 0.05), 0 10px 28px rgba(17, 24, 39, 0.08)",

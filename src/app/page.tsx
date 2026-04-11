@@ -1,6 +1,7 @@
 "use client";
 
 import { ConsultationDialog } from "@/features/book-consultation";
+import { assetUrl } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import { CategoryASection } from "@/widgets/category-a-section";
 import { CategoryBSection } from "@/widgets/category-b-section";
@@ -88,7 +89,7 @@ export default function Home() {
           {siteData.footerDocLinks.map((doc) => (
             <a
               key={doc.file}
-              href={`docs/${encodeURIComponent(doc.file)}`}
+              href={assetUrl(`/docs/${encodeURIComponent(doc.file)}`)}
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-accent/40 bg-surface px-3 py-1.5 text-xs font-semibold text-accent transition hover:border-accent hover:bg-white"

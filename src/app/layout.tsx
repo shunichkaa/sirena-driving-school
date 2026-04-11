@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { appBasePath } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import "./globals.css";
 
-const isProduction = process.env.NODE_ENV === "production";
-const repoBasePath = "/sirena-driving-school";
-const faviconPath = `${isProduction ? repoBasePath : ""}/favicon.svg`;
+const faviconPath = `${appBasePath}/favicon.svg`;
 
 const inter = Inter({
   variable: "--font-sans",

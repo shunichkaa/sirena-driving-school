@@ -1,7 +1,9 @@
 "use client";
 
+import { assetUrl } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type HeroProps = {
   onConsult: () => void;
@@ -12,12 +14,12 @@ export function Hero({ onConsult }: HeroProps) {
 
   return (
     <section className="bg-surface">
-      <div className="mx-auto grid max-w-6xl min-h-0 items-center gap-10 px-4 py-10 md:min-h-[80vh] md:px-6 md:py-16 lg:grid-cols-12 lg:gap-12 lg:px-8">
-        <div className="max-w-measure lg:col-span-7">
+      <div className="mx-auto grid max-w-6xl min-h-0 grid-cols-1 items-center gap-10 px-4 py-10 md:px-6 md:py-16 lg:grid-cols-12 lg:gap-12 lg:px-8">
+        <div className="min-w-0 max-w-measure lg:col-span-7">
           <motion.h1
-            initial={{ opacity: 0, x: -16 }}
+            initial={false}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
             className="whitespace-pre-line text-[clamp(2rem,5vw,3.75rem)] font-bold uppercase leading-[1.1] tracking-tight text-ink"
           >
             {siteData.hero.title}
@@ -60,10 +62,17 @@ export function Hero({ onConsult }: HeroProps) {
             <span>{yandexRating.label}</span>
           </p>
         </div>
-        <div className="relative flex min-h-[12rem] items-center justify-center rounded-2xl border border-wash bg-white/70 shadow-card lg:col-span-5 lg:min-h-[20rem]">
-          <p className="px-6 text-center text-sm text-subtle">
-            Фото учебного автомобиля и инструктора появятся здесь после съёмки.
-          </p>
+        <div className="relative min-h-0 w-full min-w-0 overflow-hidden rounded-2xl border border-wash bg-wash shadow-card lg:col-span-5">
+          <div className="relative aspect-[512/341] w-full">
+            <Image
+              fill
+              src={assetUrl("/hero-driving.jpg")}
+              alt="Инструктор объясняет курсантке за рулём белого учебного автомобиля на площадке с разметкой и конусами"
+              className="object-cover"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              priority
+            />
+          </div>
         </div>
       </div>
     </section>

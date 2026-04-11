@@ -1,5 +1,6 @@
 "use client";
 
+import { assetUrl } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import { useMemo, useState } from "react";
 
@@ -93,7 +94,7 @@ export function DocumentsSection() {
                     {group.files.map((fileName) => (
                       <li key={fileName}>
                         <a
-                          href={`docs/${encodeURIComponent(fileName)}`}
+                          href={assetUrl(`/docs/${encodeURIComponent(fileName)}`)}
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex min-h-12 items-center text-sm font-semibold text-accent underline decoration-accent/40 underline-offset-4 hover:text-accentStrong"

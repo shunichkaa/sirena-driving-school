@@ -1,7 +1,9 @@
 "use client";
 
+import { assetUrl } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
@@ -10,6 +12,62 @@ type HeaderProps = {
 };
 
 const sectionIds = ["programma", "instruktory", "kategoriya-a", "ceny", "otzyvy", "kontakty"] as const;
+
+function IconMenu({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M5 7h14M5 12h14M5 17h10"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconClose({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M6 6l12 12M18 6L6 18"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconPhone({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconChevron({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M9 6l6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export function Header({ onOpenConsult }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -94,30 +152,47 @@ export function Header({ onOpenConsult }: HeaderProps) {
           scrolled ? "border-wash bg-white/92 shadow-sm backdrop-blur-md" : "bg-surface/90 backdrop-blur-sm"
         }`}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 md:px-6 lg:px-8">
-          <Link href="/" className="flex h-9 max-h-9 shrink-0 items-center gap-2 select-none">
-            <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden className="shrink-0">
-              <circle cx="16" cy="16" r="16" fill="#1A56DB" />
-              <text
-                x="16"
-                y="21"
-                textAnchor="middle"
-                fill="#ffffff"
-                fontSize="15"
-                fontWeight="700"
-                fontFamily="system-ui, sans-serif"
-              >
-                С
-              </text>
-            </svg>
-            <span className="flex min-w-0 flex-col leading-tight">
-              <span className="text-[10px] font-medium uppercase tracking-wide text-muted">{siteData.brandLine}</span>
-              <span className="truncate text-sm font-bold text-ink">{siteData.brandShort}</span>
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 sm:gap-3 sm:px-4 md:px-6 lg:px-8">
+          <button
+            type="button"
+            className="relative order-1 flex min-h-14 min-w-14 shrink-0 items-center justify-center rounded-xl border border-wash/80 bg-white text-ink shadow-sm transition hover:border-accent/40 hover:text-accent md:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-drawer"
+            aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span
+              className={`absolute inset-0 flex items-center justify-center transition duration-200 ${
+                menuOpen ? "scale-90 opacity-0" : "scale-100 opacity-100"
+              }`}
+            >
+              <IconMenu />
             </span>
+            <span
+              className={`absolute inset-0 flex items-center justify-center transition duration-200 ${
+                menuOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"
+              }`}
+            >
+              <IconClose />
+            </span>
+          </button>
+          <Link
+            href="/"
+            className="relative order-2 flex min-h-14 min-w-0 flex-1 items-center justify-center md:order-1 md:h-16 md:max-h-16 md:flex-none md:justify-start md:max-w-[min(100%,32rem)] lg:min-h-20 lg:max-h-20 lg:max-w-[min(100%,40rem)]"
+          >
+            <Image
+              src={assetUrl("/logo-sirena.png")}
+              alt="Автошкола «Сирена»"
+              width={657}
+              height={239}
+              className="h-14 w-auto max-w-full object-contain md:h-16 lg:h-20"
+              priority
+              unoptimized
+            />
           </Link>
           <nav
             aria-label="Основная навигация"
-            className="hidden items-center gap-5 text-[11px] font-semibold uppercase tracking-wide md:flex lg:gap-6"
+            className="order-3 hidden items-center gap-5 text-[11px] font-semibold uppercase tracking-wide md:flex lg:gap-6"
           >
             {links.map((l) => (
               <a key={l.href} href={l.href} className={`transition ${linkClass(l.href)}`}>
@@ -138,37 +213,13 @@ export function Header({ onOpenConsult }: HeaderProps) {
               Записаться
             </button>
           </nav>
-          <div className="flex items-center gap-2 md:hidden">
-            <a
-              href={`tel:${siteData.phoneTel}`}
-              className="min-h-12 min-w-12 shrink-0 rounded-lg border border-wash bg-white px-2 text-center text-[10px] font-bold leading-tight text-accent"
-            >
-              <span className="mt-2 block text-lg leading-none" aria-hidden>
-                ☎
-              </span>
-              <span className="sr-only">Позвонить {siteData.phoneDisplay}</span>
-            </a>
-            <button
-              type="button"
-              className="relative flex min-h-12 min-w-12 items-center justify-center rounded-lg border border-wash bg-white"
-              aria-expanded={menuOpen}
-              aria-controls="mobile-drawer"
-              aria-label={menuOpen ? "Закрыть меню" : "Меню"}
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              <span
-                className={`absolute h-0.5 w-5 bg-ink transition ${
-                  menuOpen ? "translate-y-0 rotate-45" : "-translate-y-1.5"
-                }`}
-              />
-              <span className={`absolute h-0.5 w-5 bg-ink transition ${menuOpen ? "scale-0 opacity-0" : ""}`} />
-              <span
-                className={`absolute h-0.5 w-5 bg-ink transition ${
-                  menuOpen ? "translate-y-0 -rotate-45" : "translate-y-1.5"
-                }`}
-              />
-            </button>
-          </div>
+          <a
+            href={`tel:${siteData.phoneTel}`}
+            className="order-3 flex min-h-14 min-w-14 shrink-0 items-center justify-center rounded-xl border border-wash/80 bg-white text-accent shadow-sm transition hover:border-accent/40 hover:bg-surface md:hidden"
+          >
+            <IconPhone className="h-[22px] w-[22px]" />
+            <span className="sr-only">Позвонить {siteData.phoneDisplay}</span>
+          </a>
         </div>
       </motion.header>
       <div
@@ -181,40 +232,54 @@ export function Header({ onOpenConsult }: HeaderProps) {
       />
       <div
         id="mobile-drawer"
-        className={`fixed inset-y-0 right-0 z-[70] flex w-[min(100%,20rem)] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out md:hidden ${
-          menuOpen ? "pointer-events-auto translate-x-0" : "pointer-events-none translate-x-full"
+        className={`fixed inset-y-0 left-0 z-[70] flex w-[min(100%,20rem)] flex-col border-r border-wash bg-white shadow-[8px_0_32px_rgba(17,24,39,0.12)] transition-transform duration-300 ease-out md:hidden ${
+          menuOpen ? "pointer-events-auto translate-x-0" : "pointer-events-none -translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="border-b border-wash px-4 py-5">
-          <a
-            href={`tel:${siteData.phoneTel}`}
-            className="flex min-h-12 items-center gap-3 rounded-lg bg-surface px-3 py-3 text-accent"
+        <div className="flex items-center justify-between border-b border-wash px-4 py-4">
+          <span className="text-xs font-bold uppercase tracking-[0.12em] text-muted">Меню</span>
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-muted transition hover:bg-surface hover:text-ink"
+            aria-label="Закрыть меню"
             onClick={closeMenu}
           >
-            <span className="text-2xl" aria-hidden>
-              ☎
+            <IconClose />
+          </button>
+        </div>
+        <div className="border-b border-wash px-4 py-4">
+          <a
+            href={`tel:${siteData.phoneTel}`}
+            className="flex min-h-12 items-center gap-3 rounded-xl bg-surface px-4 py-3 text-accent transition hover:bg-wash/80"
+            onClick={closeMenu}
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-accent shadow-sm">
+              <IconPhone className="h-5 w-5" />
             </span>
-            <span className="text-base font-bold">{siteData.phoneDisplay}</span>
+            <span className="text-base font-bold leading-tight">{siteData.phoneDisplay}</span>
           </a>
         </div>
-        <nav aria-label="Мобильное меню" className="flex flex-1 flex-col gap-1 overflow-y-auto px-3 py-4">
+        <nav aria-label="Мобильное меню" className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-4">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className={`min-h-12 rounded-lg px-3 py-3 text-sm font-semibold uppercase tracking-wide transition ${
-                activeSection === l.href.slice(1) ? "bg-surface text-accent" : "text-ink hover:bg-surface"
+              className={`flex min-h-12 items-center justify-between gap-2 rounded-xl px-3 py-3 text-sm font-semibold uppercase tracking-wide transition ${
+                activeSection === l.href.slice(1)
+                  ? "bg-surface text-accent"
+                  : "text-ink hover:bg-surface/80"
               }`}
               onClick={closeMenu}
             >
-              {l.label}
+              <span>{l.label}</span>
+              <IconChevron className="shrink-0 text-subtle" />
             </a>
           ))}
           <button
             type="button"
             onClick={openConsultFromMenu}
-            className="mt-3 min-h-12 rounded-lg bg-accent px-3 py-3 text-center text-sm font-bold uppercase tracking-wide text-white transition hover:bg-accentStrong"
+            className="mt-4 min-h-12 rounded-xl bg-accent px-4 py-3 text-center text-sm font-bold uppercase tracking-wide text-white transition hover:bg-accentStrong"
           >
             Записаться
           </button>

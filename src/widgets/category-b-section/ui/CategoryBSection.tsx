@@ -24,9 +24,9 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
           {cards.map(({ key, data }, index) => (
             <motion.article
               key={key}
-              initial={{ opacity: 0, y: 12 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: index * 0.06 }}
               className={`flex flex-col rounded-2xl border bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 md:p-7 ${
                 data.popular ? "border-2 border-accent" : "border border-wash hover:border-accent"
