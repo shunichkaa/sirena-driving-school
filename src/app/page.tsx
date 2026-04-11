@@ -10,6 +10,7 @@ import { FaqSection } from "@/widgets/faq-section";
 import { FinalCta } from "@/widgets/final-cta";
 import { Header } from "@/widgets/header";
 import { Hero } from "@/widgets/hero";
+import { InstructorsSection } from "@/widgets/instructors-section";
 import { LearningSteps } from "@/widgets/learning-steps";
 import { PricingSection } from "@/widgets/pricing-section";
 import { ReviewsSection } from "@/widgets/reviews-section";
@@ -37,6 +38,7 @@ export default function Home() {
         <Hero onConsult={openConsult} />
         <StatsBar />
         <LearningSteps />
+        <InstructorsSection />
         <CategoryASection onConsult={openConsult} />
         <CategoryBSection onConsult={openConsult} />
         <ReviewsSection />
@@ -51,14 +53,14 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl gap-2">
           <a
             href={`tel:${siteData.phoneTel}`}
-            className="flex-1 rounded-full border border-ink px-4 py-2.5 text-center text-xs font-black uppercase tracking-wide text-ink"
+            className="min-h-12 flex-1 rounded-lg border-2 border-accent bg-white px-4 py-2.5 text-center text-xs font-bold uppercase tracking-wide text-accent"
           >
             Позвонить
           </a>
           <button
             type="button"
             onClick={openConsult}
-            className="flex-1 rounded-full bg-accent px-4 py-2.5 text-center text-xs font-black uppercase tracking-wide text-ink"
+            className="min-h-12 flex-1 rounded-lg bg-accent px-4 py-2.5 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:bg-accentStrong"
           >
             Записаться
           </button>
@@ -69,6 +71,9 @@ export default function Home() {
           aria-label="Дополнительные разделы"
           className="mx-auto mb-5 flex max-w-6xl flex-wrap items-center justify-center gap-x-5 gap-y-2 px-4 text-xs font-semibold text-ink md:text-sm"
         >
+          <a href="#instruktory" className="transition hover:text-accent">
+            Инструкторы
+          </a>
           <a href="#raspisanie" className="transition hover:text-accent">
             Расписание
           </a>
@@ -79,6 +84,19 @@ export default function Home() {
             Документы
           </a>
         </nav>
+        <div className="mx-auto mb-5 flex flex-wrap items-center justify-center gap-2 px-4">
+          {siteData.footerDocLinks.map((doc) => (
+            <a
+              key={doc.file}
+              href={`docs/${encodeURIComponent(doc.file)}`}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-accent/40 bg-surface px-3 py-1.5 text-xs font-semibold text-accent transition hover:border-accent hover:bg-white"
+            >
+              {doc.label}
+            </a>
+          ))}
+        </div>
         <p>Официальный сайт Автошколы «Сирена».</p>
       </footer>
       <ConsultationDialog open={consultOpen} onOpenChange={setConsultOpen} />

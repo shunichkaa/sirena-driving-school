@@ -20,13 +20,13 @@ export function FinalCta({ onConsult }: FinalCtaProps) {
           <button
             type="button"
             onClick={onConsult}
-            className="rounded-full bg-accent px-6 py-3 text-sm font-black uppercase tracking-wide text-ink transition hover:brightness-95"
+            className="min-h-12 rounded-lg bg-accent px-8 py-3.5 text-base font-bold text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100"
           >
             Записаться
           </button>
           <a
             href={`tel:${siteData.phoneTel}`}
-            className="rounded-full border border-ink px-6 py-3 text-sm font-black uppercase tracking-wide text-ink transition hover:border-accent hover:text-accent"
+            className="min-h-12 rounded-lg border-2 border-accent bg-white px-8 py-3.5 text-base font-bold text-accent transition hover:bg-surface"
           >
             {siteData.phoneDisplay}
           </a>

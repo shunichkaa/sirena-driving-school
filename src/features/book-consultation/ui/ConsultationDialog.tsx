@@ -107,7 +107,7 @@ export function ConsultationDialog({
           <label className="block text-sm font-medium text-ink">
             Имя
             <input
-              className="mt-1 w-full rounded-lg border border-wash bg-white px-3 py-2 text-ink outline-none ring-accent focus:ring-2"
+              className="mt-1 min-h-12 w-full rounded-lg border border-wash bg-white px-3 py-2 text-base text-ink outline-none ring-accent focus:ring-2"
               value={name}
               onChange={(e) => setName(e.target.value)}
               autoComplete="name"
@@ -116,7 +116,7 @@ export function ConsultationDialog({
           <label className="block text-sm font-medium text-ink">
             Телефон
             <input
-              className="mt-1 w-full rounded-lg border border-wash bg-white px-3 py-2 text-ink outline-none ring-accent focus:ring-2"
+              className="mt-1 min-h-12 w-full rounded-lg border border-wash bg-white px-3 py-2 text-base text-ink outline-none ring-accent focus:ring-2"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               autoComplete="tel"
@@ -126,7 +126,7 @@ export function ConsultationDialog({
         </div>
         <button
           type="button"
-          className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink"
+          className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-accent px-6 py-3.5 text-base font-bold text-white transition hover:bg-accentStrong"
           onClick={submit}
         >
           Отправить на почту
