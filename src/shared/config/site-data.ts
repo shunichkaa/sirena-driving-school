@@ -16,6 +16,8 @@ export const siteData = {
   whatsappUrl: "https://wa.me/79220153727",
   privacyPath: "/personal-data",
   yandexRating: { score: "4.9", label: "в Яндекс.Картах", reviewCount: 87 },
+  yandexMapsReviewsUrl:
+    "https://yandex.ru/maps/?text=%D0%90%D0%B2%D1%82%D0%BE%D1%88%D0%BA%D0%BE%D0%BB%D0%B0%20%D0%A1%D0%B8%D1%80%D0%B5%D0%BD%D0%B0%20%D0%9E%D0%B7%D1%91%D1%80%D1%81%D0%BA",
   stats: {
     bar: [
       { value: "95%", label: "сдают с 1-го раза" },
@@ -23,7 +25,6 @@ export const siteData = {
       { value: "с 2009", label: "года на рынке" },
       { value: "A и B", label: "две категории" },
     ],
-    counterPercent: 95,
     advantages: [
       {
         title: "Личный кабинет и онлайн-теория",
@@ -131,6 +132,8 @@ export const siteData = {
       focus: "Категория B, практика на площадке и в городе",
       quote: "Готовим к реальным условиям дороги, а не только к экзамену.",
       graduates: "Инструктор на ул. Октябрьская, 7",
+      experience: "Многолетний стаж работы инструктором по категории B.",
+      outcome: "Готовит выпускников к экзамену и уверенному вождению в городе.",
       initials: "ГЕ",
       tone: "blue",
     },
@@ -140,6 +143,8 @@ export const siteData = {
       focus: "Категория B, вождение с нуля и экстремальные ситуации",
       quote: "Спокойно разбираем ошибки и закрепляем навыки до автоматизма.",
       graduates: "Инструктор на ул. Октябрьская, 7",
+      experience: "Многолетний стаж работы инструктором по категории B.",
+      outcome: "Сопровождает учеников от первого занятия до сдачи экзамена.",
       initials: "ХА",
       tone: "soft",
     },
@@ -163,9 +168,26 @@ export const siteData = {
   ],
   reviewsSummary: { score: "4.9" },
   pricing: [
-    { title: "Базовый курс", price: "21 000 ₽", note: "Теория и стандартный пакет практики" },
-    { title: "Полный курс", price: "23 000 ₽", note: "Расширенная программа с подготовкой к экзамену" },
+    {
+      title: "Базовый курс",
+      price: "21 000 ₽",
+      note: "Теория и стандартный пакет практики",
+      popular: false,
+    },
+    {
+      title: "Полный курс",
+      price: "23 000 ₽",
+      note: "Расширенная программа с подготовкой к экзамену",
+      popular: true,
+    },
   ],
+  installmentCalculator: {
+    title: "Рассрочка без переплат",
+    hint: "Ориентир по категории B: первый взнос 7 000 ₽, остаток на 3 месяца. Подставьте свои цифры.",
+    totalRub: 21000,
+    firstRub: 7000,
+    months: 3,
+  },
   faq: [
     {
       question: "Сколько длится обучение?",

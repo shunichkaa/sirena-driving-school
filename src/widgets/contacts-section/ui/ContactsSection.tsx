@@ -3,7 +3,7 @@
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 type ContactsSectionProps = {
   onOpenConsult: () => void;
@@ -24,24 +24,6 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
   const [hp, setHp] = useState("");
   const [sent, setSent] = useState(false);
   const [mailHref, setMailHref] = useState("");
-  const [mapReady, setMapReady] = useState(false);
-  const mapSentinelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const node = mapSentinelRef.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          setMapReady(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "160px", threshold: 0.01 },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
 
   const sendMail = useCallback(() => {
     if (hp.trim()) return;
@@ -72,29 +54,37 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
         >
           Контакты
         </motion.h2>
-        <div className="mt-10 grid gap-10 lg:grid-cols-2">
-          <motion.div
-            ref={mapSentinelRef}
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05 }}
-            className="overflow-hidden rounded-2xl border border-wash bg-white shadow-card"
-          >
-            {mapReady ? (
+        <div className="mt-10 grid items-start gap-10 lg:grid-cols-2">
+          <div className="min-w-0 w-full overflow-hidden rounded-2xl border border-wash bg-white shadow-card">
+            <div className="relative h-56 w-full min-w-0 bg-wash sm:h-64 md:h-72">
               <iframe
                 title="Карта"
                 src={siteData.mapEmbedUrl}
-                className="h-[min(60vh,440px)] w-full"
+                width="100%"
+                height="100%"
+                className="absolute inset-0 block h-full w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                onLoad={() => {
+                  window.dispatchEvent(new Event("resize"));
+                  window.setTimeout(() => window.dispatchEvent(new Event("resize")), 300);
+                }}
               />
-            ) : (
-              <div className="h-[min(60vh,440px)] w-full bg-wash" aria-hidden />
-            )}
-          </motion.div>
-          <div className="flex flex-col justify-center gap-8">
+            </div>
+          </div>
+          <div className="flex flex-col justify-center gap-8 lg:min-w-0">
             <div className="max-w-measure space-y-2 text-[15px] text-ink">
               <p className="font-semibold">{siteData.addressLine}</p>
+              <p>
+                <a
+                  href={siteData.yandexMapsReviewsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-accent underline decoration-accent/40 underline-offset-4 transition hover:text-accentStrong"
+                >
+                  Схема проезда в Яндекс.Картах
+                </a>
+              </p>
               <p className="text-muted">{siteData.workHoursLine}</p>
               <p>
                 <span className="text-muted">Телефон администратора: </span>

@@ -33,6 +33,16 @@ export function InstructorsSection() {
               <h3 className="mt-4 text-center text-lg font-medium text-ink md:text-xl">{person.name}</h3>
               <p className="mt-2 text-center text-[13px] text-muted">{person.since}</p>
               <p className="mt-2 text-center text-sm font-medium text-ink">{person.focus}</p>
+              <ul className="mt-3 space-y-2 text-left text-[13px] leading-snug text-muted">
+                <li>
+                  <span className="font-semibold text-ink">Стаж и опыт: </span>
+                  {person.experience}
+                </li>
+                <li>
+                  <span className="font-semibold text-ink">О выпускниках: </span>
+                  {person.outcome}
+                </li>
+              </ul>
               <p className="mt-3 text-center text-sm italic leading-relaxed text-muted">«{person.quote}»</p>
               <p className="mt-3 text-center text-[13px] font-semibold text-accent">{person.graduates}</p>
             </motion.article>

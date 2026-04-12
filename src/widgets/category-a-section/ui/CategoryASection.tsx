@@ -43,7 +43,7 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
             initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
-            className="rounded-2xl border border-wash bg-white p-6 shadow-card md:p-7 lg:col-span-7 lg:self-start"
+            className="rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-lg md:p-7 lg:col-span-7 lg:self-start"
           >
             <p className="text-[13px] text-muted">{a.duration}</p>
             <p className="mt-1 text-sm font-medium text-ink">{a.lessons}</p>

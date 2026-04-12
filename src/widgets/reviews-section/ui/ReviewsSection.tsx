@@ -14,13 +14,13 @@ function initials(name: string) {
 }
 
 export function ReviewsSection() {
-  const { reviews, reviewsSummary, yandexRating } = siteData;
+  const { reviews, reviewsSummary, yandexRating, yandexMapsReviewsUrl } = siteData;
   const ratingCaption = `на основе ${yandexRating.reviewCount} оценок в Яндекс.Картах`;
 
   return (
     <section id="otzyvy" className="border-t border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:mb-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 md:mb-2">
           {siteMedia.reviewsMosaic.map((item) => (
             <div
               key={item.src}
@@ -36,14 +36,24 @@ export function ReviewsSection() {
             </div>
           ))}
         </div>
-        <div className="mt-10 flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
+        <div className="mt-10 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
           <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">Отзывы</h2>
-          <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
-            <span className="text-3xl font-bold text-accent">{reviewsSummary.score}</span>
-            <span>{ratingCaption}</span>
-            <span className="text-amber-500" aria-hidden>
-              ★★★★★
-            </span>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:items-end">
+            <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
+              <span className="text-3xl font-bold text-accent">{reviewsSummary.score}</span>
+              <span>{ratingCaption}</span>
+              <span className="text-amber-500" aria-hidden>
+                ★★★★★
+              </span>
+            </div>
+            <a
+              href={yandexMapsReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-lg border-2 border-accent bg-white px-4 py-2.5 text-sm font-bold text-accent transition hover:bg-surface sm:w-auto"
+            >
+              Проверить на Яндекс.Картах
+            </a>
           </div>
         </div>
         <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
