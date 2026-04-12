@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: http://xn----7sbabhuunjyeb4ami1h.xn--p1ai
+Sitemap: http://xn----7sbabhuunjyeb4ami1h.xn--p1ai/sitemap.xml
