@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export function PricingSection() {
   return (
     <section id="ceny" className="border-t border-wash bg-surface py-14 md:py-20">
-      <div className="mx-auto max-w-screen-2xl px-3 md:px-4">
+      <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">Цены</h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           {siteData.pricing.map((item, index) => (

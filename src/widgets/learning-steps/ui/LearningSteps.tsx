@@ -7,7 +7,7 @@ import { SectionReveal } from "@/shared/ui/SectionReveal";
 export function LearningSteps() {
   return (
     <section id="programma" className="border-t border-wash bg-white py-14 md:py-20">
-      <SectionReveal className="mx-auto max-w-screen-2xl px-3 md:px-4">
+      <SectionReveal className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Программа обучения
         </h2>

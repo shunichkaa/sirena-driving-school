@@ -19,7 +19,7 @@ export function ReviewsSection() {
 
   return (
     <section id="otzyvy" className="border-t border-wash bg-white py-14 md:py-20">
-      <div className="mx-auto max-w-screen-2xl px-3 md:px-4">
+      <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:mb-2">
           {siteMedia.reviewsMosaic.map((item) => (
             <div

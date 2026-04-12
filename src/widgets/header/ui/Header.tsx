@@ -152,7 +152,7 @@ export function Header({ onOpenConsult }: HeaderProps) {
           scrolled ? "border-wash bg-white/92 shadow-sm backdrop-blur-md" : "bg-surface/90 backdrop-blur-sm"
         }`}
       >
-        <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-3 sm:gap-3 md:px-4">
+        <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-5 sm:gap-3 md:px-6 lg:px-8">
           <button
             type="button"
             className="relative order-1 flex min-h-14 min-w-14 shrink-0 items-center justify-center rounded-xl border border-wash/80 bg-white text-ink shadow-sm transition hover:border-accent/40 hover:text-accent md:hidden"

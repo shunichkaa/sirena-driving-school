@@ -11,7 +11,7 @@ const toneClass: Record<string, string> = {
 export function InstructorsSection() {
   return (
     <section id="instruktory" className="border-t border-wash bg-surface py-14 md:py-20">
-      <div className="mx-auto max-w-screen-2xl px-3 md:px-4">
+      <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Ваши инструкторы
         </h2>
