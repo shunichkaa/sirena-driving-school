@@ -63,7 +63,7 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
 
   return (
     <section id="kontakty" className="border-t border-wash bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl px-3 md:px-4">
         <motion.h2
           initial={false}
           whileInView={{ opacity: 1, y: 0 }}

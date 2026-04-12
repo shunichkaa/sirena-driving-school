@@ -9,7 +9,7 @@ type FinalCtaProps = {
 export function FinalCta({ onConsult }: FinalCtaProps) {
   return (
     <section className="border-y border-wash bg-white py-14 md:py-20">
-      <div className="mx-auto max-w-6xl px-4 text-center md:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl px-3 text-center md:px-4">
         <h2 className="mx-auto max-w-3xl text-3xl font-black tracking-tight text-ink md:text-4xl">
           Начните обучение в удобном формате
         </h2>

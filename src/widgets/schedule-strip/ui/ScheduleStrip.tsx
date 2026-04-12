@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export function ScheduleStrip() {
   return (
     <section id="raspisanie" className="border-y border-wash/80 bg-canvas py-10 md:py-12">
-      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl px-3 md:px-4">
         <motion.div
           initial={false}
           whileInView={{ opacity: 1, y: 0 }}

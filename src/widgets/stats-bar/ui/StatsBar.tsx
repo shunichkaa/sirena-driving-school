@@ -51,7 +51,7 @@ export function StatsBar() {
 
   return (
     <section id="preimushchestva" className="border-y border-wash bg-surfaceBar">
-      <div ref={ref} className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-12 lg:px-8">
+      <div ref={ref} className="mx-auto max-w-screen-2xl px-3 py-10 md:px-4 md:py-12">
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-0 md:divide-x md:divide-wash">
           {bar.map((it, i) => (
             <div key={it.label} className="text-center md:px-4">

@@ -52,7 +52,7 @@ export default function Home() {
         <ContactsSection onOpenConsult={openConsult} />
       </main>
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-wash bg-white/95 px-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom,0px))] pt-2.5 backdrop-blur md:hidden">
-        <div className="mx-auto flex max-w-6xl gap-2">
+        <div className="mx-auto flex max-w-screen-2xl gap-2">
           <a
             href={`tel:${siteData.phoneTel}`}
             className="min-h-12 flex-1 rounded-lg border-2 border-accent bg-white px-4 py-2.5 text-center text-xs font-bold uppercase tracking-wide text-accent"
@@ -71,7 +71,7 @@ export default function Home() {
       <footer className="border-t border-wash bg-white py-8 text-center text-sm text-muted">
         <nav
           aria-label="Дополнительные разделы"
-          className="mx-auto mb-5 flex max-w-6xl flex-wrap items-center justify-center gap-x-5 gap-y-2 px-4 text-xs font-semibold text-ink md:text-sm"
+          className="mx-auto mb-5 flex max-w-screen-2xl flex-wrap items-center justify-center gap-x-5 gap-y-2 px-3 text-xs font-semibold text-ink md:px-4 md:text-sm"
         >
           <a href={homeFragmentHref("instruktory")} className="transition hover:text-accent">
             Инструкторы
@@ -89,7 +89,7 @@ export default function Home() {
             Конфиденциальность
           </Link>
         </nav>
-        <div className="mx-auto mb-5 flex flex-wrap items-center justify-center gap-2 px-4">
+        <div className="mx-auto mb-5 flex flex-wrap items-center justify-center gap-2 px-3 md:px-4">
           {siteData.footerDocLinks.map((doc) => (
             <a
               key={doc.file}
@@ -102,10 +102,10 @@ export default function Home() {
             </a>
           ))}
         </div>
-        <p className="max-w-2xl px-4 text-center text-[13px] font-medium leading-relaxed text-ink">
+        <p className="max-w-2xl px-3 text-center text-[13px] font-medium leading-relaxed text-ink md:px-4">
           {siteData.legal.fullName}
         </p>
-        <p className="mx-auto mt-2 max-w-2xl px-4 text-center text-[13px] leading-relaxed text-subtle">
+        <p className="mx-auto mt-2 max-w-2xl px-3 text-center text-[13px] leading-relaxed text-subtle md:px-4">
           {siteData.legal.requisitesNote}
         </p>
         <p className="mt-4">Официальный сайт Автошколы «Сирена». © {new Date().getFullYear()}</p>

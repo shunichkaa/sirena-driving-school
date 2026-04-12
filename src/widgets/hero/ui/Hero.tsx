@@ -16,7 +16,7 @@ export function Hero({ onConsult }: HeroProps) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#f6f7f2] to-surface">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(75,94,46,0.12),transparent)]" />
-      <div className="relative mx-auto grid max-w-6xl min-h-0 grid-cols-1 items-center gap-12 px-4 py-12 md:gap-14 md:px-6 md:py-20 lg:grid-cols-12 lg:gap-16 lg:px-8">
+      <div className="relative mx-auto grid max-w-screen-2xl min-h-0 grid-cols-1 items-center gap-12 px-3 py-12 md:gap-14 md:px-4 md:py-20 lg:grid-cols-12 lg:gap-16 lg:px-4">
         <div className="min-w-0 max-w-measure lg:col-span-7">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-accent md:text-xs">
             {siteData.hero.eyebrow}

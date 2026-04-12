@@ -63,7 +63,7 @@ export function DocumentsSection() {
 
   return (
     <section id="documents" className="border-t border-wash bg-canvas py-12 md:py-16">
-      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl px-3 md:px-4">
         <details className="rounded-2xl border border-wash bg-white p-5 shadow-card md:p-6 [&[open]_summary_.doc-chevron]:rotate-180">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-lg font-bold text-ink md:text-xl">
             <span>Юридические документы</span>

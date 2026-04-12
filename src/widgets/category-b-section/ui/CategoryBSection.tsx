@@ -19,7 +19,7 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
 
   return (
     <section id="kategoriya-b" className="bg-white py-14 md:py-20">
-      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl px-3 md:px-4">
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Категория B
         </h2>
