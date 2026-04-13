@@ -4,28 +4,42 @@ export const siteMedia = {
     "Автошкола Сирена Озёрск: учебная площадка с конусами и разметкой, рядом учебный автомобиль",
   categoryAFleet: {
     src: "/photos/training-moto-category-a.png",
-    width: 682,
-    height: 1024,
+    width: 1024,
+    height: 766,
     alt: "Бело-чёрный учебный мотоцикл со знаком «У» на площадке с конусами: вид сзади и сбоку спереди",
   },
-  categoryBFleet: {
-    src: "/photos/training-lada-granta.png",
-    width: 682,
-    height: 1024,
-    alt: "Чёрная Лада Гранта с учебными знаками на площадке: вид сзади и спереди",
-  },
+  categoryBFleetSlides: [
+    {
+      src: "/photos/training-lada-granta-black.png",
+      width: 1024,
+      height: 762,
+      alt: "Чёрная учебная Лада Гранта со знаком «У» на площадке",
+    },
+    {
+      src: "/photos/training-lada-granta-silver.png",
+      width: 1024,
+      height: 682,
+      alt: "Серебристая учебная Лада Гранта со знаком «У» на площадке",
+    },
+    {
+      src: "/photos/training-lada-granta-blue.png",
+      width: 1024,
+      height: 682,
+      alt: "Синяя учебная Лада Гранта со знаком «У» на площадке",
+    },
+  ],
   reviewsMosaic: [
     {
       src: "/photos/training-ploshchadka.png",
       alt: "Инструктор объясняет упражнение у учебного автомобиля с знаком «учебная езда»",
     },
     {
-      src: "/photos/lesson-interior.png",
-      alt: "Занятие в автомобиле: руки на руле, инструктор с бланком оценки",
-    },
-    {
       src: "/photos/building-entrance.png",
       alt: "Кирпичный фасад здания: вход с белыми дверями и синим информационным указателем",
+    },
+    {
+      src: "/photos/lesson-interior.png",
+      alt: "Занятие в автомобиле: руки на руле, инструктор с бланком оценки",
     },
   ],
 } as const;

@@ -5,6 +5,7 @@ import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type CategoryBSectionProps = {
   onConsult: () => void;
@@ -12,10 +13,32 @@ type CategoryBSectionProps = {
 
 export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
   const { mkpp, akpp, installmentNote } = siteData.categoryB;
+  const slides = siteMedia.categoryBFleetSlides;
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slidesCount = slides.length;
   const cards = [
     { key: "mkpp" as const, data: mkpp },
     { key: "akpp" as const, data: akpp },
   ];
+  const currentSlide = slides[activeSlide];
+
+  useEffect(() => {
+    const timerId = window.setInterval(() => {
+      setActiveSlide((prevSlide) => (prevSlide + 1) % slidesCount);
+    }, 5000);
+
+    return () => {
+      window.clearInterval(timerId);
+    };
+  }, [slidesCount]);
+
+  const handlePrevSlide = () => {
+    setActiveSlide((prevSlide) => (prevSlide - 1 + slidesCount) % slidesCount);
+  };
+
+  const handleNextSlide = () => {
+    setActiveSlide((prevSlide) => (prevSlide + 1) % slidesCount);
+  };
 
   return (
     <section id="kategoriya-b" className="bg-white py-14 md:py-20">
@@ -28,16 +51,46 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
             <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-wash bg-wash shadow-card lg:mx-0 lg:max-w-none">
               <div
                 className="relative w-full"
-                style={{ aspectRatio: `${siteMedia.categoryBFleet.width} / ${siteMedia.categoryBFleet.height}` }}
+                style={{ aspectRatio: `${currentSlide.width} / ${currentSlide.height}` }}
               >
                 <Image
+                  key={currentSlide.src}
                   fill
-                  src={assetUrl(siteMedia.categoryBFleet.src)}
-                  alt={siteMedia.categoryBFleet.alt}
+                  src={assetUrl(currentSlide.src)}
+                  alt={currentSlide.alt}
                   className="object-cover object-center"
                   sizes="(min-width: 1024px) 380px, (min-width: 640px) 384px, 100vw"
                 />
+                <button
+                  type="button"
+                  onClick={handlePrevSlide}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/45 px-3 py-1.5 text-lg font-semibold text-white transition hover:bg-black/60"
+                  aria-label="Предыдущее фото"
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextSlide}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/45 px-3 py-1.5 text-lg font-semibold text-white transition hover:bg-black/60"
+                  aria-label="Следующее фото"
+                >
+                  ›
+                </button>
               </div>
+            </div>
+            <div className="mt-3 flex items-center justify-center gap-2 lg:justify-start">
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.src}
+                  type="button"
+                  onClick={() => setActiveSlide(index)}
+                  className={`h-2.5 w-2.5 rounded-full transition ${
+                    index === activeSlide ? "bg-accent" : "bg-wash hover:bg-muted"
+                  }`}
+                  aria-label={`Показать фото ${index + 1}`}
+                />
+              ))}
             </div>
             <figcaption className="mt-3 text-center text-[13px] text-muted lg:text-left">
               Учебный автомобиль на площадке
