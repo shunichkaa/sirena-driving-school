@@ -69,15 +69,31 @@ function IconChevron({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
+function IconEye({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
+}
+
 export function Header({ onOpenConsult }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [lowVisionMode, setLowVisionMode] = useState(false);
 
   const links = [
     { href: homeFragmentHref("programma"), label: "Программа" },
     { href: homeFragmentHref("instruktory"), label: "Инструкторы" },
-    { href: homeFragmentHref("kategoriya-a"), label: "A и B" },
+    { href: homeFragmentHref("kategoriya-a"), label: "Категории" },
     { href: homeFragmentHref("otzyvy"), label: "Отзывы" },
     { href: homeFragmentHref("svedeniya"), label: "Сведения" },
     { href: homeFragmentHref("kontakty"), label: "Контакты" },
@@ -127,11 +143,32 @@ export function Header({ onOpenConsult }: HeaderProps) {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const stored = window.localStorage.getItem("lowVisionMode");
+    if (stored === "1") {
+      setLowVisionMode(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (lowVisionMode) {
+      document.documentElement.setAttribute("data-vision", "low");
+      window.localStorage.setItem("lowVisionMode", "1");
+      return;
+    }
+    document.documentElement.removeAttribute("data-vision");
+    window.localStorage.setItem("lowVisionMode", "0");
+  }, [lowVisionMode]);
+
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   const openConsultFromMenu = () => {
     setMenuOpen(false);
     onOpenConsult();
+  };
+
+  const toggleLowVisionMode = () => {
+    setLowVisionMode((value) => !value);
   };
 
   const linkClass = (href: string) => {
@@ -199,6 +236,15 @@ export function Header({ onOpenConsult }: HeaderProps) {
                 {l.label}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={toggleLowVisionMode}
+              aria-pressed={lowVisionMode}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-wash px-3 py-2 text-[11px] font-bold uppercase tracking-wide text-ink transition hover:border-accent hover:text-accent"
+            >
+              <IconEye className="h-3.5 w-3.5" />
+              {lowVisionMode ? "Обычная версия" : "Версия для слабовидящих"}
+            </button>
             <a
               href={`tel:${siteData.phoneTel}`}
               className="text-sm font-bold normal-case tracking-normal text-accent transition hover:text-accentStrong"
@@ -246,6 +292,17 @@ export function Header({ onOpenConsult }: HeaderProps) {
             onClick={closeMenu}
           >
             <IconClose />
+          </button>
+        </div>
+        <div className="border-b border-wash px-4 py-4">
+          <button
+            type="button"
+            onClick={toggleLowVisionMode}
+            aria-pressed={lowVisionMode}
+            className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-wash bg-surface px-4 py-3 text-sm font-bold text-ink transition hover:border-accent hover:text-accent"
+          >
+            <IconEye className="h-4 w-4" />
+            {lowVisionMode ? "Обычная версия" : "Версия для слабовидящих"}
           </button>
         </div>
         <div className="border-b border-wash px-4 py-4">

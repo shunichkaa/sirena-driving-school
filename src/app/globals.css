@@ -51,3 +51,88 @@ details.faq-item[open] > .faq-answer {
     overflow: visible;
   }
 }
+
+html[data-vision="low"] {
+  scroll-behavior: auto;
+  font-size: 112.5%;
+}
+
+html[data-vision="low"] body {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+html[data-vision="low"] *,
+html[data-vision="low"] *::before,
+html[data-vision="low"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+html[data-vision="low"] body {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+html[data-vision="low"] h1,
+html[data-vision="low"] h2,
+html[data-vision="low"] h3,
+html[data-vision="low"] h4,
+html[data-vision="low"] p,
+html[data-vision="low"] span,
+html[data-vision="low"] li,
+html[data-vision="low"] label,
+html[data-vision="low"] button,
+html[data-vision="low"] input,
+html[data-vision="low"] select,
+html[data-vision="low"] textarea {
+  color: #000 !important;
+}
+
+html[data-vision="low"] h1 {
+  font-size: clamp(2rem, 7vw, 3rem) !important;
+  line-height: 1.2 !important;
+}
+
+html[data-vision="low"] h2 {
+  font-size: clamp(1.75rem, 5.5vw, 2.5rem) !important;
+  line-height: 1.25 !important;
+}
+
+html[data-vision="low"] h3 {
+  font-size: clamp(1.35rem, 4.5vw, 1.9rem) !important;
+  line-height: 1.3 !important;
+}
+
+html[data-vision="low"] a {
+  color: #000 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.12em;
+}
+
+html[data-vision="low"] button {
+  background: #fff !important;
+  border-color: #000 !important;
+  border-width: 2px !important;
+  min-height: 2.9rem;
+}
+
+html[data-vision="low"] input,
+html[data-vision="low"] select,
+html[data-vision="low"] textarea {
+  background: #fff !important;
+  border-color: #000 !important;
+  border-width: 2px !important;
+  min-height: 2.9rem;
+  font-size: 1.05em !important;
+}
+
+html[data-vision="low"] a:focus-visible,
+html[data-vision="low"] button:focus-visible,
+html[data-vision="low"] input:focus-visible,
+html[data-vision="low"] select:focus-visible,
+html[data-vision="low"] summary:focus-visible {
+  outline: 3px solid #000 !important;
+  outline-offset: 3px;
+}
