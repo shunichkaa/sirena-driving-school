@@ -16,14 +16,16 @@ export function ScheduleStrip() {
           <div className="min-w-0 flex-1">
             <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">Справка</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-ink md:text-3xl">{siteData.scheduleStrip.title}</h2>
-            <p className="mt-2 max-w-xl text-sm text-muted">{siteData.scheduleStrip.description}</p>
+            <p className="mt-2 max-w-xl whitespace-pre-line text-sm leading-relaxed text-muted">
+              {siteData.scheduleStrip.description}
+            </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {siteData.trainingLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="rounded-full border border-wash px-3 py-1.5 text-xs font-semibold text-ink hover:border-accent hover:text-accent"
                 >
                   {link.label}

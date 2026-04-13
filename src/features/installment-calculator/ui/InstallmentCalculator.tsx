@@ -9,7 +9,12 @@ export function InstallmentCalculator() {
   const defaults = siteData.installmentCalculator;
   const [total, setTotal] = useState<number>(defaults.totalRub);
   const [first, setFirst] = useState<number>(defaults.firstRub);
-  const [months, setMonths] = useState<number>(defaults.months);
+  const [monthsField, setMonthsField] = useState<string>(String(defaults.months));
+
+  const normalizedMonthsField = monthsField.replace(/^0+(?=\d)/, "");
+  const parsedMonths = Number(normalizedMonthsField);
+  const months =
+    normalizedMonthsField === "" || Number.isNaN(parsedMonths) ? 0 : Math.min(24, Math.max(1, parsedMonths));
 
   const monthly = useMemo(() => {
     const rest = total - first;
@@ -52,8 +57,15 @@ export function InstallmentCalculator() {
             max={24}
             step={1}
             className="mt-1 min-h-12 w-full rounded-lg border border-wash bg-surface/40 px-3 py-2 text-base text-ink outline-none ring-accent focus:ring-2"
-            value={Number.isNaN(months) ? "" : months}
-            onChange={(e) => setMonths(Number(e.target.value))}
+            value={normalizedMonthsField}
+            onChange={(e) => setMonthsField(e.target.value.replace(/[^\d]/g, ""))}
+            onBlur={() => {
+              if (normalizedMonthsField === "") {
+                setMonthsField("1");
+                return;
+              }
+              setMonthsField(String(months));
+            }}
           />
         </label>
       </div>

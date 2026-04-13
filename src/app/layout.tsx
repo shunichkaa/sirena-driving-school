@@ -4,7 +4,7 @@ import { appBasePath } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import "./globals.css";
 
-const faviconPath = `${appBasePath}/favicon.svg`;
+const faviconPath = `${appBasePath}/favicon-48x48.png`;
 
 const inter = Inter({
   variable: "--font-sans",

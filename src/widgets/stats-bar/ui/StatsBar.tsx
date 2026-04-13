@@ -11,13 +11,9 @@ export function StatsBar() {
     <section id="preimushchestva" className="border-y border-wash bg-surfaceBar">
       <div className="mx-auto max-w-screen-2xl px-5 py-10 md:px-6 md:py-12 lg:px-8">
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-0 md:divide-x md:divide-wash">
-          {bar.map((it, i) => (
+          {bar.map((it) => (
             <div key={it.label} className="text-center md:px-4">
-              <p
-                className={`font-bold leading-none text-accent ${
-                  i === 0 ? "text-[clamp(2.75rem,9vw,4.5rem)]" : "text-[clamp(1.75rem,5vw,3rem)]"
-                }`}
-              >
+              <p className="font-bold leading-none text-accent text-[clamp(1.75rem,5vw,3rem)]">
                 {it.value}
               </p>
               <p className="mt-2 text-[13px] font-medium leading-snug text-muted md:text-sm">{it.label}</p>
@@ -47,6 +43,16 @@ export function StatsBar() {
               </span>
               <h3 className="mt-3 text-lg font-medium leading-snug text-ink md:text-xl">{card.title}</h3>
               <p className="mt-2 text-[15px] font-normal leading-relaxed text-muted">{card.text}</p>
+              {card.linkHref ? (
+                <a
+                  href={card.linkHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex text-sm font-semibold text-accent underline decoration-accent/40 underline-offset-4 hover:text-accentStrong"
+                >
+                  {card.linkLabel}
+                </a>
+              ) : null}
             </motion.article>
           ))}
         </div>

@@ -31,14 +31,17 @@ export const siteMedia = {
   reviewsMosaic: [
     {
       src: "/photos/training-ploshchadka.png",
+      title: "Автодром",
       alt: "Инструктор объясняет упражнение у учебного автомобиля с знаком «учебная езда»",
     },
     {
       src: "/photos/building-entrance.png",
+      title: "Офис и вход",
       alt: "Кирпичный фасад здания: вход с белыми дверями и синим информационным указателем",
     },
     {
       src: "/photos/lesson-interior.png",
+      title: "Учебный класс и практика",
       alt: "Занятие в автомобиле: руки на руле, инструктор с бланком оценки",
     },
   ],

@@ -14,7 +14,7 @@ import { Header } from "@/widgets/header";
 import { Hero } from "@/widgets/hero";
 import { InstructorsSection } from "@/widgets/instructors-section";
 import { LearningSteps } from "@/widgets/learning-steps";
-import { PricingSection } from "@/widgets/pricing-section";
+import { OrganizationInfoSection } from "@/widgets/organization-info-section";
 import { ReviewsSection } from "@/widgets/reviews-section";
 import { ScheduleStrip } from "@/widgets/schedule-strip";
 import { StatsBar } from "@/widgets/stats-bar";
@@ -44,9 +44,9 @@ export default function Home() {
         <CategoryASection onConsult={openConsult} />
         <CategoryBSection onConsult={openConsult} />
         <ReviewsSection />
-        <PricingSection />
         <ScheduleStrip />
         <FaqSection />
+        <OrganizationInfoSection />
         <DocumentsSection />
         <FinalCta onConsult={openConsult} />
         <ContactsSection onOpenConsult={openConsult} />
@@ -68,47 +68,54 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <footer className="border-t border-wash bg-white py-8 text-center text-sm text-muted">
-        <nav
-          aria-label="Дополнительные разделы"
-          className="mx-auto mb-5 flex max-w-screen-2xl flex-wrap items-center justify-center gap-x-5 gap-y-2 px-5 text-xs font-semibold text-ink md:px-6 md:text-sm lg:px-8"
-        >
-          <a href={homeFragmentHref("instruktory")} className="transition hover:text-accent">
-            Инструкторы
-          </a>
-          <a href={homeFragmentHref("raspisanie")} className="transition hover:text-accent">
-            Расписание
-          </a>
-          <a href={homeFragmentHref("faq")} className="transition hover:text-accent">
-            Вопросы
-          </a>
-          <a href={homeFragmentHref("documents")} className="transition hover:text-accent">
-            Документы
-          </a>
-          <Link href="/personal-data/" className="transition hover:text-accent">
-            Конфиденциальность
-          </Link>
-        </nav>
-        <div className="mx-auto mb-5 flex flex-wrap items-center justify-center gap-2 px-5 md:px-6 lg:px-8">
-          {siteData.footerDocLinks.map((doc) => (
-            <a
-              key={doc.file}
-              href={assetUrl(`/docs/${encodeURIComponent(doc.file)}`)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-accent/40 bg-surface px-3 py-1.5 text-xs font-semibold text-accent transition hover:border-accent hover:bg-white"
-            >
-              {doc.label}
-            </a>
-          ))}
+      <footer className="border-t border-wash bg-white py-6 text-sm text-muted">
+        <div className="mx-auto grid max-w-screen-2xl gap-6 px-5 md:grid-cols-2 md:px-6 lg:grid-cols-3 lg:px-8">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-subtle">Разделы</p>
+            <nav aria-label="Дополнительные разделы" className="mt-2 flex flex-col gap-1.5 text-sm font-semibold text-ink">
+              <a href={homeFragmentHref("instruktory")} className="transition hover:text-accent">
+                Инструкторы
+              </a>
+              <a href={homeFragmentHref("raspisanie")} className="transition hover:text-accent">
+                Расписание
+              </a>
+              <a href={homeFragmentHref("faq")} className="transition hover:text-accent">
+                Вопросы
+              </a>
+              <a href={homeFragmentHref("svedeniya")} className="transition hover:text-accent">
+                Сведения
+              </a>
+              <a href={homeFragmentHref("documents")} className="transition hover:text-accent">
+                Документы
+              </a>
+              <Link href="/personal-data/" className="transition hover:text-accent">
+                Конфиденциальность
+              </Link>
+            </nav>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-subtle">Документы</p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {siteData.footerDocLinks.map((doc) => (
+                <a
+                  key={doc.file}
+                  href={assetUrl(`/docs/${encodeURIComponent(doc.file)}`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-accent/40 bg-surface px-3 py-1.5 text-xs font-semibold text-accent transition hover:border-accent hover:bg-white"
+                >
+                  {doc.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="md:col-span-2 lg:col-span-1">
+            <p className="text-xs font-semibold uppercase tracking-wide text-subtle">Реквизиты</p>
+            <p className="mt-2 text-[13px] font-medium leading-relaxed text-ink">{siteData.legal.fullName}</p>
+            <p className="mt-1.5 text-[13px] leading-relaxed text-subtle">{siteData.legal.requisitesNote}</p>
+          </div>
         </div>
-        <p className="max-w-2xl px-5 text-center text-[13px] font-medium leading-relaxed text-ink md:px-6 lg:px-8">
-          {siteData.legal.fullName}
-        </p>
-        <p className="mx-auto mt-2 max-w-2xl px-5 text-center text-[13px] leading-relaxed text-subtle md:px-6 lg:px-8">
-          {siteData.legal.requisitesNote}
-        </p>
-        <p className="mt-4">Официальный сайт Автошколы «Сирена». © {new Date().getFullYear()}</p>
+        <p className="mt-6 text-center">Официальный сайт Автошколы «Сирена». © {new Date().getFullYear()}</p>
       </footer>
       <ConsultationDialog open={consultOpen} onOpenChange={setConsultOpen} />
     </div>

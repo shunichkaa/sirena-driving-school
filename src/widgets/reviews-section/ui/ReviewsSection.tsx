@@ -21,8 +21,9 @@ export function ReviewsSection() {
     <section id="otzyvy" className="border-t border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 md:mb-2">
+          <p className="col-span-full text-[11px] font-bold uppercase tracking-[0.14em] text-muted">Фотогалерея школы</p>
           {siteMedia.reviewsMosaic.map((item) => (
-            <div
+            <figure
               key={item.src}
               className="relative aspect-[5/4] overflow-hidden rounded-xl border border-wash bg-wash shadow-sm"
             >
@@ -33,7 +34,7 @@ export function ReviewsSection() {
                 className="object-cover"
                 sizes="(min-width: 1024px) 240px, 33vw"
               />
-            </div>
+            </figure>
           ))}
         </div>
         <div className="mt-10 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">

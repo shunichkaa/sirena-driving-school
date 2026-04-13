@@ -28,16 +28,11 @@ export default function PersonalDataPage() {
         <li>Передача третьим лицам осуществляется только в случаях, предусмотренных законодательством РФ.</li>
         <li>Вы вправе запросить уточнение, блокирование или удаление данных — направьте запрос на {siteData.email}.</li>
         <li>
-          Полный комплект локальных актов и сведений о деятельности организации размещён в разделе документов на
-          официальном сайте:{" "}
-          <a
-            href={siteData.officialUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-accent underline underline-offset-2"
-          >
-            {siteData.officialUrl}
-          </a>
+          Полный комплект локальных актов и сведений о деятельности организации размещён в разделе{" "}
+          <Link href="/#documents" className="font-semibold text-accent underline underline-offset-2">
+            Документы
+          </Link>
+          .
         </li>
       </ul>
       <p className="mt-8 text-sm text-subtle">{siteData.legal.requisitesNote}</p>

@@ -11,7 +11,7 @@ type HeaderProps = {
   onOpenConsult: () => void;
 };
 
-const sectionIds = ["programma", "instruktory", "kategoriya-a", "ceny", "otzyvy", "kontakty"] as const;
+const sectionIds = ["programma", "instruktory", "kategoriya-a", "otzyvy", "svedeniya", "kontakty"] as const;
 
 function IconMenu({ className = "h-6 w-6" }: { className?: string }) {
   return (
@@ -78,8 +78,8 @@ export function Header({ onOpenConsult }: HeaderProps) {
     { href: homeFragmentHref("programma"), label: "Программа" },
     { href: homeFragmentHref("instruktory"), label: "Инструкторы" },
     { href: homeFragmentHref("kategoriya-a"), label: "A и B" },
-    { href: homeFragmentHref("ceny"), label: "Цены" },
     { href: homeFragmentHref("otzyvy"), label: "Отзывы" },
+    { href: homeFragmentHref("svedeniya"), label: "Сведения" },
     { href: homeFragmentHref("kontakty"), label: "Контакты" },
   ] as const;
 
@@ -152,7 +152,7 @@ export function Header({ onOpenConsult }: HeaderProps) {
           scrolled ? "border-wash bg-white/92 shadow-sm backdrop-blur-md" : "bg-surface/90 backdrop-blur-sm"
         }`}
       >
-        <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-5 sm:gap-3 md:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-2 px-5 sm:gap-3 md:px-6 lg:px-8">
           <button
             type="button"
             className="relative order-1 flex min-h-14 min-w-14 shrink-0 items-center justify-center rounded-xl border border-wash/80 bg-white text-ink shadow-sm transition hover:border-accent/40 hover:text-accent md:hidden"

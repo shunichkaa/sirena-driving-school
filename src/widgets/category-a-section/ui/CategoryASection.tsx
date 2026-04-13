@@ -14,16 +14,16 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
   const a = siteData.categoryA;
 
   return (
-    <section id="kategoriya-a" className="border-t border-wash bg-surface py-14 md:py-20">
+    <section id="kategoriya-a" className="border-t border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Категория A
         </h2>
-        <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-10">
-          <figure className="flex flex-col lg:col-span-5">
+        <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-10">
+          <figure className="flex flex-col">
             <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-wash bg-wash shadow-card lg:mx-0 lg:max-w-none">
               <div
-                className="relative w-full"
+                className="relative w-full lg:h-[360px]"
                 style={{ aspectRatio: `${siteMedia.categoryAFleet.width} / ${siteMedia.categoryAFleet.height}` }}
               >
                 <Image
@@ -43,7 +43,7 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
             initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
-            className="rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-lg md:p-7 lg:col-span-7 lg:self-start"
+            className="flex flex-col rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-lg md:p-7 lg:h-[360px]"
           >
             <p className="text-[13px] text-muted">{a.duration}</p>
             <p className="mt-1 text-sm font-medium text-ink">{a.lessons}</p>
@@ -61,7 +61,7 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
             <button
               type="button"
               onClick={onConsult}
-              className="mt-6 w-full rounded-lg bg-accent py-3.5 text-base font-bold text-white transition hover:bg-accentStrong"
+              className="mt-auto pt-6 w-full rounded-lg bg-accent py-3.5 text-base font-bold text-white transition hover:bg-accentStrong"
             >
               Записаться
             </button>
