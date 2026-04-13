@@ -205,14 +205,6 @@ export function Header({ onOpenConsult }: HeaderProps) {
             >
               {siteData.phoneDisplay}
             </a>
-            <a
-              href={siteData.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg border border-accent/40 bg-white px-3 py-2 text-[11px] font-bold uppercase tracking-wide text-accent transition hover:border-accent hover:bg-surface"
-            >
-              WhatsApp
-            </a>
             <button
               type="button"
               onClick={onOpenConsult}
@@ -257,15 +249,6 @@ export function Header({ onOpenConsult }: HeaderProps) {
           </button>
         </div>
         <div className="border-b border-wash px-4 py-4">
-          <a
-            href={siteData.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mb-3 flex min-h-12 items-center justify-center rounded-xl bg-[#25D366] px-4 py-3 text-sm font-bold text-white transition hover:brightness-95"
-            onClick={closeMenu}
-          >
-            Написать в WhatsApp
-          </a>
           <a
             href={`tel:${siteData.phoneTel}`}
             className="flex min-h-12 items-center gap-3 rounded-xl bg-surface px-4 py-3 text-accent transition hover:bg-wash/80"

@@ -13,7 +13,6 @@ export const siteData = {
   mapEmbedUrl:
     "https://yandex.ru/map-widget/v1/?text=%D0%B3.%20%D0%9E%D0%B7%D1%91%D1%80%D1%81%D0%BA%2C%20%D1%83%D0%BB.%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%2C%207%2C%20%D0%BE%D1%84.%20316&z=17",
   vkUrl: "https://vk.com/club25096898",
-  whatsappUrl: "https://wa.me/79220153727",
   privacyPath: "/personal-data",
   yandexRating: { score: "4.9", label: "в Яндекс.Картах", reviewCount: 87 },
   yandexMapsReviewsUrl:
