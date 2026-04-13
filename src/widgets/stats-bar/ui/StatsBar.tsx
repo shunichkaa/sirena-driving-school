@@ -43,7 +43,7 @@ export function StatsBar() {
               </span>
               <h3 className="mt-3 text-lg font-medium leading-snug text-ink md:text-xl">{card.title}</h3>
               <p className="mt-2 text-[15px] font-normal leading-relaxed text-muted">{card.text}</p>
-              {card.linkHref ? (
+              {"linkHref" in card && card.linkHref ? (
                 <a
                   href={card.linkHref}
                   target="_blank"

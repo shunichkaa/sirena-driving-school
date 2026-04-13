@@ -3,7 +3,7 @@
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ContactsSectionProps = {
   onOpenConsult: () => void;
@@ -43,25 +43,6 @@ export function ContactsSection({ onOpenConsult }: ContactsSectionProps) {
     observer.observe(target);
     return () => observer.disconnect();
   }, [mapVisible]);
-
-  const sendMail = useCallback(() => {
-    if (hp.trim()) return;
-    if (!name.trim() || !phone.trim() || !consent) return;
-    const catLine =
-      category === ""
-        ? "не указана"
-        : category === "unknown"
-          ? "нужна консультация"
-          : category;
-    const timeLine = preferredTime.trim() || "не указано";
-    const subject = encodeURIComponent("Запись на консультацию");
-    const body = encodeURIComponent(
-      `Имя: ${name.trim()}\nТелефон: ${phone.trim()}\nКатегория: ${catLine}\nУдобное время звонка: ${timeLine}\n\nСообщение отправлено с лендинга.`,
-    );
-    const href = `mailto:${siteData.email}?subject=${subject}&body=${body}`;
-    setMailHref(href);
-    setSent(true);
-  }, [name, phone, category, preferredTime, consent, hp]);
 
   return (
     <section id="kontakty" className="border-t border-wash bg-surface py-16 md:py-24">
