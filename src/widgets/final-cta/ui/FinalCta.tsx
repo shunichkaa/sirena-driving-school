@@ -1,12 +1,9 @@
 "use client";
 
+import { ConsultationButton } from "@/features/book-consultation";
 import { siteData } from "@/shared/config/site-data";
 
-type FinalCtaProps = {
-  onConsult: () => void;
-};
-
-export function FinalCta({ onConsult }: FinalCtaProps) {
+export function FinalCta() {
   return (
     <section className="border-y border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-screen-2xl px-5 text-center md:px-6 lg:px-8">
@@ -17,13 +14,9 @@ export function FinalCta({ onConsult }: FinalCtaProps) {
           Оставьте заявку онлайн. Мы свяжемся с вами, подберем программу и удобный график занятий.
         </p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={onConsult}
-            className="min-h-12 rounded-lg bg-accent px-8 py-3.5 text-base font-bold text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100"
-          >
+          <ConsultationButton className="min-h-12 rounded-lg bg-accent px-8 py-3.5 text-base font-bold text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100">
             Записаться
-          </button>
+          </ConsultationButton>
           <a
             href={`tel:${siteData.phoneTel}`}
             className="min-h-12 rounded-lg border-2 border-accent bg-white px-8 py-3.5 text-base font-bold text-accent transition hover:bg-surface"

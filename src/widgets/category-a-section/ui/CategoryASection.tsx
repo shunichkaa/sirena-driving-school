@@ -1,20 +1,17 @@
 "use client";
 
+import { ConsultationButton } from "@/features/book-consultation";
 import { assetUrl } from "@/shared/config/app-base-path";
 import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-type CategoryASectionProps = {
-  onConsult: () => void;
-};
-
-export function CategoryASection({ onConsult }: CategoryASectionProps) {
+export function CategoryASection() {
   const a = siteData.categoryA;
 
   return (
-    <section id="kategoriya-a" className="border-t border-wash bg-white py-14 md:py-20">
+    <section id="category-a" className="border-t border-wash bg-white py-14 md:py-20">
       <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Категория A
@@ -43,7 +40,7 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
             initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
-            className="flex flex-col rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-lg md:p-7 lg:h-[360px]"
+            className="flex flex-col rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-lg md:p-7"
           >
             <p className="text-[13px] text-muted">{a.duration}</p>
             <p className="mt-1 text-sm font-medium text-ink">{a.lessons}</p>
@@ -58,13 +55,9 @@ export function CategoryASection({ onConsult }: CategoryASectionProps) {
                 </li>
               ))}
             </ul>
-            <button
-              type="button"
-              onClick={onConsult}
-              className="mt-auto pt-6 w-full rounded-lg bg-accent py-3.5 text-base font-bold text-white transition hover:bg-accentStrong"
-            >
+            <ConsultationButton className="mt-auto pt-6 w-full rounded-lg bg-accent py-3.5 text-base font-bold text-white transition hover:bg-accentStrong">
               Записаться
-            </button>
+            </ConsultationButton>
           </motion.div>
         </div>
         <p className="mt-8 text-center text-sm text-muted">

@@ -1,7 +1,9 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 type SectionRevealProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 };
 

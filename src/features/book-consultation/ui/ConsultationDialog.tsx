@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 type ConsultationDialogProps = {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  onOpenChangeAction: (open: boolean) => void;
 };
 
 const focusableSelector =
@@ -14,7 +14,7 @@ const focusableSelector =
 
 export function ConsultationDialog({
   open,
-  onOpenChange,
+  onOpenChangeAction,
 }: ConsultationDialogProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -59,22 +59,22 @@ export function ConsultationDialog({
     const panel = panelRef.current;
     if (!panel) return;
 
-    const focusables = () =>
+    const getFocusableElements = () =>
       Array.from(panel.querySelectorAll<HTMLElement>(focusableSelector));
 
     const firstFrame = window.requestAnimationFrame(() => {
-      const nodes = focusables();
+      const nodes = getFocusableElements();
       (nodes[0] ?? panel).focus();
     });
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        onOpenChange(false);
+        onOpenChangeAction(false);
         return;
       }
       if (event.key !== "Tab") return;
-      const nodes = focusables();
+      const nodes = getFocusableElements();
       if (nodes.length === 0) return;
       const first = nodes[0];
       const last = nodes[nodes.length - 1];
@@ -95,7 +95,7 @@ export function ConsultationDialog({
       window.removeEventListener("keydown", onKeyDown);
       previouslyFocusedRef.current?.focus?.();
     };
-  }, [open, onOpenChange]);
+  }, [open, onOpenChangeAction]);
 
   if (!open) return null;
 
@@ -103,7 +103,7 @@ export function ConsultationDialog({
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 px-4"
       role="presentation"
-      onClick={() => onOpenChange(false)}
+      onClick={() => onOpenChangeAction(false)}
     >
       <div
         ref={panelRef}
@@ -117,7 +117,7 @@ export function ConsultationDialog({
         <button
           type="button"
           className="absolute right-4 top-4 text-2xl leading-none text-muted hover:text-ink"
-          onClick={() => onOpenChange(false)}
+          onClick={() => onOpenChangeAction(false)}
           aria-label="Закрыть"
         >
           ×
@@ -193,7 +193,7 @@ export function ConsultationDialog({
                   <Link
                     href={`${siteData.privacyPath}/`}
                     className="font-semibold text-accent underline underline-offset-2"
-                    onClick={() => onOpenChange(false)}
+                    onClick={() => onOpenChangeAction(false)}
                   >
                     политикой конфиденциальности
                   </Link>

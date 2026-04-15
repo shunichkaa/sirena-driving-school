@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function ScheduleStrip() {
   return (
-    <section id="raspisanie" className="border-y border-wash/80 bg-canvas py-10 md:py-12">
+    <section id="schedule" className="border-y border-wash/80 bg-canvas py-10 md:py-12">
       <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <motion.div
           initial={false}

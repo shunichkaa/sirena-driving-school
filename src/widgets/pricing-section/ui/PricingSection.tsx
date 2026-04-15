@@ -1,27 +1,28 @@
 "use client";
 
 import { InstallmentCalculator } from "@/features/installment-calculator";
+import { homeFragmentHref } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 
 export function PricingSection() {
-  const { mkpp, akpp } = siteData.categoryB;
+  const { manual, automatic } = siteData.categoryB;
   const categoryA = siteData.categoryA;
   const pricingCards = [
     {
-      key: "mkpp",
+      key: "manual",
       category: "Категория B · МКПП",
-      price: mkpp.price,
-      split: mkpp.note,
-      features: [mkpp.lessons, ...mkpp.includes, "Рассрочка без переплат"],
+      price: manual.price,
+      split: manual.note,
+      features: [manual.lessons, ...manual.includes, "Рассрочка без переплат"],
       featured: false,
     },
     {
-      key: "akpp",
+      key: "automatic",
       category: "Категория B · АКПП",
-      price: akpp.price,
+      price: automatic.price,
       split: "Теория + практика на автомате",
-      features: [akpp.lessons, ...akpp.includes, "Рассрочка без переплат"],
+      features: [automatic.lessons, ...automatic.includes, "Рассрочка без переплат"],
       featured: true,
     },
     {
@@ -71,7 +72,7 @@ export function PricingSection() {
                 ))}
               </ul>
               <a
-                href="#kontakty"
+                href={homeFragmentHref("contacts")}
                 className={`mt-6 inline-flex min-h-12 items-center justify-center rounded-lg px-5 py-3 text-base font-bold transition ${
                   item.featured
                     ? "bg-accent text-white hover:bg-accentStrong"

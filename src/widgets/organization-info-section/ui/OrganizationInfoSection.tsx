@@ -59,7 +59,7 @@ const infoRows = [
 
 export function OrganizationInfoSection() {
   return (
-    <section id="svedeniya" className="border-t border-wash bg-surface py-14 md:py-20">
+    <section id="info" className="border-t border-wash bg-surface py-14 md:py-20">
       <div className="mx-auto max-w-screen-xl px-5 md:px-6 lg:px-8">
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Сведения об образовательной организации

@@ -43,7 +43,7 @@ export const siteData = {
   categoryB: {
     installmentNote:
       "Оплачивайте частями: первый взнос 7 000 ₽, остаток в течение 3 месяцев. Без переплат и процентов.",
-    mkpp: {
+    manual: {
       title: "МКПП",
       popular: true,
       duration: "оплата в течение 3 мес.",
@@ -56,7 +56,7 @@ export const siteData = {
         "Подготовка к экзамену",
       ],
     },
-    akpp: {
+    automatic: {
       title: "АКПП",
       popular: false,
       duration: "около 3 мес.",
@@ -92,7 +92,7 @@ export const siteData = {
     ],
     primaryCta: "Записаться на первое занятие",
     secondaryCta: "Программа обучения",
-    secondaryCtaHref: "programma",
+    secondaryCtaHref: "program",
     programAnchorLabel: "Программа обучения",
     trustLine:
       "Лицензия на образовательную деятельность · с 2009 года в Озёрске · собственный автодром · запись по телефону администратора",
@@ -110,7 +110,7 @@ export const siteData = {
   trainingLinks: [
     {
       label: "Сведения об организации",
-      href: "/#svedeniya",
+      href: "/#info",
     },
     { label: "Документы", href: "/#documents" },
     { label: "Политика конфиденциальности", href: "/personal-data/" },

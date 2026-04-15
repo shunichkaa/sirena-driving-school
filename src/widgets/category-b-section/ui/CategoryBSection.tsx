@@ -1,6 +1,7 @@
 "use client";
 
 import { InstallmentCalculator } from "@/features/installment-calculator";
+import { ConsultationButton } from "@/features/book-consultation";
 import { assetUrl } from "@/shared/config/app-base-path";
 import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
@@ -8,18 +9,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-type CategoryBSectionProps = {
-  onConsult: () => void;
-};
-
-export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
-  const { mkpp, akpp } = siteData.categoryB;
+export function CategoryBSection() {
+  const { manual, automatic } = siteData.categoryB;
   const slides = siteMedia.categoryBFleetSlides;
   const [activeSlide, setActiveSlide] = useState(0);
   const slidesCount = slides.length;
   const cards = [
-    { key: "mkpp" as const, data: mkpp },
-    { key: "akpp" as const, data: akpp },
+    { key: "manual" as const, data: manual },
+    { key: "automatic" as const, data: automatic },
   ];
   const currentSlide = slides[activeSlide];
 
@@ -42,7 +39,7 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
   };
 
   return (
-    <section id="kategoriya-b" className="bg-surface py-14 md:py-20">
+    <section id="category-b" className="bg-surface py-14 md:py-20">
       <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Категория B
@@ -77,7 +74,11 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
                 </button>
               </div>
             </div>
-            <div className="mt-3 flex items-center justify-center gap-2 lg:justify-start">
+            <div
+              className="mt-3 flex items-center justify-center gap-2 lg:justify-start"
+              role="group"
+              aria-label="Переключение фотографий автопарка"
+            >
               {slides.map((slide, index) => (
                 <button
                   key={slide.src}
@@ -87,6 +88,7 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
                     index === activeSlide ? "bg-accent" : "bg-wash hover:bg-muted"
                   }`}
                   aria-label={`Показать фото ${index + 1}`}
+                  aria-current={index === activeSlide}
                 />
               ))}
             </div>
@@ -96,7 +98,7 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
           </figure>
           <div className="grid gap-4 md:grid-cols-2 md:items-stretch lg:col-span-7">
           {cards.map(({ key, data }, index) => (
-            <div key={key} className="flex h-full flex-col lg:h-[520px]">
+            <div key={key} className="flex h-full flex-col">
               <div className="relative flex h-full flex-col">
                 {data.popular ? (
                   <span className="absolute left-4 top-0 z-10 inline-flex w-fit -translate-y-1/2 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
@@ -117,7 +119,7 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
               <p className="mt-1 text-sm font-medium text-ink">{data.lessons}</p>
               <p className="mt-4 text-[clamp(1.75rem,4vw,2.25rem)] font-bold leading-none text-accent">{data.price}</p>
               <p className="mt-2 text-sm leading-snug text-muted">{data.note}</p>
-              {key === "mkpp" ? (
+              {key === "manual" ? (
                 <div className="mt-4 grid grid-cols-2 gap-2 rounded-lg border border-wash bg-surface/50 p-3 text-center text-xs font-semibold text-ink">
                   <div>
                     <p className="text-subtle">Теория</p>
@@ -140,13 +142,9 @@ export function CategoryBSection({ onConsult }: CategoryBSectionProps) {
                 ))}
               </ul>
               <div className="mt-auto pt-6">
-                <button
-                  type="button"
-                  onClick={onConsult}
-                  className="w-full rounded-lg bg-accent py-3.5 text-center text-base font-bold text-white transition hover:bg-accentStrong"
-                >
+                <ConsultationButton className="w-full rounded-lg bg-accent py-3.5 text-center text-base font-bold text-white transition hover:bg-accentStrong">
                   Записаться
-                </button>
+                </ConsultationButton>
               </div>
             </motion.article>
               </div>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { appBasePath } from "@/shared/config/app-base-path";
+import type { ReactNode } from "react";
+import { appBasePath, assetUrl } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import "./globals.css";
 
@@ -14,6 +15,7 @@ const inter = Inter({
 });
 
 const canonicalBase = siteData.officialUrl.replace(/\/$/, "");
+const ogImageUrl = `${canonicalBase}${assetUrl("/photos/hero-traffic.png")}`;
 
 const ogDescription =
   "Автошкола «Сирена», Озёрск: права A и B от 21 000 ₽. Теория и практика, рассрочка без переплат, лицензия. Запись по телефону и онлайн.";
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     url: canonicalBase,
     images: [
       {
-        url: "/photos/hero-traffic.png",
+        url: ogImageUrl,
         width: 1200,
         height: 800,
         alt: "Автошкола Сирена Озёрск: учебная площадка и автомобиль",
@@ -111,7 +113,7 @@ const faqJson = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="ru">

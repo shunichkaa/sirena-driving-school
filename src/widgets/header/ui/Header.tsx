@@ -1,17 +1,14 @@
 "use client";
 
+import { ConsultationButton, useConsultationDialog } from "@/features/book-consultation";
 import { assetUrl, fragmentIdFromHref, homeFragmentHref } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-type HeaderProps = {
-  onOpenConsult: () => void;
-};
-
-const sectionIds = ["programma", "instruktory", "kategoriya-a", "otzyvy", "svedeniya", "kontakty"] as const;
+const sectionIds = ["program", "instructors", "category-a", "reviews", "info", "contacts"] as const;
 
 function IconMenu({ className = "h-6 w-6" }: { className?: string }) {
   return (
@@ -84,19 +81,22 @@ function IconEye({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-export function Header({ onOpenConsult }: HeaderProps) {
+export function Header() {
+  const { openConsultationDialog } = useConsultationDialog();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
   const [lowVisionMode, setLowVisionMode] = useState(false);
+  const closeMenuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
   const links = [
-    { href: homeFragmentHref("programma"), label: "Программа" },
-    { href: homeFragmentHref("instruktory"), label: "Инструкторы" },
-    { href: homeFragmentHref("kategoriya-a"), label: "Категории" },
-    { href: homeFragmentHref("otzyvy"), label: "Отзывы" },
-    { href: homeFragmentHref("svedeniya"), label: "Сведения" },
-    { href: homeFragmentHref("kontakty"), label: "Контакты" },
+    { href: homeFragmentHref("program"), label: "Программа" },
+    { href: homeFragmentHref("instructors"), label: "Инструкторы" },
+    { href: homeFragmentHref("category-a"), label: "Категории" },
+    { href: homeFragmentHref("reviews"), label: "Отзывы" },
+    { href: homeFragmentHref("info"), label: "Сведения" },
+    { href: homeFragmentHref("contacts"), label: "Контакты" },
   ] as const;
 
   useEffect(() => {
@@ -125,6 +125,18 @@ export function Header({ onOpenConsult }: HeaderProps) {
     nodes.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
+    const frameId = window.requestAnimationFrame(() => {
+      closeMenuButtonRef.current?.focus();
+    });
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      previouslyFocusedRef.current?.focus?.();
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -164,7 +176,7 @@ export function Header({ onOpenConsult }: HeaderProps) {
 
   const openConsultFromMenu = () => {
     setMenuOpen(false);
-    onOpenConsult();
+    openConsultationDialog();
   };
 
   const toggleLowVisionMode = () => {
@@ -251,13 +263,9 @@ export function Header({ onOpenConsult }: HeaderProps) {
             >
               {siteData.phoneDisplay}
             </a>
-            <button
-              type="button"
-              onClick={onOpenConsult}
-              className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100"
-            >
+            <ConsultationButton className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100">
               Записаться
-            </button>
+            </ConsultationButton>
           </nav>
           <a
             href={`tel:${siteData.phoneTel}`}
@@ -278,6 +286,10 @@ export function Header({ onOpenConsult }: HeaderProps) {
       />
       <div
         id="mobile-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Мобильное меню"
+        aria-hidden={!menuOpen}
         className={`fixed inset-y-0 left-0 z-[70] flex w-[min(100%,20rem)] flex-col border-r border-wash bg-white shadow-[8px_0_32px_rgba(17,24,39,0.12)] transition-transform duration-300 ease-out md:hidden ${
           menuOpen ? "pointer-events-auto translate-x-0" : "pointer-events-none -translate-x-full"
         }`}
@@ -286,6 +298,7 @@ export function Header({ onOpenConsult }: HeaderProps) {
         <div className="flex items-center justify-between border-b border-wash px-4 py-4">
           <span className="text-xs font-bold uppercase tracking-[0.12em] text-muted">Меню</span>
           <button
+            ref={closeMenuButtonRef}
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-lg text-muted transition hover:bg-surface hover:text-ink"
             aria-label="Закрыть меню"

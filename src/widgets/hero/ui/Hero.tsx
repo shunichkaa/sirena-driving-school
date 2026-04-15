@@ -1,16 +1,13 @@
 "use client";
 
+import { ConsultationButton } from "@/features/book-consultation";
 import { assetUrl, homeFragmentHref } from "@/shared/config/app-base-path";
 import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-type HeroProps = {
-  onConsult: () => void;
-};
-
-export function Hero({ onConsult }: HeroProps) {
+export function Hero() {
   const { yandexRating } = siteData;
 
   return (
@@ -40,13 +37,9 @@ export function Hero({ onConsult }: HeroProps) {
             ))}
           </ul>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <button
-              type="button"
-              onClick={onConsult}
-              className="min-h-12 rounded-xl bg-accent px-8 py-3.5 text-center text-base font-bold text-white shadow-[0_10px_32px_rgba(75,94,46,0.38)] ring-2 ring-accent/25 transition hover:bg-accentStrong hover:shadow-[0_12px_36px_rgba(61,79,38,0.42)] hover:ring-accent/35 active:translate-y-px"
-            >
+            <ConsultationButton className="min-h-12 rounded-xl bg-accent px-8 py-3.5 text-center text-base font-bold text-white shadow-[0_10px_32px_rgba(75,94,46,0.38)] ring-2 ring-accent/25 transition hover:bg-accentStrong hover:shadow-[0_12px_36px_rgba(61,79,38,0.42)] hover:ring-accent/35 active:translate-y-px">
               {siteData.hero.primaryCta}
-            </button>
+            </ConsultationButton>
             <a
               href={homeFragmentHref(siteData.hero.secondaryCtaHref)}
               className="inline-flex min-h-12 items-center justify-center rounded-xl border-2 border-accent bg-white px-8 py-3.5 text-center text-base font-bold text-accent transition hover:bg-surface hover:shadow-md"
@@ -56,7 +49,7 @@ export function Hero({ onConsult }: HeroProps) {
           </div>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6">
             <a
-              href={homeFragmentHref("programma")}
+              href={homeFragmentHref("program")}
               className="text-sm font-semibold text-accent underline decoration-accent/30 underline-offset-4 transition hover:decoration-accent"
             >
               {siteData.hero.programAnchorLabel}

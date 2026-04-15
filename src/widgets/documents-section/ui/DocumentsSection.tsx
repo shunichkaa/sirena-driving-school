@@ -23,8 +23,8 @@ export function DocumentsSection() {
     visibleFiles.forEach((fileName) => {
       const lower = fileName.toLocaleLowerCase("ru");
       if (
-        lower.includes("лиценз") ||
-        lower.includes("егрюл") ||
+        lower.includes("лицензия") ||
+        /егр.?юл/u.test(lower) ||
         lower.includes("реестр") ||
         lower.includes("устав") ||
         lower.includes("свид-во")
@@ -38,7 +38,7 @@ export function DocumentsSection() {
         lower.includes("правила") ||
         lower.includes("порядок") ||
         lower.includes("договор") ||
-        lower.includes("комисс")
+        lower.includes("комиссия")
       ) {
         groups[1].files.push(fileName);
         return;
@@ -46,9 +46,9 @@ export function DocumentsSection() {
 
       if (
         lower.includes("учеб") ||
-        lower.includes("обуч") ||
+        lower.includes("обучение") ||
         lower.includes("стандарт") ||
-        lower.includes("образоват") ||
+        lower.includes("образователь") ||
         lower.includes("режим занят")
       ) {
         groups[2].files.push(fileName);
