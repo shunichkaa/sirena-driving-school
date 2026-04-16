@@ -18,13 +18,13 @@ const canonicalBase = siteData.officialUrl.replace(/\/$/, "");
 const ogImageUrl = `${canonicalBase}${assetUrl("/photos/hero-traffic.png")}`;
 
 const ogDescription =
-  "Автошкола «Сирена», Озёрск: права A и B от 21 000 ₽. Теория и практика, рассрочка без переплат, лицензия. Запись по телефону и онлайн.";
+  "Автошкола «Сирена», Озёрск: права категории B от 54 000 ₽. Теория и практика, рассрочка без переплат, лицензия. Запись по телефону и онлайн.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(canonicalBase),
-  title: "Автошкола Сирена — Озёрск, права категории A и B | обучение вождению",
+  title: "Автошкола Сирена — Озёрск, права категории B | обучение вождению",
   description:
-    "ЧУДПО «Автошкола «Сирена»», Озёрск: категории A и B от 21 000 ₽. Теория, практика, рассрочка без переплат. Офис на Октябрьской: будни 14–21, выходной сб–вс. Запись: +7 (922) 015-37-27.",
+    "ЧУДПО «Автошкола «Сирена»», Озёрск: категория B от 54 000 ₽. Теория, практика, рассрочка без переплат. Офис на Октябрьской: будни 14–21, выходной сб–вс. Запись: +79222362114.",
   alternates: {
     canonical: "/",
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     icon: faviconPath,
   },
   openGraph: {
-    title: "Автошкола «Сирена» — Озёрск, категории A и B",
+    title: "Автошкола «Сирена» — Озёрск, категория B",
     description: ogDescription,
     locale: "ru_RU",
     type: "website",
@@ -64,7 +64,7 @@ const localBusinessJson = {
   "@type": ["LocalBusiness", "EducationalOrganization"],
   name: "Автошкола «Сирена»",
   legalName: siteData.legal.fullName,
-  description: "Обучение вождению по категориям A и B в Озёрске.",
+  description: "Обучение вождению по категории B в Озёрске.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "ул. Октябрьская, д. 7, оф. 316",
@@ -117,6 +117,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
+      <head>
+        <link rel="dns-prefetch" href="//yandex.ru" />
+        <link rel="dns-prefetch" href="//mc.yandex.ru" />
+        <link rel="preconnect" href="https://yandex.ru" crossOrigin="" />
+      </head>
       <body className={`${inter.variable} font-sans`}>
         {children}
         <script

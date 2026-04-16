@@ -44,14 +44,26 @@ export function StatsBar() {
               <h3 className="mt-3 text-lg font-medium leading-snug text-ink md:text-xl">{card.title}</h3>
               <p className="mt-2 text-[15px] font-normal leading-relaxed text-muted">{card.text}</p>
               {"linkHref" in card && card.linkHref ? (
-                <a
-                  href={card.linkHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex text-sm font-semibold text-accent underline decoration-accent/40 underline-offset-4 hover:text-accentStrong"
-                >
-                  {card.linkLabel}
-                </a>
+                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
+                  <a
+                    href={card.linkHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex text-sm font-semibold text-accent underline decoration-accent/40 underline-offset-4 hover:text-accentStrong"
+                  >
+                    {card.linkLabel}
+                  </a>
+                  {"secondaryLinkHref" in card && card.secondaryLinkHref ? (
+                    <a
+                      href={card.secondaryLinkHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex text-sm font-semibold text-accent underline decoration-accent/40 underline-offset-4 hover:text-accentStrong"
+                    >
+                      {card.secondaryLinkLabel}
+                    </a>
+                  ) : null}
+                </div>
               ) : null}
             </motion.article>
           ))}

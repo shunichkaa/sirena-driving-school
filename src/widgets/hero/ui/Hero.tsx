@@ -48,13 +48,6 @@ export function Hero() {
             </a>
           </div>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6">
-            <a
-              href={homeFragmentHref("program")}
-              className="text-sm font-semibold text-accent underline decoration-accent/30 underline-offset-4 transition hover:decoration-accent"
-            >
-              {siteData.hero.programAnchorLabel}
-              <span aria-hidden> →</span>
-            </a>
             <p className="text-[13px] text-subtle">{siteData.hero.trustLine}</p>
           </div>
           <p className="mt-5 flex flex-wrap items-center gap-2 text-[13px] text-muted">

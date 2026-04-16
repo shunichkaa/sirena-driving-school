@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const sectionIds = ["program", "instructors", "category-a", "reviews", "info", "contacts"] as const;
+const sectionIds = ["program", "instructors", "reviews", "info", "contacts"] as const;
 
 function IconMenu({ className = "h-6 w-6" }: { className?: string }) {
   return (
@@ -93,7 +93,6 @@ export function Header() {
   const links = [
     { href: homeFragmentHref("program"), label: "Программа" },
     { href: homeFragmentHref("instructors"), label: "Инструкторы" },
-    { href: homeFragmentHref("category-a"), label: "Категории" },
     { href: homeFragmentHref("reviews"), label: "Отзывы" },
     { href: homeFragmentHref("info"), label: "Сведения" },
     { href: homeFragmentHref("contacts"), label: "Контакты" },
@@ -259,8 +258,9 @@ export function Header() {
             </button>
             <a
               href={`tel:${siteData.phoneTel}`}
-              className="text-sm font-bold normal-case tracking-normal text-accent transition hover:text-accentStrong"
+              className="inline-flex items-center gap-2 text-sm font-bold normal-case tracking-normal text-accent transition hover:text-accentStrong"
             >
+              <IconPhone className="h-4 w-4" />
               {siteData.phoneDisplay}
             </a>
             <ConsultationButton className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100">

@@ -2,12 +2,6 @@ export const siteMedia = {
   heroMain: "/photos/hero-traffic.png",
   heroMainAlt:
     "Автошкола Сирена Озёрск: учебная площадка с конусами и разметкой, рядом учебный автомобиль",
-  categoryAFleet: {
-    src: "/photos/training-moto-category-a.png",
-    width: 1024,
-    height: 766,
-    alt: "Бело-чёрный учебный мотоцикл со знаком «У» на площадке с конусами: вид сзади и сбоку спереди",
-  },
   categoryBFleetSlides: [
     {
       src: "/photos/training-lada-granta-black.png",

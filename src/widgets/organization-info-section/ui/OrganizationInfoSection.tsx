@@ -5,7 +5,6 @@ import { siteData } from "@/shared/config/site-data";
 
 const infoRows = [
   { label: "Полное наименование", value: siteData.legal.fullName },
-  { label: "Сокращённое наименование", value: "ЧУДПО «Автошкола «Сирена»»" },
   { label: "Дата создания", value: "2009 год" },
   { label: "Учредитель", value: "Сведения указаны в Уставе организации" },
   { label: "Место нахождения", value: siteData.addressLine },
@@ -13,8 +12,8 @@ const infoRows = [
   {
     label: "Телефон",
     value: (
-      <a href={`tel:${siteData.phoneOfficeTel}`} className="font-semibold text-accent hover:text-accentStrong">
-        {siteData.phoneOfficeDisplay}
+      <a href="tel:+3513044379" className="font-semibold text-accent hover:text-accentStrong">
+        +3513044379
       </a>
     ),
   },
@@ -39,19 +38,19 @@ const infoRows = [
       </a>
     ),
   },
-  { label: "Реализуемые программы", value: "Профессиональное обучение водителей транспортных средств категорий A, B" },
+  { label: "Реализуемые программы", value: "Профессиональное обучение водителей транспортных средств категории B" },
   { label: "Форма обучения", value: "Очная" },
   { label: "Язык обучения", value: "Русский" },
   {
-    label: "Лицензия",
+    label: "Документ",
     value: (
       <a
-        href={assetUrl(`/docs/${encodeURIComponent("Лицензия.pdf")}`)}
+        href={assetUrl(`/docs/${encodeURIComponent("Сведения об организации Образование.pdf")}`)}
         target="_blank"
         rel="noopener noreferrer"
         className="font-semibold text-accent hover:text-accentStrong"
       >
-        Скачать PDF
+        Открыть PDF
       </a>
     ),
   },

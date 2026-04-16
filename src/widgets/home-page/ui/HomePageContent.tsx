@@ -4,7 +4,6 @@ import { ConsultationButton } from "@/features/book-consultation";
 import { assetUrl, homeFragmentHref } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import Link from "next/link";
-import { CategoryASection } from "@/widgets/category-a-section";
 import { CategoryBSection } from "@/widgets/category-b-section";
 import { ContactsSection } from "@/widgets/contacts-section";
 import { DocumentsSection } from "@/widgets/documents-section";
@@ -37,7 +36,6 @@ export function HomePageContent() {
         <StatsBar />
         <LearningSteps />
         <InstructorsSection />
-        <CategoryASection />
         <CategoryBSection />
         <ReviewsSection />
         <ScheduleStrip />

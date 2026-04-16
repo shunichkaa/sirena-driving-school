@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 
 export function PricingSection() {
   const { manual, automatic } = siteData.categoryB;
-  const categoryA = siteData.categoryA;
   const pricingCards = [
     {
       key: "manual",
@@ -24,14 +23,6 @@ export function PricingSection() {
       split: "Теория + практика на автомате",
       features: [automatic.lessons, ...automatic.includes, "Рассрочка без переплат"],
       featured: true,
-    },
-    {
-      key: "category-a",
-      category: "Категория A · Мотоцикл",
-      price: categoryA.price,
-      split: `${categoryA.duration} обучения`,
-      features: [categoryA.lessons, ...categoryA.includes],
-      featured: false,
     },
   ] as const;
 
@@ -85,12 +76,6 @@ export function PricingSection() {
           ))}
         </div>
         <InstallmentCalculator />
-        <p className="mt-8 text-center text-sm text-muted">
-          Остались вопросы по стоимости?{" "}
-          <a href={`tel:${siteData.phoneTel}`} className="font-semibold text-accent hover:text-accentStrong">
-            {siteData.phoneDisplay}
-          </a>
-        </p>
       </div>
     </section>
   );

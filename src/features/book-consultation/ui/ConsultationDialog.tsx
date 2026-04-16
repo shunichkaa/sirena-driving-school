@@ -161,7 +161,9 @@ export function ConsultationDialog({
               <label className="block text-sm font-medium text-ink">
                 Желаемая дата визита
                 <input
-                  type="date"
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="дд/мм/гггг"
                   className="mt-1 min-h-12 w-full rounded-lg border border-wash bg-white px-3 py-2 text-base text-ink outline-none ring-accent focus:ring-2"
                   value={preferredDate}
                   onChange={(e) => setPreferredDate(e.target.value)}

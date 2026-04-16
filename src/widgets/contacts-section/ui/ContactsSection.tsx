@@ -4,11 +4,10 @@ import { ConsultationButton } from "@/features/book-consultation";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const categories = [
   { value: "", label: "Какая категория вас интересует?" },
-  { value: "A", label: "Категория A" },
   { value: "B", label: "Категория B" },
   { value: "unknown", label: "Не знаю" },
 ] as const;
@@ -20,24 +19,7 @@ export function ContactsSection() {
   const [preferredTime, setPreferredTime] = useState("");
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
-  const [mapVisible, setMapVisible] = useState(false);
-  const mapContainerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (mapVisible) return;
-    const target = mapContainerRef.current;
-    if (!target) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setMapVisible(true);
-        }
-      },
-      { rootMargin: "250px 0px" },
-    );
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, [mapVisible]);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   return (
     <section id="contacts" className="border-t border-wash bg-surface py-16 md:py-24">
@@ -52,28 +34,24 @@ export function ContactsSection() {
         </motion.h2>
         <div className="mt-10 grid items-start gap-10 lg:grid-cols-2">
           <div className="min-w-0 w-full overflow-hidden rounded-2xl border border-wash bg-white shadow-card">
-            <div ref={mapContainerRef} className="relative h-56 w-full min-w-0 bg-wash sm:h-64 md:h-72">
-              {mapVisible ? (
-                <iframe
-                  title="Карта"
-                  src={siteData.mapEmbedUrl}
-                  width="100%"
-                  height="100%"
-                  className="absolute inset-0 block h-full w-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button
-                    type="button"
-                    onClick={() => setMapVisible(true)}
-                    className="rounded-lg border border-accent bg-white px-4 py-2 text-sm font-semibold text-accent transition hover:bg-surface"
-                  >
-                    Показать карту
-                  </button>
+            <div className="relative h-56 w-full min-w-0 bg-wash sm:h-64 md:h-72">
+              {!mapLoaded ? (
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-wash">
+                  <span className="rounded-lg bg-white/90 px-3 py-2 text-sm font-medium text-muted">
+                    Загружаем карту...
+                  </span>
                 </div>
-              )}
+              ) : null}
+              <iframe
+                title="Карта"
+                src={siteData.mapEmbedUrl}
+                width="100%"
+                height="100%"
+                className="absolute inset-0 block h-full w-full border-0"
+                loading="eager"
+                referrerPolicy="no-referrer-when-downgrade"
+                onLoad={() => setMapLoaded(true)}
+              />
             </div>
           </div>
           <div className="flex flex-col justify-center gap-8 lg:min-w-0">
@@ -94,15 +72,6 @@ export function ContactsSection() {
                 <span className="text-muted">Телефон администратора: </span>
                 <a href={`tel:${siteData.phoneTel}`} className="text-lg font-bold text-accent hover:text-accentStrong">
                   {siteData.phoneDisplay}
-                </a>
-              </p>
-              <p>
-                <span className="text-muted">Телефон учреждения: </span>
-                <a
-                  href={`tel:${siteData.phoneOfficeTel}`}
-                  className="font-semibold text-accent hover:text-accentStrong"
-                >
-                  {siteData.phoneOfficeDisplay}
                 </a>
               </p>
               <p>

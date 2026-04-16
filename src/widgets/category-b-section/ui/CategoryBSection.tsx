@@ -98,7 +98,7 @@ export function CategoryBSection() {
           </figure>
           <div className="grid gap-4 md:grid-cols-2 md:items-stretch lg:col-span-7">
           {cards.map(({ key, data }, index) => (
-            <div key={key} className="flex h-full flex-col">
+            <div key={key} className="flex h-full flex-col lg:h-[520px]">
               <div className="relative flex h-full flex-col">
                 {data.popular ? (
                   <span className="absolute left-4 top-0 z-10 inline-flex w-fit -translate-y-1/2 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
@@ -119,18 +119,6 @@ export function CategoryBSection() {
               <p className="mt-1 text-sm font-medium text-ink">{data.lessons}</p>
               <p className="mt-4 text-[clamp(1.75rem,4vw,2.25rem)] font-bold leading-none text-accent">{data.price}</p>
               <p className="mt-2 text-sm leading-snug text-muted">{data.note}</p>
-              {key === "manual" ? (
-                <div className="mt-4 grid grid-cols-2 gap-2 rounded-lg border border-wash bg-surface/50 p-3 text-center text-xs font-semibold text-ink">
-                  <div>
-                    <p className="text-subtle">Теория</p>
-                    <p className="mt-1 text-sm">7 000 ₽</p>
-                  </div>
-                  <div>
-                    <p className="text-subtle">Практика</p>
-                    <p className="mt-1 text-sm">14 000 ₽</p>
-                  </div>
-                </div>
-              ) : null}
               <ul className="mt-4 space-y-2">
                 {data.includes.map((line) => (
                   <li key={line} className="flex gap-2 text-sm leading-relaxed text-ink">
@@ -152,13 +140,13 @@ export function CategoryBSection() {
           ))}
           </div>
         </div>
+        <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-wash bg-white p-5 shadow-card md:p-6">
+          <h3 className="text-lg font-semibold text-ink md:text-xl">Дополнительные индивидуальные занятия</h3>
+          <p className="mt-2 whitespace-nowrap text-sm leading-relaxed text-muted md:text-base">
+            Доступны дополнительные индивидуальные занятия на учебном автомобиле. Стоимость - от 1 500 ₽ / час.
+          </p>
+        </div>
         <InstallmentCalculator />
-        <p className="mt-8 text-center text-sm text-muted">
-          Остались вопросы по стоимости?{" "}
-          <a href={`tel:${siteData.phoneTel}`} className="font-semibold text-accent hover:text-accentStrong">
-            {siteData.phoneDisplay}
-          </a>
-        </p>
       </div>
     </section>
   );
