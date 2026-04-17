@@ -77,7 +77,7 @@ export function FaqSection() {
 
                   if (answerLines.length > 1) {
                     return (
-                      <ul className="max-w-measure list-disc border-t border-wash pt-3 pl-5 text-[15px] leading-relaxed text-muted">
+                      <ul className="list-disc border-t border-wash pt-3 pl-5 text-[15px] leading-relaxed text-muted">
                         {answerLines.map((line, lineIndex) => (
                           <li key={`${item.question}-${lineIndex}`}>{renderLine(line)}</li>
                         ))}
@@ -86,7 +86,7 @@ export function FaqSection() {
                   }
 
                   return (
-                    <p className="max-w-measure border-t border-wash pt-3 text-[15px] leading-relaxed text-muted">
+                    <p className="border-t border-wash pt-3 text-[15px] leading-relaxed text-muted">
                       {renderLine(answerLines[0] ?? "")}
                     </p>
                   );
