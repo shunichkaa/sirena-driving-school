@@ -6,16 +6,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 
-const categories = [
-  { value: "", label: "Какая категория вас интересует?" },
-  { value: "B", label: "Категория B" },
-  { value: "unknown", label: "Не знаю" },
-] as const;
-
 export function ContactsSection() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [category, setCategory] = useState("");
   const [preferredTime, setPreferredTime] = useState("");
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
@@ -69,7 +62,7 @@ export function ContactsSection() {
               </p>
               <p className="text-muted">{siteData.workHoursLine}</p>
               <p>
-                <span className="text-muted">Телефон администратора: </span>
+                <span className="text-muted">Телефон: </span>
                 <a href={`tel:${siteData.phoneTel}`} className="text-lg font-bold text-accent hover:text-accentStrong">
                   {siteData.phoneDisplay}
                 </a>
@@ -108,21 +101,6 @@ export function ContactsSection() {
                 onChange={(e) => setHp(e.target.value)}
               />
               <div className="mt-4 space-y-3">
-                <label htmlFor="consult-category" className="block text-sm font-medium text-ink">
-                  Категория
-                </label>
-                <select
-                  id="consult-category"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="min-h-12 w-full rounded-lg border border-wash bg-white px-3 py-2 text-base text-ink outline-none ring-accent focus:ring-2"
-                >
-                  {categories.map((c) => (
-                    <option key={c.value || "empty"} value={c.value}>
-                      {c.label}
-                    </option>
-                  ))}
-                </select>
                 <label htmlFor="consult-name" className="block text-sm font-medium text-ink">
                   Имя
                 </label>

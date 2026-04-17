@@ -8,7 +8,7 @@ export const siteData = {
   phoneOfficeTel: "+73513098050",
   email: "sirena.ozersk@mail.ru",
   addressLine: "г. Озёрск, ул. Октябрьская, д. 7, оф. 316",
-  workHoursLine: "Офис учреждения: будни 14:00–21:00, выходной сб–вс.",
+  workHoursLine: "График работы: будни 14:00–21:00, выходной сб–вс.",
   mapEmbedUrl:
     "https://yandex.ru/map-widget/v1/?ll=60.697008%2C55.762303&z=17&pt=60.697008%2C55.762303%2Cpm2rdm",
   vkUrl: "https://vk.com/club25096898",

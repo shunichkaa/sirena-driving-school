@@ -42,7 +42,7 @@ export function InstallmentCalculator() {
         </label>
       </div>
       <p className="mt-5 text-[13px] text-muted">Способ оплаты</p>
-      <div className="mt-2 grid gap-2 md:grid-cols-3">
+      <div className="mt-2 grid auto-rows-fr gap-2 md:grid-cols-3">
         {plans.map((plan) => {
           const isActive = plan.months === months;
           return (
@@ -50,7 +50,7 @@ export function InstallmentCalculator() {
               key={plan.months}
               type="button"
               onClick={() => setMonths(plan.months)}
-              className={`rounded-xl border px-3 py-3 text-center transition ${
+              className={`flex h-full min-h-[72px] flex-col items-center justify-center rounded-xl border px-3 py-3 text-center transition ${
                 isActive
                   ? "border-2 border-[#3B6D11] bg-[#EAF3DE] text-[#27500A]"
                   : "border-wash bg-surface text-ink hover:border-ink/25 hover:bg-white"

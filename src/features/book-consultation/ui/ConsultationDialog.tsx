@@ -18,8 +18,6 @@ export function ConsultationDialog({
 }: ConsultationDialogProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [preferredDate, setPreferredDate] = useState("");
-  const [preferredTime, setPreferredTime] = useState("");
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
   const [done, setDone] = useState(false);
@@ -33,25 +31,19 @@ export function ConsultationDialog({
     setMailHref("");
     setConsent(false);
     setHp("");
-    setPreferredDate("");
-    setPreferredTime("");
   }, [open]);
 
   const submit = useCallback(() => {
     if (hp.trim()) return;
     if (!name.trim() || !phone.trim() || !consent) return;
-    const subject = encodeURIComponent("Запись на консультацию");
-    const slot =
-      preferredDate.trim() || preferredTime.trim()
-        ? `\nУдобная дата: ${preferredDate.trim() || "—"}\nУдобное время: ${preferredTime.trim() || "—"}`
-        : "";
+    const subject = encodeURIComponent("Мы вам перезвоним!");
     const body = encodeURIComponent(
-      `Имя: ${name.trim()}\nТелефон: ${phone.trim()}${slot}\n\nСообщение отправлено с лендинга.`,
+      `Имя: ${name.trim()}\nТелефон: ${phone.trim()}\n\nСообщение отправлено с лендинга.`,
     );
     const href = `mailto:${siteData.email}?subject=${subject}&body=${body}`;
     setMailHref(href);
     setDone(true);
-  }, [name, phone, preferredDate, preferredTime, consent, hp]);
+  }, [name, phone, consent, hp]);
 
   useEffect(() => {
     if (!open) return;
@@ -123,13 +115,10 @@ export function ConsultationDialog({
           ×
         </button>
         <h2 id="consult-title" className="text-xl font-bold text-ink">
-          Запись на консультацию
+          Мы вам перезвоним!
         </h2>
         {!done ? (
           <>
-            <p className="mt-2 text-sm text-muted">
-              Заполните поля — затем откройте письмо в почтовом клиенте на {siteData.email}
-            </p>
             <input
               tabIndex={-1}
               autoComplete="off"
@@ -157,31 +146,6 @@ export function ConsultationDialog({
                   autoComplete="tel"
                   inputMode="tel"
                 />
-              </label>
-              <label className="block text-sm font-medium text-ink">
-                Желаемая дата визита
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  placeholder="дд/мм/гггг"
-                  className="mt-1 min-h-12 w-full rounded-lg border border-wash bg-white px-3 py-2 text-base text-ink outline-none ring-accent focus:ring-2"
-                  value={preferredDate}
-                  onChange={(e) => setPreferredDate(e.target.value)}
-                />
-              </label>
-              <label className="block text-sm font-medium text-ink">
-                Удобное время
-                <select
-                  className="mt-1 min-h-12 w-full rounded-lg border border-wash bg-white px-3 py-2 text-base text-ink outline-none ring-accent focus:ring-2"
-                  value={preferredTime}
-                  onChange={(e) => setPreferredTime(e.target.value)}
-                >
-                  <option value="">Выберите вариант</option>
-                  <option value="Будни, днём (до 17:00)">Будни, днём (до 17:00)</option>
-                  <option value="Будни, вечер (после 17:00)">Будни, вечер (после 17:00)</option>
-                  <option value="Выходные">Выходные</option>
-                  <option value="Обсудить по телефону">Обсудить по телефону</option>
-                </select>
               </label>
               <label className="flex cursor-pointer gap-3 text-sm leading-snug text-muted">
                 <input
