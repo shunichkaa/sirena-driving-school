@@ -23,7 +23,7 @@ export function LearningSteps() {
                 className="flex flex-1 flex-col rounded-2xl border border-wash bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-accent"
               >
                 <h3 className="text-lg font-medium text-ink md:text-xl">{step.title}</h3>
-                <p className="mt-2 line-clamp-3 text-[15px] font-normal leading-relaxed text-muted">{step.text}</p>
+                <p className="mt-2 text-[15px] font-normal leading-relaxed text-muted">{step.text}</p>
               </motion.article>
 
               {index < siteData.learningSteps.length - 1 && (
