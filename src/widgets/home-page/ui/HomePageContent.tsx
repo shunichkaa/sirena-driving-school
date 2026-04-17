@@ -90,7 +90,7 @@ export function HomePageContent() {
                 </li>
                 <li>
                   <a href={homeFragmentHref("documents")} className="transition hover:text-accent">
-                    Документы
+                    Юр. документы
                   </a>
                 </li>
                 <li>
@@ -102,7 +102,7 @@ export function HomePageContent() {
             </nav>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-subtle">Документы</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-subtle">Юр. документы</h3>
             <ul className="mt-2 flex list-none flex-wrap gap-1.5 p-0">
               {siteData.footerDocLinks.map((doc) => (
                 <li key={doc.file}>
