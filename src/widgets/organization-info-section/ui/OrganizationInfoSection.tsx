@@ -63,7 +63,7 @@ export function OrganizationInfoSection() {
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Сведения об образовательной организации
         </h2>
-        <p className="mt-4 max-w-measure text-sm leading-relaxed text-muted">
+        <p className="mt-4 text-sm leading-relaxed text-muted">
           Информация публикуется в соответствии с требованиями ч. 2 ст. 29 Федерального закона № 273-ФЗ «Об
           образовании в Российской Федерации».
         </p>
