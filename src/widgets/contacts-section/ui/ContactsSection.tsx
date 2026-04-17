@@ -181,7 +181,7 @@ export function ContactsSection() {
               </div>
               <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
                 <ConsultationButton className="inline-flex min-h-11 self-start items-center justify-center rounded-lg bg-accent px-6 py-2.5 text-base font-bold leading-none text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100 sm:min-w-[12rem]">
-                  Онлайн-запись
+                  Перезвоните мне
                 </ConsultationButton>
               </div>
             </>

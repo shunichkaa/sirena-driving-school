@@ -264,7 +264,7 @@ export function Header() {
               {siteData.phoneDisplay}
             </a>
             <ConsultationButton className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100">
-              Записаться
+              Перезвоните мне
             </ConsultationButton>
           </nav>
           <a
@@ -351,7 +351,7 @@ export function Header() {
             onClick={openConsultFromMenu}
             className="mt-4 min-h-12 rounded-xl bg-accent px-4 py-3 text-center text-sm font-bold uppercase tracking-wide text-white transition hover:bg-accentStrong"
           >
-            Записаться
+            Перезвоните мне
           </button>
         </nav>
       </div>

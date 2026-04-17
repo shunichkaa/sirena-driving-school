@@ -15,7 +15,7 @@ export function FinalCta() {
         </p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
           <ConsultationButton className="min-h-12 rounded-lg bg-accent px-8 py-3.5 text-base font-bold text-white transition hover:scale-[1.02] hover:bg-accentStrong active:scale-100">
-            Записаться
+            Перезвоните мне
           </ConsultationButton>
           <a
             href={`tel:${siteData.phoneTel}`}

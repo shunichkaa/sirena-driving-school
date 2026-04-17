@@ -131,7 +131,7 @@ export function CategoryBSection() {
               </ul>
               <div className="mt-auto pt-6">
                 <ConsultationButton className="w-full rounded-lg bg-accent py-3.5 text-center text-base font-bold text-white transition hover:bg-accentStrong">
-                  Записаться
+                  Перезвоните мне
                 </ConsultationButton>
               </div>
             </motion.article>

@@ -82,7 +82,7 @@ export const siteData = {
       "Гибкий график: будни вечером и выходные",
       "Рассрочка без переплат по договору",
     ],
-    primaryCta: "Записаться на первое занятие",
+    primaryCta: "Перезвоните мне",
     secondaryCta: "Программа обучения",
     secondaryCtaHref: "program",
     programAnchorLabel: "Программа обучения",
