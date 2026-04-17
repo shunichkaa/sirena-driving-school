@@ -117,12 +117,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <head>
+      <body className={`${inter.variable} font-sans`}>
         <link rel="dns-prefetch" href="//yandex.ru" />
         <link rel="dns-prefetch" href="//mc.yandex.ru" />
         <link rel="preconnect" href="https://yandex.ru" crossOrigin="" />
-      </head>
-      <body className={`${inter.variable} font-sans`}>
         {children}
         <script
           type="application/ld+json"
