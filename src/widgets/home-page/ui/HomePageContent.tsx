@@ -67,7 +67,7 @@ export function HomePageContent() {
           <div>
             <h3 className="text-xs font-medium uppercase tracking-[0.14em] text-subtle">Разделы</h3>
             <nav aria-label="Дополнительные разделы" className="mt-4">
-              <ul className="grid list-none grid-cols-2 gap-x-4 gap-y-2 p-0 text-base font-medium leading-snug text-ink md:flex md:flex-col md:gap-2.5 md:text-[clamp(1.15rem,1.5vw,1.75rem)] md:leading-[1.18] lg:text-[clamp(1.25rem,1.65vw,1.85rem)]">
+              <ul className="grid list-none grid-cols-2 gap-x-4 gap-y-2 p-0 text-[15px] font-normal leading-snug text-ink md:flex md:flex-col md:gap-2.5">
                 <li>
                   <a href={homeFragmentHref("instructors")} className="transition hover:text-accent">
                     Инструкторы
@@ -103,7 +103,7 @@ export function HomePageContent() {
           </div>
           <div>
             <h3 className="text-xs font-medium uppercase tracking-[0.14em] text-subtle">Юр. документы</h3>
-            <ul className="mt-4 flex list-none flex-col gap-2 p-0 text-base font-medium leading-snug text-ink md:gap-2.5 md:text-[clamp(1.15rem,1.5vw,1.75rem)] md:leading-[1.18] lg:text-[clamp(1.25rem,1.65vw,1.85rem)]">
+            <ul className="mt-4 flex list-none flex-col gap-2 p-0 text-[15px] font-normal leading-snug text-ink md:gap-2.5">
               {siteData.footerDocLinks.map((doc) => (
                 <li key={doc.file}>
                   <a

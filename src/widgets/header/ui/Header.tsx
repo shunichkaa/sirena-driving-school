@@ -189,6 +189,7 @@ export function Header() {
   };
 
   return (
+    <>
     <div className="sticky top-0 z-50">
       <motion.header
         animate={{
@@ -276,9 +277,10 @@ export function Header() {
           </a>
         </div>
       </motion.header>
+    </div>
       <div
         role="presentation"
-        className={`fixed inset-0 z-[60] bg-black/35 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-[85] bg-black/35 transition-opacity duration-300 md:hidden ${
           menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!menuOpen}
@@ -290,52 +292,55 @@ export function Header() {
         aria-modal="true"
         aria-label="Мобильное меню"
         aria-hidden={!menuOpen}
-        className={`fixed inset-y-0 left-0 z-[70] flex w-[min(100%,20rem)] flex-col border-r border-wash bg-white shadow-[8px_0_32px_rgba(17,24,39,0.12)] transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed inset-y-0 left-0 z-[90] flex max-h-[100dvh] w-[min(100%,20rem)] flex-col border-r border-wash bg-white shadow-[8px_0_32px_rgba(17,24,39,0.12)] transition-transform duration-300 ease-out md:hidden ${
           menuOpen ? "pointer-events-auto translate-x-0" : "pointer-events-none -translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b border-wash px-4 py-4">
+        <div className="flex min-h-14 shrink-0 items-center justify-between border-b border-wash px-4 py-3">
           <span className="text-xs font-bold uppercase tracking-[0.12em] text-muted">Меню</span>
           <button
             ref={closeMenuButtonRef}
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-muted transition hover:bg-surface hover:text-ink"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted transition hover:bg-surface hover:text-ink"
             aria-label="Закрыть меню"
             onClick={closeMenu}
           >
             <IconClose />
           </button>
         </div>
-        <div className="border-b border-wash px-4 py-4">
+        <div className="shrink-0 border-b border-wash px-4 py-3">
           <button
             type="button"
             onClick={toggleLowVisionMode}
             aria-pressed={lowVisionMode}
-            className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-wash bg-surface px-4 py-3 text-sm font-bold text-ink transition hover:border-accent hover:text-accent"
+            className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-wash bg-surface px-3 py-2.5 text-xs font-semibold leading-snug text-ink transition hover:border-accent hover:text-accent"
           >
-            <IconEye className="h-4 w-4" />
+            <IconEye className="h-4 w-4 shrink-0" />
             {lowVisionMode ? "Обычная версия" : "Версия для слабовидящих"}
           </button>
         </div>
-        <div className="border-b border-wash px-4 py-4">
+        <div className="shrink-0 border-b border-wash px-4 py-3">
           <a
             href={`tel:${siteData.phoneTel}`}
-            className="flex min-h-12 items-center gap-3 rounded-xl bg-surface px-4 py-3 text-accent transition hover:bg-wash/80"
+            className="flex min-h-11 items-center gap-3 rounded-xl bg-surface px-3 py-2.5 text-accent transition hover:bg-wash/80"
             onClick={closeMenu}
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-accent shadow-sm">
-              <IconPhone className="h-5 w-5" />
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-accent shadow-sm">
+              <IconPhone className="h-4 w-4" />
             </span>
-            <span className="text-base font-bold leading-tight">{siteData.phoneDisplay}</span>
+            <span className="text-sm font-bold leading-tight">{siteData.phoneDisplay}</span>
           </a>
         </div>
-        <nav aria-label="Мобильное меню" className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-4">
+        <nav
+          aria-label="Мобильное меню"
+          className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto overscroll-contain px-3 pb-2 pt-3"
+        >
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className={`flex min-h-12 items-center justify-between gap-2 rounded-xl px-3 py-3 text-sm font-semibold uppercase tracking-wide transition ${
+              className={`flex min-h-11 items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-xs font-semibold uppercase tracking-wide transition ${
                 activeSection === fragmentIdFromHref(l.href)
                   ? "bg-surface text-accent"
                   : "text-ink hover:bg-surface/80"
@@ -343,18 +348,20 @@ export function Header() {
               onClick={closeMenu}
             >
               <span>{l.label}</span>
-              <IconChevron className="shrink-0 text-subtle" />
+              <IconChevron className="h-4 w-4 shrink-0 text-subtle" />
             </a>
           ))}
+        </nav>
+        <div className="shrink-0 border-t border-wash bg-white px-3 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-3">
           <button
             type="button"
             onClick={openConsultFromMenu}
-            className="mt-4 min-h-12 rounded-xl bg-accent px-4 py-3 text-center text-sm font-bold uppercase tracking-wide text-white transition hover:bg-accentStrong"
+            className="min-h-11 w-full rounded-xl bg-accent px-4 py-2.5 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:bg-accentStrong"
           >
             Перезвоните мне
           </button>
-        </nav>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
