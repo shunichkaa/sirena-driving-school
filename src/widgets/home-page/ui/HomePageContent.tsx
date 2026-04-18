@@ -67,7 +67,7 @@ export function HomePageContent() {
           <div>
             <h3 className="text-xs font-medium uppercase tracking-[0.14em] text-subtle">Разделы</h3>
             <nav aria-label="Дополнительные разделы" className="mt-4">
-              <ul className="flex list-none flex-col gap-2.5 p-0 text-[clamp(1.3rem,1.7vw,1.85rem)] font-medium leading-[1.18] text-ink">
+              <ul className="grid list-none grid-cols-2 gap-x-4 gap-y-2 p-0 text-base font-medium leading-snug text-ink md:flex md:flex-col md:gap-2.5 md:text-[clamp(1.15rem,1.5vw,1.75rem)] md:leading-[1.18] lg:text-[clamp(1.25rem,1.65vw,1.85rem)]">
                 <li>
                   <a href={homeFragmentHref("instructors")} className="transition hover:text-accent">
                     Инструкторы
@@ -103,7 +103,7 @@ export function HomePageContent() {
           </div>
           <div>
             <h3 className="text-xs font-medium uppercase tracking-[0.14em] text-subtle">Юр. документы</h3>
-            <ul className="mt-4 flex list-none flex-col gap-2.5 p-0 text-[clamp(1.3rem,1.7vw,1.85rem)] font-medium leading-[1.18] text-ink">
+            <ul className="mt-4 flex list-none flex-col gap-2 p-0 text-base font-medium leading-snug text-ink md:gap-2.5 md:text-[clamp(1.15rem,1.5vw,1.75rem)] md:leading-[1.18] lg:text-[clamp(1.25rem,1.65vw,1.85rem)]">
               {siteData.footerDocLinks.map((doc) => (
                 <li key={doc.file}>
                   <a
@@ -120,7 +120,9 @@ export function HomePageContent() {
           </div>
           <div className="md:col-span-2 lg:col-span-1">
             <h3 className="text-xs font-medium uppercase tracking-[0.14em] text-subtle">Реквизиты</h3>
-            <p className="mt-4 text-[clamp(1.35rem,1.75vw,1.95rem)] font-semibold leading-[1.18] text-ink">{siteData.legal.fullName}</p>
+            <p className="mt-4 text-lg font-semibold leading-snug text-ink md:text-[clamp(1.2rem,1.55vw,1.85rem)] md:leading-[1.18] lg:text-[clamp(1.3rem,1.7vw,1.95rem)]">
+              {siteData.legal.fullName}
+            </p>
             <p className="mt-3 text-[15px] leading-relaxed text-subtle">{siteData.legal.requisitesNote}</p>
             <ul className="mt-5 flex list-none flex-col gap-2.5 p-0 text-[15px] leading-snug text-ink">
               <li className="flex items-start gap-2.5">
@@ -145,7 +147,7 @@ export function HomePageContent() {
           </div>
         </div>
         <div className="mx-auto mt-8 max-w-[1240px] border-t border-wash pt-5">
-          <div className="flex flex-col gap-2 px-6 text-center text-[15px] md:flex-row md:items-center md:justify-between md:px-0 md:text-left">
+          <div className="flex flex-col gap-2 px-6 text-left text-sm text-muted md:flex-row md:items-center md:justify-between md:px-0 md:text-[15px]">
             <p className="text-subtle">© {new Date().getFullYear()} ЧУДПО «Автошкола «Сирена»». Все права защищены.</p>
             <p className="text-subtle">
               Разработка:{" "}

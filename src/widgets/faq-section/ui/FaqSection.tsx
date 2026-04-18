@@ -18,9 +18,9 @@ export function FaqSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: index * 0.05 }}
-              className="faq-item rounded-2xl border border-wash bg-white p-5 shadow-card [&[open]_.faq-chevron]:rotate-180"
+              className="faq-item rounded-2xl border border-wash bg-white p-4 shadow-card md:p-5 [&[open]_.faq-chevron]:rotate-180"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-base font-medium leading-snug text-ink">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-lg px-1 py-2 text-base font-medium leading-snug text-ink md:min-h-0 md:px-0 md:py-0">
                 <span className="min-w-0">{item.question}</span>
                 <span
                   className="faq-chevron inline-block shrink-0 text-lg leading-none text-muted transition-transform duration-300"

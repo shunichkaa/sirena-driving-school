@@ -69,7 +69,10 @@ export function ContactsSection() {
               </p>
               <p>
                 <span className="text-muted">E-mail: </span>
-                <a href={`mailto:${siteData.email}`} className="font-semibold text-accent hover:text-accentStrong">
+                <a
+                  href={`mailto:${siteData.email}`}
+                  className="break-words font-semibold text-accent hover:text-accentStrong"
+                >
                   {siteData.email}
                 </a>
               </p>
@@ -89,7 +92,7 @@ export function ContactsSection() {
               </a>
             </div>
           </div>
-          <div className="relative w-full max-w-5xl rounded-2xl border border-wash bg-canvas p-6 shadow-card md:p-7 lg:col-span-2 lg:mx-auto">
+          <div className="relative w-full max-w-5xl rounded-2xl border border-wash bg-canvas p-4 shadow-card sm:p-6 md:p-7 lg:col-span-2 lg:mx-auto">
             <h3 className="text-lg font-medium text-ink">Запишитесь на обучение</h3>
             <>
               <input
