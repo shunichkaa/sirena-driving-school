@@ -15,7 +15,10 @@ export function ContactsSection() {
   const [mapLoaded, setMapLoaded] = useState(false);
 
   return (
-    <section id="contacts" className="border-t border-wash bg-surface py-16 md:py-24">
+    <section
+      id="contacts"
+      className="border-t border-wash bg-surface pt-16 pb-[calc(4rem+5.25rem+env(safe-area-inset-bottom,0px))] md:pt-24 md:pb-24"
+    >
       <div className="mx-auto max-w-screen-2xl px-5 md:px-6 lg:px-8">
         <motion.h2
           initial={false}

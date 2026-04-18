@@ -28,10 +28,7 @@ export function HomePageContent() {
         Перейти к основному контенту
       </a>
       <Header />
-      <main
-        id="main-content"
-        className="pb-[calc(5.25rem+env(safe-area-inset-bottom,0px))] md:pb-0"
-      >
+      <main id="main-content">
         <Hero />
         <StatsBar />
         <LearningSteps />
@@ -61,7 +58,7 @@ export function HomePageContent() {
           </ConsultationButton>
         </div>
       </nav>
-      <footer className="border-t border-wash bg-surface py-10 text-sm text-muted md:py-12">
+      <footer className="border-t border-wash bg-surface pt-10 pb-[calc(6.5rem+env(safe-area-inset-bottom,0px))] text-sm text-muted md:py-12 md:pb-12">
         <h2 className="sr-only">Навигация и реквизиты</h2>
         <div className="mx-auto grid max-w-[1240px] gap-8 px-6 md:grid-cols-2 md:px-8 lg:grid-cols-3 lg:gap-12">
           <div>
@@ -147,9 +144,9 @@ export function HomePageContent() {
           </div>
         </div>
         <div className="mx-auto mt-8 max-w-[1240px] border-t border-wash pt-5">
-          <div className="flex flex-col gap-2 px-6 text-left text-sm text-muted md:flex-row md:items-center md:justify-between md:px-0 md:text-[15px]">
-            <p className="text-subtle">© {new Date().getFullYear()} ЧУДПО «Автошкола «Сирена»». Все права защищены.</p>
-            <p className="text-subtle">
+          <div className="flex flex-col gap-2 px-6 text-left text-sm md:flex-row md:items-center md:justify-between md:px-0 md:text-[15px]">
+            <p className="text-muted md:text-subtle">© {new Date().getFullYear()} ЧУДПО «Автошкола «Сирена»». Все права защищены.</p>
+            <p className="text-muted md:text-subtle">
               Разработка:{" "}
               <a
                 href="https://github.com/shunichkaa"
