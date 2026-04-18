@@ -4,22 +4,22 @@ export const siteMedia = {
     "Автошкола Сирена Озёрск: учебная площадка с конусами и разметкой, рядом учебный автомобиль",
   categoryBFleetSlides: [
     {
-      src: "/photos/training-lada-granta-black.png",
+      src: "/photos/training-sirena-black.png",
       width: 1024,
-      height: 762,
+      height: 682,
       alt: "Чёрная учебная Лада Гранта со знаком «У» на площадке",
     },
     {
-      src: "/photos/training-lada-granta-silver.png",
+      src: "/photos/training-sirena-silver.png",
       width: 1024,
       height: 682,
       alt: "Серебристая учебная Лада Гранта со знаком «У» на площадке",
     },
     {
-      src: "/photos/training-lada-granta-blue.png",
+      src: "/photos/training-sirena-blue.png",
       width: 1024,
       height: 682,
-      alt: "Синяя учебная Лада Гранта со знаком «У» на площадке",
+      alt: "Синяя учебная Лада Веста со знаком «У» на площадке",
     },
   ],
   reviewsMosaic: [
