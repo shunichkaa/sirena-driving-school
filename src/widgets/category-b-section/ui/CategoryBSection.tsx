@@ -98,8 +98,8 @@ export function CategoryBSection() {
               </figcaption>
             </div>
           </figure>
-          <div className="grid h-full grid-rows-[auto_auto] lg:col-span-7 lg:grid-rows-[430px_68px]">
-            <div className="grid gap-4 md:grid-cols-2 md:items-stretch lg:h-full">
+          <div className="grid min-w-0 h-full grid-rows-[auto_auto] lg:col-span-7 lg:grid-rows-[430px_68px]">
+            <div className="grid min-w-0 gap-4 md:grid-cols-2 md:items-stretch lg:h-full">
               {cards.map(({ key, data }, index) => (
                 <div key={key} className="flex h-full flex-col">
                   <div className="relative flex h-full flex-col">
@@ -142,7 +142,7 @@ export function CategoryBSection() {
                 </div>
               ))}
             </div>
-            <p className="pt-3 text-left text-base font-medium leading-snug text-subtle lg:whitespace-nowrap lg:pt-4">
+            <p className="pt-3 text-left text-base font-medium leading-snug text-subtle lg:pt-4">
               У нас доступны дополнительные индивидуальные занятия на учебном автомобиле. Стоимость - от 1 500 ₽ / час.
             </p>
           </div>

@@ -172,7 +172,7 @@ export function ConsultationDialog({
               onClick={submit}
               disabled={!name.trim() || !phone.trim() || !consent}
             >
-              Сформировать письмо
+              Отправить письмо
             </button>
           </>
         ) : (
