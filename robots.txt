@@ -2,4 +2,4 @@ User-Agent: *
 Allow: /
 
 Host: https://sirena-driving-school.ru
-Sitemap: https://sirena-driving-school.ru/sitemap.xml
+Sitemap: https://sirena-driving-school.ru/sirena-driving-school/sitemap.xml
