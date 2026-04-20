@@ -305,7 +305,7 @@ export const siteData = {
     { label: "Программа", file: "Программа Категория В 2026 Автошкола Сирена.pdf" },
     { label: "Реквизиты", file: "Реквизиты счета для оплаты.pdf" },
     { label: "Сведения", fragment: "info" },
-    { label: "Мин. юстиции", href: "https://minjust.gov.ru/" },
+    { label: "Мин. юстиции", href: "https://minjust.gov.ru/ru/" },
     { label: "Мин. образования", href: "https://minobrnauki.gov.ru/" },
   ],
 } as const;
