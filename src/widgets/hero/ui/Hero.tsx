@@ -6,9 +6,32 @@ import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export function Hero() {
   const { yandexRating } = siteData;
+  const slides = siteMedia.categoryBFleetSlides;
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slidesCount = slides.length;
+  const currentSlide = slides[activeSlide];
+
+  useEffect(() => {
+    const timerId = window.setInterval(() => {
+      setActiveSlide((prevSlide) => (prevSlide + 1) % slidesCount);
+    }, 5000);
+
+    return () => {
+      window.clearInterval(timerId);
+    };
+  }, [slidesCount]);
+
+  const handlePrevSlide = () => {
+    setActiveSlide((prevSlide) => (prevSlide - 1 + slidesCount) % slidesCount);
+  };
+
+  const handleNextSlide = () => {
+    setActiveSlide((prevSlide) => (prevSlide + 1) % slidesCount);
+  };
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#f6f7f2] to-surface">
@@ -59,17 +82,48 @@ export function Hero() {
           </p>
         </div>
         <div className="relative min-h-0 w-full min-w-0 lg:col-span-5">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-wash/80 bg-wash shadow-card ring-1 ring-black/[0.04] md:aspect-[5/4] lg:aspect-[4/5]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-wash/80 bg-wash shadow-card ring-1 ring-black/[0.04] md:aspect-[5/4] lg:aspect-[4/4.5]">
             <Image
+              key={currentSlide.src}
               fill
-              src={assetUrl(siteMedia.heroMain)}
-              alt={siteMedia.heroMainAlt}
+              src={assetUrl(currentSlide.src)}
+              alt={currentSlide.alt}
               className="object-cover object-center"
               sizes="(min-width: 1024px) 38vw, 100vw"
-              priority
             />
+            <button
+              type="button"
+              onClick={handlePrevSlide}
+              className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/45 px-3 py-1.5 text-lg font-semibold text-white transition hover:bg-black/60"
+              aria-label="Предыдущее фото"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              onClick={handleNextSlide}
+              className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/45 px-3 py-1.5 text-lg font-semibold text-white transition hover:bg-black/60"
+              aria-label="Следующее фото"
+            >
+              ›
+            </button>
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
           </div>
+          <div className="mt-3 flex items-center justify-center gap-2 lg:justify-start" role="group" aria-label="Переключение фотографий автопарка">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.src}
+                type="button"
+                onClick={() => setActiveSlide(index)}
+                className={`h-2.5 w-2.5 rounded-full transition ${
+                  index === activeSlide ? "bg-accent" : "bg-wash hover:bg-muted"
+                }`}
+                aria-label={`Показать фото ${index + 1}`}
+                aria-current={index === activeSlide}
+              />
+            ))}
+          </div>
+          <p className="mt-3 text-center text-[13px] text-muted lg:text-left">Учебный автомобиль на площадке</p>
         </div>
       </div>
     </section>

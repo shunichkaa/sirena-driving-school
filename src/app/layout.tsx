@@ -14,17 +14,18 @@ const inter = Inter({
   display: "swap",
 });
 
-const canonicalBase = siteData.officialUrl.replace(/\/$/, "");
-const ogImageUrl = `${canonicalBase}${assetUrl("/photos/hero-traffic.png")}`;
+const canonicalOrigin = siteData.officialUrl.replace(/\/$/, "");
+const canonicalBase = `${canonicalOrigin}${appBasePath}`;
+const ogImageUrl = `${canonicalOrigin}${assetUrl("/photos/hero-traffic.png")}`;
 
 const ogDescription =
   "Автошкола «Сирена», Озёрск: права категории B от 54 000 ₽. Теория и практика, рассрочка без переплат, лицензия. Запись по телефону и онлайн.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(canonicalBase),
+  metadataBase: new URL(`${canonicalBase}/`),
   title: "Автошкола Сирена — Озёрск, права категории B | обучение вождению",
   description:
-    "ЧУДПО «Автошкола «Сирена»», Озёрск: категория B от 54 000 ₽. Теория, практика, рассрочка без переплат. Офис на Октябрьской: будни 14–21, выходной сб–вс. Запись: +79222362114.",
+    "ЧУДПО «Автошкола «Сирена»», Озёрск: категория B от 54 000 ₽. Теория, практика, рассрочка без переплат. Офис на Октябрьской: будни 14–21, выходной сб–вс. Запись: +7 (922) 236-21-14.",
   alternates: {
     canonical: "/",
   },
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     description: ogDescription,
     locale: "ru_RU",
     type: "website",
-    url: canonicalBase,
+    url: `${canonicalBase}/`,
     images: [
       {
         url: ogImageUrl,
@@ -67,14 +68,14 @@ const localBusinessJson = {
   description: "Обучение вождению по категории B в Озёрске.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "ул. Октябрьская, д. 7, оф. 316",
+    streetAddress: "ул. Октябрьская, д. 7, оф. 315",
     addressLocality: "Озёрск",
     addressRegion: "Челябинская область",
     addressCountry: "RU",
   },
   telephone: [siteData.phoneTel, siteData.phoneOfficeTel],
   email: siteData.email,
-  url: canonicalBase,
+  url: `${canonicalBase}/`,
   geo: {
     "@type": "GeoCoordinates",
     latitude: 55.7632,

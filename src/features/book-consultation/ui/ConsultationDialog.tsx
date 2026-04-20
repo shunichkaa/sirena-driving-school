@@ -2,7 +2,7 @@
 
 import { siteData } from "@/shared/config/site-data";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 
 type ConsultationDialogProps = {
   open: boolean;
@@ -21,29 +21,50 @@ export function ConsultationDialog({
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
   const [done, setDone] = useState(false);
-  const [mailHref, setMailHref] = useState("");
+  const [smsHref, setSmsHref] = useState("");
+  const [smsText, setSmsText] = useState("");
+  const [isMobileClient, setIsMobileClient] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!open) return;
     setDone(false);
-    setMailHref("");
+    setSmsHref("");
+    setSmsText("");
+    setIsCopied(false);
     setConsent(false);
     setHp("");
   }, [open]);
 
-  const submit = useCallback(() => {
+  useEffect(() => {
+    const mobileUa = /android|iphone|ipad|ipod|windows phone|mobile/i;
+    setIsMobileClient(mobileUa.test(navigator.userAgent));
+  }, []);
+
+  const submit = useCallback((event?: FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
     if (hp.trim()) return;
     if (!name.trim() || !phone.trim() || !consent) return;
-    const subject = encodeURIComponent("Мы вам перезвоним!");
-    const body = encodeURIComponent(
-      `Имя: ${name.trim()}\nТелефон: ${phone.trim()}\n\nСообщение отправлено с лендинга.`,
-    );
-    const href = `mailto:${siteData.email}?subject=${subject}&body=${body}`;
-    setMailHref(href);
+    const message = `Имя: ${name.trim()}\nТелефон: ${phone.trim()}\n\nСообщение отправлено с лендинга.`;
+    const body = encodeURIComponent(message);
+    const href = `sms:${siteData.phoneTel}?body=${body}`;
+    setSmsHref(href);
+    setSmsText(message);
     setDone(true);
   }, [name, phone, consent, hp]);
+
+  const copySmsText = useCallback(async () => {
+    if (!smsText) return;
+    if (!navigator.clipboard?.writeText) return;
+    try {
+      await navigator.clipboard.writeText(smsText);
+      setIsCopied(true);
+    } catch {
+      setIsCopied(false);
+    }
+  }, [smsText]);
 
   useEffect(() => {
     if (!open) return;
@@ -118,7 +139,7 @@ export function ConsultationDialog({
           Мы вам перезвоним!
         </h2>
         {!done ? (
-          <>
+          <form onSubmit={submit}>
             <input
               tabIndex={-1}
               autoComplete="off"
@@ -167,26 +188,44 @@ export function ConsultationDialog({
               </label>
             </div>
             <button
-              type="button"
+              type="submit"
               className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-accent px-6 py-3.5 text-base font-bold text-white transition hover:bg-accentStrong disabled:cursor-not-allowed disabled:opacity-50"
-              onClick={submit}
               disabled={!name.trim() || !phone.trim() || !consent}
             >
-              Отправить письмо
+              Отправить SMS
             </button>
-          </>
+          </form>
         ) : (
           <div className="mt-6 space-y-4">
             <p className="text-[15px] leading-relaxed text-muted">
-              Готово. Нажмите кнопку ниже — откроется почтовый клиент с заполненным письмом. Если окно не
-              открылось, позвоните: {siteData.phoneDisplay}.
+              {isMobileClient
+                ? "Готово. Нажмите кнопку ниже — откроется SMS с заполненным текстом."
+                : "Готово. На компьютере SMS может не открыться, поэтому доступны запасные варианты."}
             </p>
-            <a
-              href={mailHref}
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-accent px-6 py-3.5 text-base font-bold text-white transition hover:bg-accentStrong"
-            >
-              Открыть почту
-            </a>
+            {isMobileClient ? (
+              <a
+                href={smsHref}
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-accent px-6 py-3.5 text-base font-bold text-white transition hover:bg-accentStrong"
+              >
+                Открыть SMS
+              </a>
+            ) : (
+              <>
+                <a
+                  href={`tel:${siteData.phoneTel}`}
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-accent px-6 py-3.5 text-base font-bold text-white transition hover:bg-accentStrong"
+                >
+                  Позвонить
+                </a>
+                <button
+                  type="button"
+                  onClick={copySmsText}
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-wash bg-white px-6 py-3.5 text-base font-bold text-ink transition hover:bg-surface"
+                >
+                  {isCopied ? "Текст скопирован" : "Скопировать текст заявки"}
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>

@@ -7,36 +7,13 @@ import { siteMedia } from "@/shared/config/site-media";
 import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 export function CategoryBSection() {
   const { manual, automatic } = siteData.categoryB;
-  const slides = siteMedia.categoryBFleetSlides;
-  const [activeSlide, setActiveSlide] = useState(0);
-  const slidesCount = slides.length;
   const cards = [
     { key: "manual" as const, data: manual },
     { key: "automatic" as const, data: automatic },
   ];
-  const currentSlide = slides[activeSlide];
-
-  useEffect(() => {
-    const timerId = window.setInterval(() => {
-      setActiveSlide((prevSlide) => (prevSlide + 1) % slidesCount);
-    }, 5000);
-
-    return () => {
-      window.clearInterval(timerId);
-    };
-  }, [slidesCount]);
-
-  const handlePrevSlide = () => {
-    setActiveSlide((prevSlide) => (prevSlide - 1 + slidesCount) % slidesCount);
-  };
-
-  const handleNextSlide = () => {
-    setActiveSlide((prevSlide) => (prevSlide + 1) % slidesCount);
-  };
 
   return (
     <section id="category-b" className="bg-surface py-14 md:py-20">
@@ -44,61 +21,22 @@ export function CategoryBSection() {
         <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.2] tracking-tight text-ink">
           Категория B
         </h2>
-        <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-10">
-          <figure className="grid h-full grid-rows-[auto_auto] lg:col-span-5 lg:grid-rows-[430px_68px]">
+        <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-10">
+          <figure className="grid h-full grid-rows-[auto_auto] lg:col-span-5 lg:grid-rows-[430px_auto]">
             <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-wash bg-wash shadow-card lg:mx-0 lg:h-full lg:max-w-none">
               <div className="relative h-[300px] w-full sm:h-[380px] lg:h-full">
                 <Image
-                  key={currentSlide.src}
                   fill
-                  src={assetUrl(currentSlide.src)}
-                  alt={currentSlide.alt}
+                  src={assetUrl(siteMedia.heroMain)}
+                  alt={siteMedia.heroMainAlt}
                   className="object-cover object-center"
                   sizes="(min-width: 1024px) 380px, (min-width: 640px) 384px, 100vw"
                 />
-                <button
-                  type="button"
-                  onClick={handlePrevSlide}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/45 px-3 py-1.5 text-lg font-semibold text-white transition hover:bg-black/60"
-                  aria-label="Предыдущее фото"
-                >
-                  ‹
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextSlide}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/45 px-3 py-1.5 text-lg font-semibold text-white transition hover:bg-black/60"
-                  aria-label="Следующее фото"
-                >
-                  ›
-                </button>
               </div>
             </div>
-            <div className="pt-3 lg:grid lg:h-[68px] lg:grid-rows-[auto_auto] lg:content-start">
-              <div
-                className="flex items-center justify-center gap-2 lg:justify-start"
-                role="group"
-                aria-label="Переключение фотографий автопарка"
-              >
-                {slides.map((slide, index) => (
-                  <button
-                    key={slide.src}
-                    type="button"
-                    onClick={() => setActiveSlide(index)}
-                    className={`h-2.5 w-2.5 rounded-full transition ${
-                      index === activeSlide ? "bg-accent" : "bg-wash hover:bg-muted"
-                    }`}
-                    aria-label={`Показать фото ${index + 1}`}
-                    aria-current={index === activeSlide}
-                  />
-                ))}
-              </div>
-              <figcaption className="mt-3 text-center text-[13px] text-muted lg:mt-2 lg:text-left">
-                Учебный автомобиль на площадке
-              </figcaption>
-            </div>
+            <figcaption className="mt-3 text-center text-[13px] text-muted lg:text-left">Учебный автомобиль на площадке</figcaption>
           </figure>
-          <div className="grid min-w-0 h-full grid-rows-[auto_auto] lg:col-span-7 lg:grid-rows-[430px_68px]">
+          <div className="grid min-w-0 h-full gap-4 lg:col-span-7 lg:h-[430px] lg:grid-rows-[1fr_auto]">
             <div className="grid min-w-0 gap-4 md:grid-cols-2 md:items-stretch lg:h-full">
               {cards.map(({ key, data }, index) => (
                 <div key={key} className="flex h-full flex-col">
@@ -142,8 +80,11 @@ export function CategoryBSection() {
                 </div>
               ))}
             </div>
-            <p className="pt-3 text-left text-base font-medium leading-snug text-subtle lg:pt-4">
-              У нас доступны дополнительные индивидуальные занятия на учебном автомобиле. Стоимость - от 1 500 ₽ / час.
+            <p className="rounded-2xl border border-wash bg-white px-5 py-4 text-left shadow-card">
+              <span className="block text-base font-semibold leading-snug text-ink">
+                У нас доступны дополнительные индивидуальные занятия на учебном автомобиле.
+              </span>
+              <span className="mt-1.5 block text-lg font-bold leading-snug text-accent">Стоимость - от 1 500 ₽ / час.</span>
             </p>
           </div>
         </div>

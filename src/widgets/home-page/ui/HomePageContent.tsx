@@ -49,7 +49,7 @@ export function HomePageContent() {
         <div className="mx-auto flex max-w-screen-2xl gap-2">
           <a
             href={`tel:${siteData.phoneTel}`}
-            className="min-h-12 flex-1 rounded-lg border-2 border-accent bg-white px-4 py-2.5 text-center text-xs font-bold uppercase tracking-wide text-accent"
+            className="inline-flex min-h-12 flex-1 items-center justify-center rounded-lg border-2 border-accent bg-white px-4 py-2.5 text-center text-xs font-bold uppercase tracking-wide text-accent"
           >
             Позвонить
           </a>
@@ -102,11 +102,16 @@ export function HomePageContent() {
             <h3 className="text-xs font-medium uppercase tracking-[0.14em] text-subtle">Юр. документы</h3>
             <ul className="mt-4 flex list-none flex-col gap-2 p-0 text-[11px] font-semibold uppercase leading-snug tracking-wide text-muted md:gap-2.5">
               {siteData.footerDocLinks.map((doc) => (
-                <li key={doc.file}>
+                <li key={"file" in doc ? doc.file : "href" in doc ? doc.href : doc.fragment}>
                   <a
-                    href={assetUrl(`/docs/${encodeURIComponent(doc.file)}`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={
+                      "file" in doc
+                        ? assetUrl(`/docs/${encodeURIComponent(doc.file)}`)
+                        : "href" in doc
+                          ? doc.href
+                          : homeFragmentHref(doc.fragment)
+                    }
+                    {...("file" in doc || "href" in doc ? { target: "_blank" as const, rel: "noopener noreferrer" as const } : {})}
                     className="transition hover:text-accent"
                   >
                     {doc.label}
@@ -145,14 +150,14 @@ export function HomePageContent() {
         </div>
         <div className="mx-auto mt-8 max-w-[1240px] border-t border-wash pt-5">
           <div className="flex flex-col gap-2 px-6 text-left text-sm md:flex-row md:items-center md:justify-between md:px-0 md:text-[15px]">
-            <p className="text-muted md:text-subtle">© {new Date().getFullYear()} ЧУДПО «Автошкола «Сирена»». Все права защищены.</p>
+            <p className="text-muted md:text-subtle">© {new Date().getFullYear()} ЧУДПО «Сирена». Все права защищены.</p>
             <p className="text-muted md:text-subtle">
               Разработка:{" "}
               <a
                 href="https://github.com/shunichkaa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-ink transition hover:text-accent"
+                className="transition hover:text-accent"
               >
                 Александра Матье
               </a>

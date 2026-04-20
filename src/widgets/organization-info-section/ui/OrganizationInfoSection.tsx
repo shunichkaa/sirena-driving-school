@@ -1,41 +1,48 @@
 "use client";
 
-import { assetUrl } from "@/shared/config/app-base-path";
+import { assetUrl, homeFragmentHref } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 
 const infoRows = [
-  { label: "Полное наименование", value: siteData.legal.fullName },
+  { label: "Полное наименование", value: "Частное учреждение дополнительного профессионального образования \"Сирена\"" },
   { label: "Дата создания", value: "2009 год" },
-  { label: "Учредитель", value: "Сведения указаны в Уставе организации" },
+  {
+    label: "Учредитель",
+    value: (
+      <>
+        Сведения указаны в{" "}
+        <a
+          href={assetUrl(`/docs/${encodeURIComponent("Устав (новая редакция).pdf")}`)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-accent hover:text-accentStrong"
+        >
+          Уставе организации
+        </a>
+      </>
+    ),
+  },
   { label: "Место нахождения", value: siteData.addressLine },
   { label: "Режим работы", value: "Будни: 14:00–21:00; сб–вс — выходной" },
   {
     label: "Телефон",
     value: (
-      <a href="tel:+3513044379" className="font-semibold text-accent hover:text-accentStrong">
-        +3513044379
+      <a href={`tel:${siteData.phoneTel}`} className="font-semibold text-accent hover:text-accentStrong">
+        {siteData.phoneDisplay}
       </a>
     ),
   },
   {
     label: "E-mail",
     value: (
-      <a href={`mailto:${siteData.email}`} className="font-semibold text-accent hover:text-accentStrong">
-        {siteData.email}
-      </a>
-    ),
-  },
-  {
-    label: "Сайт",
-    value: (
-      <a
-        href={siteData.officialUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-semibold text-accent hover:text-accentStrong"
-      >
-        Официальный сайт
-      </a>
+      <>
+        <a href={`sms:${siteData.phoneTel}`} className="font-semibold text-accent hover:text-accentStrong md:hidden">
+          {siteData.phoneDisplay}
+        </a>
+        <a href={`mailto:${siteData.email}`} className="hidden font-semibold text-accent hover:text-accentStrong md:inline">
+          {siteData.email}
+        </a>
+      </>
     ),
   },
   { label: "Реализуемые программы", value: "Профессиональное обучение водителей транспортных средств категории B" },
@@ -44,13 +51,8 @@ const infoRows = [
   {
     label: "Документ",
     value: (
-      <a
-        href={assetUrl(`/docs/${encodeURIComponent("Сведения об организации Образование.pdf")}`)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-semibold text-accent hover:text-accentStrong"
-      >
-        Открыть PDF
+      <a href={homeFragmentHref("documents")} className="font-semibold text-accent hover:text-accentStrong">
+        Юридические документы
       </a>
     ),
   },

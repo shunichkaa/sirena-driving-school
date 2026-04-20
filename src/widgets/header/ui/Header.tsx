@@ -6,7 +6,7 @@ import { siteData } from "@/shared/config/site-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const sectionIds = ["program", "instructors", "reviews", "info", "contacts"] as const;
 
@@ -81,7 +81,7 @@ function IconEye({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-export function Header() {
+export const Header = memo(function Header() {
   const { openConsultationDialog } = useConsultationDialog();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -90,16 +90,23 @@ export function Header() {
   const closeMenuButtonRef = useRef<HTMLButtonElement | null>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
-  const links = [
-    { href: homeFragmentHref("program"), label: "Программа" },
-    { href: homeFragmentHref("instructors"), label: "Инструкторы" },
-    { href: homeFragmentHref("reviews"), label: "Отзывы" },
-    { href: homeFragmentHref("info"), label: "Сведения" },
-    { href: homeFragmentHref("contacts"), label: "Контакты" },
-  ] as const;
+  const links = useMemo(
+    () =>
+      [
+        { href: homeFragmentHref("program"), label: "Программа" },
+        { href: homeFragmentHref("instructors"), label: "Инструкторы" },
+        { href: homeFragmentHref("reviews"), label: "Отзывы" },
+        { href: homeFragmentHref("info"), label: "Сведения" },
+        { href: homeFragmentHref("contacts"), label: "Контакты" },
+      ] as const,
+    [],
+  );
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => {
+      const nextScrolled = window.scrollY > 12;
+      setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -116,7 +123,8 @@ export function Header() {
           .filter((e) => e.isIntersecting)
           .sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
         if (visible[0]?.target.id) {
-          setActiveSection(visible[0].target.id);
+          const nextSection = visible[0].target.id;
+          setActiveSection((prev) => (prev === nextSection ? prev : nextSection));
         }
       },
       { rootMargin: "-18% 0px -50% 0px", threshold: [0, 0.12, 0.25] },
@@ -235,7 +243,6 @@ export function Header() {
               width={657}
               height={239}
               className="h-14 w-auto max-w-full object-contain md:h-16 lg:h-20"
-              priority
               unoptimized
             />
           </Link>
@@ -314,10 +321,12 @@ export function Header() {
             type="button"
             onClick={toggleLowVisionMode}
             aria-pressed={lowVisionMode}
-            className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-wash bg-surface px-3 py-2.5 text-xs font-semibold leading-snug text-ink transition hover:border-accent hover:text-accent"
+            className="flex min-h-11 w-full items-center gap-3 rounded-xl border border-wash bg-surface px-3 py-2.5 text-ink transition hover:border-accent hover:text-accent"
           >
-            <IconEye className="h-4 w-4 shrink-0" />
-            {lowVisionMode ? "Обычная версия" : "Версия для слабовидящих"}
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-ink shadow-sm">
+              <IconEye className="h-4 w-4 shrink-0" />
+            </span>
+            <span className="text-sm font-bold leading-tight">{lowVisionMode ? "Обычная версия" : "Версия для слабовидящих"}</span>
           </button>
         </div>
         <div className="shrink-0 border-b border-wash px-4 py-3">
@@ -364,4 +373,4 @@ export function Header() {
       </div>
     </>
   );
-}
+});
