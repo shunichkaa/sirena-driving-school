@@ -1,4 +1,6 @@
-export const appBasePath = process.env.NODE_ENV === "production" ? "/sirena-driving-school" : "";
+const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const appBasePath = rawBasePath ? `/${rawBasePath.replace(/^\/+|\/+$/g, "")}` : "";
 
 export function assetUrl(path: string) {
   const normalized = path.startsWith("/") ? path : `/${path}`;
