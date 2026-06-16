@@ -12,7 +12,7 @@ const infoRows = [
       <>
         Сведения указаны в{" "}
         <a
-          href={assetUrl(`/docs/${encodeURIComponent("Устав (новая редакция).pdf")}`)}
+          href={assetUrl(`/docs/${encodeURIComponent(siteData.documentFiles.charter)}`)}
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold text-accent hover:text-accentStrong"
@@ -36,8 +36,8 @@ const infoRows = [
     label: "E-mail",
     value: (
       <>
-        <a href={`sms:${siteData.phoneTel}`} className="font-semibold text-accent hover:text-accentStrong md:hidden">
-          {siteData.phoneDisplay}
+        <a href={`mailto:${siteData.email}`} className="font-semibold text-accent hover:text-accentStrong md:hidden">
+          {siteData.email}
         </a>
         <a href={`mailto:${siteData.email}`} className="hidden font-semibold text-accent hover:text-accentStrong md:inline">
           {siteData.email}

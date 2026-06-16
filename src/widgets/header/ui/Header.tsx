@@ -103,9 +103,17 @@ export const Header = memo(function Header() {
   );
 
   useEffect(() => {
+    const scrolledOnThreshold = 20;
+    const scrolledOffThreshold = 6;
+
     const onScroll = () => {
-      const nextScrolled = window.scrollY > 12;
-      setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+      setScrolled((prev) => {
+        if (prev) {
+          return window.scrollY > scrolledOffThreshold;
+        }
+
+        return window.scrollY > scrolledOnThreshold;
+      });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });

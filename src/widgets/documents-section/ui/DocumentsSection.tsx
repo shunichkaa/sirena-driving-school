@@ -4,6 +4,20 @@ import { assetUrl } from "@/shared/config/app-base-path";
 import { siteData } from "@/shared/config/site-data";
 import { useMemo, useState } from "react";
 
+const documentTitles: Record<string, string> = {
+  "Запись в единый гос реестр юр лиц.pdf": "Запись в единый государственный реестр юридических лиц",
+  "Методические указания по орг уч пр.pdf": "Методические указания по организации учебного процесса",
+  "ЕГРЮЛ.pdf": "Выписка из Единого государственного реестра юридических лиц",
+  "Свид-во о постановке на учет в налоговом органе.pdf": "Свидетельство о постановке на учет в налоговом органе",
+  "Руководство и пед состав.pdf": "Руководство и педагогический состав",
+  "Свид-во о гос регистрации н.о..pdf": "Свидетельство о государственной регистрации некоммерческой организации",
+  "коллективный_дог.pdf": "Коллективный договор",
+};
+
+const getDocumentTitle = (fileName: string) => {
+  return documentTitles[fileName] ?? fileName.replace(/\.pdf$/iu, "");
+};
+
 export function DocumentsSection() {
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLocaleLowerCase("ru");
@@ -16,9 +30,11 @@ export function DocumentsSection() {
       { title: "Прочие документы", files: [] as string[] },
     ];
 
-    const visibleFiles = siteData.documents.filter((fileName) =>
-      fileName.toLocaleLowerCase("ru").includes(normalizedQuery),
-    );
+    const visibleFiles = siteData.documents.filter((fileName) => {
+      const fileNameLower = fileName.toLocaleLowerCase("ru");
+      const titleLower = getDocumentTitle(fileName).toLocaleLowerCase("ru");
+      return fileNameLower.includes(normalizedQuery) || titleLower.includes(normalizedQuery);
+    });
 
     visibleFiles.forEach((fileName) => {
       const lower = fileName.toLocaleLowerCase("ru");
@@ -99,7 +115,7 @@ export function DocumentsSection() {
                           rel="noreferrer"
                           className="inline-flex min-h-12 items-center text-sm font-semibold text-accent underline decoration-accent/40 underline-offset-4 hover:text-accentStrong"
                         >
-                          {fileName}
+                          {getDocumentTitle(fileName)}
                         </a>
                       </li>
                     ))}
