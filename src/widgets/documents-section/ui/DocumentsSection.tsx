@@ -1,22 +1,9 @@
 "use client";
 
 import { assetUrl } from "@/shared/config/app-base-path";
+import { getDocumentTitle } from "@/shared/config/document-titles";
 import { siteData } from "@/shared/config/site-data";
 import { useMemo, useState } from "react";
-
-const documentTitles: Record<string, string> = {
-  "Запись в единый гос реестр юр лиц.pdf": "Запись в единый государственный реестр юридических лиц",
-  "Методические указания по орг уч пр.pdf": "Методические указания по организации учебного процесса",
-  "ЕГРЮЛ.pdf": "Выписка из Единого государственного реестра юридических лиц",
-  "Свид-во о постановке на учет в налоговом органе.pdf": "Свидетельство о постановке на учет в налоговом органе",
-  "Руководство и пед состав.pdf": "Руководство и педагогический состав",
-  "Свид-во о гос регистрации н.о..pdf": "Свидетельство о государственной регистрации некоммерческой организации",
-  "коллективный_дог.pdf": "Коллективный договор",
-};
-
-const getDocumentTitle = (fileName: string) => {
-  return documentTitles[fileName] ?? fileName.replace(/\.pdf$/iu, "");
-};
 
 export function DocumentsSection() {
   const [query, setQuery] = useState("");

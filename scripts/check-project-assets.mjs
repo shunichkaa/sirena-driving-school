@@ -16,7 +16,7 @@ const siteDataText = fs.readFileSync(siteDataPath, "utf8");
 const siteMediaText = fs.readFileSync(siteMediaPath, "utf8");
 
 const documentFileNames = [
-  ...extractQuoted(siteDataText, /const documentFiles = \{([\s\S]*?)\} as const;/),
+  ...extractQuoted(siteDataText, /const documentFiles = {([\s\S]*?)} as const;/),
   ...extractQuoted(siteDataText, /documents:\s*\[([\s\S]*?)\],\n\s*footerDocLinks:/),
 ];
 
