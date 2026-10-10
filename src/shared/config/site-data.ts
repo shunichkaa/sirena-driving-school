@@ -15,6 +15,10 @@ export const siteData = {
   email: "sirena.ozersk@mail.ru",
   addressLine: "пр.Карла Маркса д.32 кв.215",
   workHoursLine: "Будни 14:00–21:00 Выходной сб–вс",
+  enrollmentNotice: {
+    title: "Набор групп приостановлен",
+    text: "На данный момент автошкола не проводит набор групп и обучение на категорию B.",
+  },
   mapEmbedUrl:
     "https://yandex.ru/map-widget/v1/?ll=60.700885%2C55.757903&z=17&pt=60.700885%2C55.757903%2Cpm2rdm",
   mapRouteUrl:

@@ -206,7 +206,6 @@ export const Header = memo(function Header() {
 
   return (
     <>
-    <div className="sticky top-0 z-50">
       <motion.header
         animate={{
           paddingTop: scrolled ? 8 : 20,
@@ -292,7 +291,6 @@ export const Header = memo(function Header() {
           </a>
         </div>
       </motion.header>
-    </div>
       <div
         role="presentation"
         className={`fixed inset-0 z-[85] bg-black/35 transition-opacity duration-300 md:hidden ${

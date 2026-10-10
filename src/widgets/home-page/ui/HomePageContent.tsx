@@ -7,6 +7,7 @@ import Link from "next/link";
 import { CategoryBSection } from "@/widgets/category-b-section";
 import { ContactsSection } from "@/widgets/contacts-section";
 import { DocumentsSection } from "@/widgets/documents-section";
+import { EnrollmentNotice, EnrollmentNoticeBar } from "@/widgets/enrollment-notice";
 import { FaqSection } from "@/widgets/faq-section";
 import { FinalCta } from "@/widgets/final-cta";
 import { Header } from "@/widgets/header";
@@ -27,7 +28,11 @@ export function HomePageContent() {
       >
         Перейти к основному контенту
       </a>
-      <Header />
+      <div className="sticky top-0 z-50">
+        <Header />
+        <EnrollmentNoticeBar />
+      </div>
+      <EnrollmentNotice />
       <main id="main-content">
         <Hero />
         <StatsBar />
