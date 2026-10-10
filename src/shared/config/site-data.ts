@@ -13,10 +13,12 @@ export const siteData = {
   phoneOfficeDisplay: "+7 (35130) 9-80-50",
   phoneOfficeTel: "+73513098050",
   email: "sirena.ozersk@mail.ru",
-  addressLine: "г. Озёрск, ул. Октябрьская, д. 7, оф. 315",
+  addressLine: "пр.Карла Маркса д.32 кв.215",
   workHoursLine: "Будни 14:00–21:00 Выходной сб–вс",
   mapEmbedUrl:
-    "https://yandex.ru/map-widget/v1/?ll=60.697008%2C55.762303&z=17&pt=60.697008%2C55.762303%2Cpm2rdm",
+    "https://yandex.ru/map-widget/v1/?ll=60.700885%2C55.757903&z=17&pt=60.700885%2C55.757903%2Cpm2rdm",
+  mapRouteUrl:
+    "https://yandex.ru/maps/?text=%D0%9E%D0%B7%D1%91%D1%80%D1%81%D0%BA%2C%20%D0%BF%D1%80.%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D0%9C%D0%B0%D1%80%D0%BA%D1%81%D0%B0%20%D0%B4.32%20%D0%BA%D0%B2.215",
   vkUrl: "https://vk.com/club224627577",
   privacyPath: "/personal-data",
   yandexRating: { score: "4.9", label: "в Яндекс.Картах", reviewCount: 87 },
@@ -97,7 +99,7 @@ export const siteData = {
   scheduleStrip: {
     title: "Расписание и набор групп",
     description:
-      "Набор на теорию — ежемесячно.\nПрактика вождения — по индивидуальному графику после теории.\nВизит в офис на ул. Октябрьская, 7 — в будни 14:00–21:00 (выходной сб–вс).",
+      "Набор на теорию — ежемесячно.\nПрактика вождения — по индивидуальному графику после теории.\nВизит в офис на пр.Карла Маркса д.32 кв.215 — в будни 14:00–21:00 (выходной сб–вс).",
     phoneCta: "Позвонить администратору",
   },
   legal: {

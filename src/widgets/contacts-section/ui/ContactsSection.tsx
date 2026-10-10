@@ -49,7 +49,7 @@ export function ContactsSection() {
               <p className="text-xs font-semibold leading-tight text-muted">Адрес</p>
               <p className="mt-2 text-sm font-semibold leading-snug">{siteData.addressLine}</p>
               <a
-                href={siteData.yandexMapsReviewsUrl}
+                href={siteData.mapRouteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-3 inline-flex text-sm font-semibold text-accent transition hover:text-accentStrong"

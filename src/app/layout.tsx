@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(`${canonicalBase}/`),
   title: "Автошкола Сирена — Озёрск, права категории B | обучение вождению",
   description:
-    "ЧУДПО «Автошкола «Сирена»», Озёрск: категория B от 54 000 ₽. Теория, практика, рассрочка без переплат. Офис на Октябрьской: будни 14–21, выходной сб–вс. Запись: +7 (922) 236-21-14.",
+    "ЧУДПО «Автошкола «Сирена»», Озёрск: категория B от 54 000 ₽. Теория, практика, рассрочка без переплат. Офис: пр.Карла Маркса д.32 кв.215, будни 14–21, выходной сб–вс. Запись: +7 (922) 236-21-14.",
   alternates: {
     canonical: "/",
   },
@@ -68,7 +68,7 @@ const localBusinessJson = {
   description: "Обучение вождению по категории B в Озёрске.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "ул. Октябрьская, д. 7, оф. 315",
+    streetAddress: "пр.Карла Маркса д.32 кв.215",
     addressLocality: "Озёрск",
     addressRegion: "Челябинская область",
     addressCountry: "RU",
@@ -78,8 +78,8 @@ const localBusinessJson = {
   url: `${canonicalBase}/`,
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 55.7632,
-    longitude: 60.7076,
+    latitude: 55.757903,
+    longitude: 60.700885,
   },
   openingHoursSpecification: [
     {
